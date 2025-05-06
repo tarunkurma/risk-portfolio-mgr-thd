@@ -63,6 +63,11 @@ src/
 - Icons from [react-icons](https://react-icons.github.io/react-icons/)
 - Charts by [Recharts](https://recharts.org/)
 
+![Product Development Process - Risk Portfolio Template](https://github.com/user-attachments/assets/48ad6cf3-a33e-4808-a7f6-25e98a82866d)
+
 ---
+
+
+
 
 © {new Date().getFullYear()} Stable Kernel (for design inspiration). All rights reserved. 
