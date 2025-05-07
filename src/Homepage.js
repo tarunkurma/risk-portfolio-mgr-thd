@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import skLogo from './sk-logo-dark.svg';
 import LifecycleTimeline from './LifecycleTimeline';
 import RiskDashboard from './RiskDashboard';
-import { FaPencilRuler, FaFilter, FaCodeBranch, FaCogs, FaRocket } from 'react-icons/fa';
-import Xarrow from 'react-xarrows';
+import { FaPencilRuler, FaFilter, FaCodeBranch, FaCogs, FaRocket, FaTools } from 'react-icons/fa';
 
 const HeroSection = styled.section`
   position: relative;
@@ -139,6 +138,36 @@ const PhaseListItem = styled.li`
   margin-bottom: 0.4rem;
 `;
 
+const CrossPhaseContainer = styled.div`
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: ${({ theme }) => theme.colors.secondaryBackground};
+  border-radius: 1rem;
+  box-shadow: 0 1px 4px rgba(47, 72, 196, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const CrossPhaseContent = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`;
+
+const CrossPhaseIcon = styled.div`
+  font-size: 2rem;
+  color: ${({ theme }) => theme.colors.primary};
+`;
+
+const CrossPhaseText = styled.h3`
+  font-size: 1.4rem;
+  margin: 0;
+  color: ${({ theme }) => theme.colors.text};
+  font-weight: ${({ theme }) => theme.fonts.weights.bold};
+`;
+
 export default function Homepage() {
   return (
     <>
@@ -174,7 +203,7 @@ export default function Homepage() {
               <PhaseListItem>Product Roadmap</PhaseListItem>
               <PhaseListItem>ROI Hypothesis</PhaseListItem>
               <PhaseListItem>Feature 360</PhaseListItem>
-              <PhaseListItem>Tools, Tech & Talent</PhaseListItem>
+              <PhaseListItem>Story Curation</PhaseListItem>
             </PhaseList>
           </Subsection>
           <Subsection id="phase-develop">
@@ -186,7 +215,7 @@ export default function Homepage() {
               <PhaseListItem>Security Standards</PhaseListItem>
               <PhaseListItem>Branching Strategy</PhaseListItem>
               <PhaseListItem>Infra - Local | EUT</PhaseListItem>
-              <PhaseListItem>Tools, Tech & Talent</PhaseListItem>
+              <PhaseListItem>Test Coverage</PhaseListItem>
             </PhaseList>
           </Subsection>
           <Subsection id="phase-stabilize">
@@ -198,7 +227,7 @@ export default function Homepage() {
               <PhaseListItem>STLC</PhaseListItem>
               <PhaseListItem>Data Management</PhaseListItem>
               <PhaseListItem>CICD - Stage Gates</PhaseListItem>
-              <PhaseListItem>Tools, Tech & Talent</PhaseListItem>
+              <PhaseListItem>Resilience Testing</PhaseListItem>
             </PhaseList>
           </Subsection>
           <Subsection id="phase-deploy">
@@ -207,18 +236,22 @@ export default function Homepage() {
               <SubsectionLabel>Deploy</SubsectionLabel>
             </SubsectionRow>
             <PhaseList>
-              <PhaseListItem>Security Monitors</PhaseListItem>
+              <PhaseListItem>Feature rollouts</PhaseListItem>
               <PhaseListItem>Observability</PhaseListItem>
               <PhaseListItem>Contingencies</PhaseListItem>
-              <PhaseListItem>Tools, Tech & Talent</PhaseListItem>
+              <PhaseListItem>Analytics</PhaseListItem>
             </PhaseList>
           </Subsection>
         </PhasesContainer>
-        <Xarrow start="icon-design" end="phase-design" color="#2F48C4" strokeWidth={2} headSize={6} />
-        <Xarrow start="icon-refine" end="phase-refine" color="#FF6B57" strokeWidth={2} headSize={6} />
-        <Xarrow start="icon-develop" end="phase-develop" color="#A3A3FF" strokeWidth={2} headSize={6} />
-        <Xarrow start="icon-stabilize" end="phase-stabilize" color="#B6E2D3" strokeWidth={2} headSize={6} />
-        <Xarrow start="icon-deploy" end="phase-deploy" color="#2ecc40" strokeWidth={2} headSize={6} />
+        
+        <CrossPhaseContainer id="cross-phase-ttt">
+          <CrossPhaseContent>
+            <CrossPhaseIcon>
+              <FaTools />
+            </CrossPhaseIcon>
+            <CrossPhaseText>Tools, Tech & Talent</CrossPhaseText>
+          </CrossPhaseContent>
+        </CrossPhaseContainer>
       </Section>
       <Section>
         <SectionTitle>Risk Dashboard</SectionTitle>

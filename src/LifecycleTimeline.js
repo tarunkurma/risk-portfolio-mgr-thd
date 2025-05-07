@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaFilter, FaPencilRuler, FaCodeBranch, FaCogs, FaRocket } from 'react-icons/fa';
 
 const phases = [
-  { key: 'design', label: 'Design', color: 'text', icon: <FaPencilRuler /> },
-  { key: 'refine', label: 'Refine', color: 'feature', icon: <FaFilter /> },
-  { key: 'develop', label: 'Develop', color: 'develop', icon: <FaCodeBranch /> },
-  { key: 'stabilize', label: 'Stabilize', color: 'stabilize', icon: <FaCogs /> },
-  { key: 'deploy', label: 'Deploy', color: 'deploy', icon: <FaRocket /> },
+  { key: 'design', label: 'Design', color: 'text', icon: <FaPencilRuler />, path: '/design' },
+  { key: 'refine', label: 'Refine', color: 'feature', icon: <FaFilter />, path: '/refine' },
+  { key: 'develop', label: 'Develop', color: 'develop', icon: <FaCodeBranch />, path: '/develop' },
+  { key: 'stabilize', label: 'Stabilize', color: 'stabilize', icon: <FaCogs />, path: '/stabilize' },
+  { key: 'deploy', label: 'Deploy', color: 'deploy', icon: <FaRocket />, path: '/deploy' },
 ];
 
 const TimelineContainer = styled.div`
@@ -47,10 +48,16 @@ const PhaseLabel = styled.span`
 
 export default function LifecycleTimeline({ onSelect, selectedPhase }) {
   const [selected, setSelected] = useState(selectedPhase || phases[0].key);
+  const history = useHistory();
 
-  const handleSelect = (key) => {
+  const handleSelect = (key, path) => {
     setSelected(key);
     if (onSelect) onSelect(key);
+    
+    // Navigate to the corresponding page
+    if (path) {
+      history.push(path);
+    }
   };
 
   return (
@@ -60,7 +67,7 @@ export default function LifecycleTimeline({ onSelect, selectedPhase }) {
           <PhaseBubble
             color={phase.color}
             selected={selected === phase.key}
-            onClick={() => handleSelect(phase.key)}
+            onClick={() => handleSelect(phase.key, phase.path)}
             aria-label={phase.label}
           >
             {phase.icon}
