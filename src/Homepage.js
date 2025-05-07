@@ -4,6 +4,7 @@ import skLogo from './sk-logo-dark.svg';
 import LifecycleTimeline from './LifecycleTimeline';
 import RiskDashboard from './RiskDashboard';
 import { FaPencilRuler, FaFilter, FaCodeBranch, FaCogs, FaRocket } from 'react-icons/fa';
+import Xarrow from 'react-xarrows';
 
 const HeroSection = styled.section`
   position: relative;
@@ -152,9 +153,9 @@ export default function Homepage() {
         <SectionTitle>Lifecycle Phases</SectionTitle>
         <LifecycleTimeline />
         <PhasesContainer>
-          <Subsection>
+          <Subsection id="phase-design">
             <SubsectionRow>
-              <SubsectionIcon color="text"><FaPencilRuler /></SubsectionIcon>
+              <SubsectionIcon id="icon-design" color="text"><FaPencilRuler /></SubsectionIcon>
               <SubsectionLabel>Design</SubsectionLabel>
             </SubsectionRow>
             <PhaseList>
@@ -164,9 +165,9 @@ export default function Homepage() {
               <PhaseListItem>Wireframes</PhaseListItem>
             </PhaseList>
           </Subsection>
-          <Subsection>
+          <Subsection id="phase-refine">
             <SubsectionRow>
-              <SubsectionIcon color="feature"><FaFilter /></SubsectionIcon>
+              <SubsectionIcon id="icon-refine" color="feature"><FaFilter /></SubsectionIcon>
               <SubsectionLabel>Refine</SubsectionLabel>
             </SubsectionRow>
             <PhaseList>
@@ -176,9 +177,9 @@ export default function Homepage() {
               <PhaseListItem>Tools, Tech & Talent</PhaseListItem>
             </PhaseList>
           </Subsection>
-          <Subsection>
+          <Subsection id="phase-develop">
             <SubsectionRow>
-              <SubsectionIcon color="develop"><FaCodeBranch /></SubsectionIcon>
+              <SubsectionIcon id="icon-develop" color="develop"><FaCodeBranch /></SubsectionIcon>
               <SubsectionLabel>Develop</SubsectionLabel>
             </SubsectionRow>
             <PhaseList>
@@ -188,9 +189,9 @@ export default function Homepage() {
               <PhaseListItem>Tools, Tech & Talent</PhaseListItem>
             </PhaseList>
           </Subsection>
-          <Subsection>
+          <Subsection id="phase-stabilize">
             <SubsectionRow>
-              <SubsectionIcon color="stabilize"><FaCogs /></SubsectionIcon>
+              <SubsectionIcon id="icon-stabilize" color="stabilize"><FaCogs /></SubsectionIcon>
               <SubsectionLabel>Stabilize</SubsectionLabel>
             </SubsectionRow>
             <PhaseList>
@@ -200,9 +201,9 @@ export default function Homepage() {
               <PhaseListItem>Tools, Tech & Talent</PhaseListItem>
             </PhaseList>
           </Subsection>
-          <Subsection>
+          <Subsection id="phase-deploy">
             <SubsectionRow>
-              <SubsectionIcon color={undefined} style={{ color: '#2ecc40' }}><FaRocket /></SubsectionIcon>
+              <SubsectionIcon id="icon-deploy" color={undefined} style={{ color: '#2ecc40' }}><FaRocket /></SubsectionIcon>
               <SubsectionLabel>Deploy</SubsectionLabel>
             </SubsectionRow>
             <PhaseList>
@@ -213,6 +214,11 @@ export default function Homepage() {
             </PhaseList>
           </Subsection>
         </PhasesContainer>
+        <Xarrow start="icon-design" end="phase-design" color="#2F48C4" strokeWidth={2} headSize={6} />
+        <Xarrow start="icon-refine" end="phase-refine" color="#FF6B57" strokeWidth={2} headSize={6} />
+        <Xarrow start="icon-develop" end="phase-develop" color="#A3A3FF" strokeWidth={2} headSize={6} />
+        <Xarrow start="icon-stabilize" end="phase-stabilize" color="#B6E2D3" strokeWidth={2} headSize={6} />
+        <Xarrow start="icon-deploy" end="phase-deploy" color="#2ecc40" strokeWidth={2} headSize={6} />
       </Section>
       <Section>
         <SectionTitle>Risk Dashboard</SectionTitle>
