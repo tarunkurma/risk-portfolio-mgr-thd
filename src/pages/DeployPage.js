@@ -50,8 +50,8 @@ const IconContainer = styled.div`
   width: 80px;
   height: 80px;
   background: ${({ theme }) => theme.colors.secondaryBackground};
-  color: #2ecc40;
-  border: 2px solid #2ecc40;
+  color: ${({ theme }) => theme.colors.deploy};
+  border: 2px solid ${({ theme }) => theme.colors.deploy};
   border-radius: 50%;
   font-size: 2rem;
   margin-right: 1.5rem;
@@ -99,7 +99,7 @@ const SectionHeader = styled.div`
 
 const SectionIcon = styled.div`
   font-size: 1.5rem;
-  color: ${({ theme, color }) => theme.colors[color] || '#2ecc40'};
+  color: ${({ theme, color }) => theme.colors[color] || theme.colors.deploy};
   margin-right: 1rem;
 `;
 

@@ -232,7 +232,7 @@ export default function Homepage() {
           </Subsection>
           <Subsection id="phase-deploy">
             <SubsectionRow>
-              <SubsectionIcon id="icon-deploy" color={undefined} style={{ color: '#2ecc40' }}><FaRocket /></SubsectionIcon>
+              <SubsectionIcon id="icon-deploy" color="deploy"><FaRocket /></SubsectionIcon>
               <SubsectionLabel>Deploy</SubsectionLabel>
             </SubsectionRow>
             <PhaseList>
