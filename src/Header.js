@@ -92,9 +92,9 @@ export default function Header() {
   return (
     <HeaderBar>
       <NavContainer>
-        <Link to="/">
+        <ExternalLink href="https://stablekernel.com/" target="_blank" rel="noopener noreferrer">
           <Logo src={skLogo} alt="Stable Kernel Logo" />
-        </Link>
+        </ExternalLink>
         <Nav>
           <NavLink to="/">Home</NavLink>
           <NavLink to="/risk-dashboard">Risk Dashboard</NavLink>
