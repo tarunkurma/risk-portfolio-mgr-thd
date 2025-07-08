@@ -233,19 +233,19 @@ export default function RiskDashboard() {
     <Card>
       <Header>
         <HeaderContent>
-          <subTitle>Comprehensive view of project risk factors and mitigation status</subTitle>
+          <div>Comprehensive view of project risk factors and mitigation status</div>
         </HeaderContent>
       </Header>
       
       <TabButtons>
         <TabButton 
-          active={activeTab === 'overview'} 
+          active={activeTab === 'overview' ? 'true' : 'false'} 
           onClick={() => setActiveTab('overview')}
         >
           Overview
         </TabButton>
         <TabButton 
-          active={activeTab === 'details'} 
+          active={activeTab === 'details' ? 'true' : 'false'} 
           onClick={() => setActiveTab('details')}
         >
           Detailed Analysis
@@ -295,8 +295,8 @@ export default function RiskDashboard() {
               </ChartTitle>
               <RiskList>
                 {topRisks.map((risk, idx) => (
-                  <RiskItem key={idx} iconColor="accent">
-                    <FaExclamationTriangle size={14} />
+                  <RiskItem key={idx}>
+                    <FaExclamationTriangle size={14} style={{ color: theme.colors.accent }} />
                     {risk}
                   </RiskItem>
                 ))}
@@ -308,8 +308,8 @@ export default function RiskDashboard() {
               </ChartTitle>
               <RiskList>
                 {mitigatedRisks.map((risk, idx) => (
-                  <RiskItem key={idx} iconColor="primary">
-                    <FaCheck size={14} />
+                  <RiskItem key={idx}>
+                    <FaCheck size={14} style={{ color: theme.colors.primary }} />
                     {risk}
                   </RiskItem>
                 ))}

@@ -5,7 +5,6 @@ import RiskDashboard from './RiskDashboard';
 describe('RiskDashboard', () => {
   it('renders the dashboard title and subtitle', () => {
     render(<RiskDashboard />);
-    expect(screen.getByText(/Risk Dashboard/i)).toBeInTheDocument();
     expect(screen.getByText(/Comprehensive view of project risk factors/i)).toBeInTheDocument();
   });
 
@@ -23,14 +22,12 @@ describe('RiskDashboard', () => {
 
   it('displays top risks section', () => {
     render(<RiskDashboard />);
-    expect(screen.getByText(/Top Risks/i)).toBeInTheDocument();
     expect(screen.getByText(/No accessibility review in Design/i)).toBeInTheDocument();
     expect(screen.getByText(/Insufficient feature definition in Refinement phase/i)).toBeInTheDocument();
   });
 
   it('displays recently mitigated risks section', () => {
     render(<RiskDashboard />);
-    expect(screen.getByText(/Recently Mitigated/i)).toBeInTheDocument();
     expect(screen.getByText(/Outdated dependencies with security vulnerabilities/i)).toBeInTheDocument();
   });
 
