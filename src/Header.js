@@ -99,7 +99,6 @@ export default function Header() {
           <NavLink to="/">Home</NavLink>
           <NavLink to="/risk-dashboard">Risk Dashboard</NavLink>
           <NavLink to="/risk-mitigation">Risk Mitigation</NavLink>
-          <ExternalLink href="#resources">Resources</ExternalLink>
           <NavButton to="/risk-dashboard">View Risks</NavButton>
         </Nav>
       </NavContainer>
