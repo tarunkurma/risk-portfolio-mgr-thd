@@ -26,9 +26,19 @@ const PhaseBubble = styled.button`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: ${({ theme, color, selected }) => selected ? theme.colors[color] : theme.colors.secondaryBackground};
-  color: ${({ theme, color, selected }) => selected ? '#fff' : theme.colors[color]};
-  border: 2px solid ${({ theme, color }) => theme.colors[color]};
+  background: ${({ theme, color, selected }) => {
+    if (color === 'text') {
+      return selected ? theme.colors.text : theme.colors.secondaryBackground;
+    }
+    return selected ? theme.colors[color] : theme.colors.secondaryBackground;
+  }};
+  color: ${({ theme, color, selected }) => {
+    if (color === 'text') {
+      return selected ? '#fff' : theme.colors.text;
+    }
+    return selected ? '#fff' : theme.colors[color];
+  }};
+  border: 2px solid ${({ theme, color }) => color === 'text' ? theme.colors.text : theme.colors[color]};
   border-radius: 50%;
   width: 80px;
   height: 80px;
