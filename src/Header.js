@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import skLogo from './sk-logo-dark.svg';
 
 const HeaderBar = styled.header`
@@ -27,7 +28,7 @@ const Nav = styled.nav`
   gap: 2.5rem;
 `;
 
-const NavLink = styled.a`
+const NavLink = styled(Link)`
   font-size: 1rem;
   font-weight: ${({ theme }) => theme.fonts.weights.bold};
   color: ${({ theme }) => theme.colors.text};
@@ -42,7 +43,7 @@ const NavLink = styled.a`
   }
 `;
 
-const NavButton = styled.a`
+const NavButton = styled(Link)`
   font-size: 1rem;
   font-weight: ${({ theme }) => theme.fonts.weights.bold};
   color: #fff;
@@ -62,6 +63,21 @@ const NavButton = styled.a`
   }
 `;
 
+const ExternalLink = styled.a`
+  font-size: 1rem;
+  font-weight: ${({ theme }) => theme.fonts.weights.bold};
+  color: ${({ theme }) => theme.colors.text};
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  padding: 0.25rem 0;
+  transition: color 0.2s;
+  position: relative;
+  &:hover, &:focus {
+    color: ${({ theme }) => theme.colors.primary};
+  }
+`;
+
 const NavContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
@@ -76,12 +92,15 @@ export default function Header() {
   return (
     <HeaderBar>
       <NavContainer>
-        <Logo src={skLogo} alt="Stable Kernel Logo" />
+        <Link to="/">
+          <Logo src={skLogo} alt="Stable Kernel Logo" />
+        </Link>
         <Nav>
-          <NavLink href="#resources">Resources</NavLink>
-          <NavLink href="#case-studies">Case Studies</NavLink>
-          <NavLink href="#contact">Contact</NavLink>
-          <NavButton href="#start-assessment">Start Assessment</NavButton>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/risk-dashboard">Risk Dashboard</NavLink>
+          <NavLink to="/risk-mitigation">Risk Mitigation</NavLink>
+          <ExternalLink href="#resources">Resources</ExternalLink>
+          <NavButton to="/risk-dashboard">View Risks</NavButton>
         </Nav>
       </NavContainer>
     </HeaderBar>

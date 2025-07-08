@@ -1,3 +1,4 @@
+
 # Comprehensive Risk Dashboard
 
 A modern, visually engaging web application for evaluating and visualizing software lifecycle risk, template inspired by Stable Kernel's design system.
