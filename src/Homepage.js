@@ -50,21 +50,7 @@ const Subtitle = styled.p`
   margin-bottom: 2rem;
 `;
 
-const CTAButton = styled.button`
-  font-size: 1.1rem;
-  font-weight: ${({ theme }) => theme.fonts.weights.bold};
-  background: ${({ theme }) => theme.colors.primary};
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 0.75rem 2rem;
-  box-shadow: 0 2px 8px rgba(47, 72, 196, 0.08);
-  cursor: pointer;
-  transition: background 0.2s;
-  &:hover {
-    background: ${({ theme }) => theme.colors.accent};
-  }
-`;
+
 
 const Section = styled.section`
   padding: 3rem 2rem;

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaFilter, FaPencilRuler, FaCodeBranch, FaCogs, FaRocket } from 'react-icons/fa';
@@ -77,4 +78,9 @@ export default function LifecycleTimeline({ onSelect, selectedPhase }) {
       ))}
     </TimelineContainer>
   );
-} 
+}
+
+LifecycleTimeline.propTypes = {
+  onSelect: PropTypes.func,
+  selectedPhase: PropTypes.string
+}; 

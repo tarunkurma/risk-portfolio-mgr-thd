@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { useTheme } from 'styled-components';
 import { 
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, 
-  ResponsiveContainer, Cell 
+  ResponsiveContainer
 } from 'recharts';
 import { 
   FaExclamationTriangle, FaShieldAlt, FaUserShield, 
@@ -159,12 +159,7 @@ const LastUpdated = styled.div`
   text-align: right;
 `;
 
-const CategoryIcon = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: 0.5rem;
-  color: ${({ color, theme }) => theme.colors[color] || theme.colors.primary};
-`;
+
 
 const LegendContainer = styled.div`
   display: flex;

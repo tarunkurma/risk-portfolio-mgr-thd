@@ -72,35 +72,13 @@ const Header = styled.div`
   margin-bottom: 2rem;
 `;
 
-const IconContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 60px;
-  background: ${({ theme }) => theme.colors.secondaryBackground};
-  color: ${({ theme }) => theme.colors.accent};
-  border-radius: 50%;
-  font-size: 1.75rem;
-  margin-right: 1.5rem;
-`;
+
 
 const HeaderContent = styled.div`
   flex: 1;
 `;
 
-const Title = styled.h2`
-  font-size: 1.75rem;
-  margin: 0 0 0.5rem 0;
-  color: ${({ theme }) => theme.colors.primary};
-`;
 
-const Subtitle = styled.p`
-  margin: 0;
-  font-size: 1rem;
-  color: ${({ theme }) => theme.colors.text};
-  opacity: 0.8;
-`;
 
 const Score = styled.div`
   font-size: 2.5rem;

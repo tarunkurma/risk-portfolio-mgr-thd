@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import logo from './logo.svg';
 import styled from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
@@ -42,12 +41,4 @@ export const GlobalStyles = createGlobalStyle`
   }
 `;
 
-const Footer = styled.footer`
-  width: 100%;
-  background: ${({ theme }) => theme.colors.secondaryBackground};
-  color: ${({ theme }) => theme.colors.text};
-  text-align: center;
-  padding: 2rem 0;
-  font-size: 1rem;
-  margin-top: 3rem;
-`; 
+ 

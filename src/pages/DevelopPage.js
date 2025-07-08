@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { 
   FaCodeBranch, FaArrowLeft, FaShieldAlt, FaCode, FaServer, FaCheckSquare,
-  FaBook, FaRegListAlt, FaComments, FaClipboardCheck, FaTools, FaBullseye
+  FaBook, FaRegListAlt, FaTools, FaBullseye
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
