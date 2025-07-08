@@ -254,12 +254,8 @@ export default function RiskDashboard() {
   return (
     <Card>
       <Header>
-        <IconContainer>
-          <FaExclamationTriangle />
-        </IconContainer>
         <HeaderContent>
-          <Title>Risk Dashboard</Title>
-          <Subtitle>Comprehensive view of project risk factors and mitigation status</Subtitle>
+          <subTitle>Comprehensive view of project risk factors and mitigation status</subTitle>
         </HeaderContent>
       </Header>
       
