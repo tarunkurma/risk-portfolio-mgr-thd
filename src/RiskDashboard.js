@@ -31,18 +31,20 @@ const dummyRiskData = {
     { name: 'Low', value: 13, color: '#2ecc40' },
   ],
   topRisks: [
-    'No accessibility review in Design',
-    'Insufficient feature definition in Refinement phase',
-    'Missing test coverage in Develop phase',
-    'Manual deployment process in Deploy',
-    'Lack of automated security scanning',
-    'No formal risk assessment process',
+    'Release pipeline lacks automation (30-40 min builds)',
+    'Android: 103 SDKs, iOS: 44 SDKs - update risks',
+    'Configuration management prone to errors',
+    'Native-WebView data sharing complexity',
+    'Legacy code removal challenges',
+    'Manual App/Play Store uploads required',
   ],
   mitigatedRisks: [
     'Outdated dependencies with security vulnerabilities',
     'Missing automated testing in CI pipeline',
     'Inadequate error handling',
-    'Poor password policy requirements'
+    'Poor password policy requirements',
+    'Configuration drift across environments',
+    'Manual release process inefficiencies'
   ],
   lastUpdated: '2024-05-06 15:00',
 };
@@ -264,28 +266,28 @@ export default function RiskDashboard() {
               <Score color={riskColor}>{overallScore}</Score>
               <ScoreLabel>Overall Risk Score</ScoreLabel>
               
-              <ResponsiveContainer width="100%" height={180}>
-                <BarChart data={phaseScores} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
-                  <XAxis dataKey="phase" tick={{ fontSize: 14 }} />
-                  <YAxis domain={[0, 100]} hide />
-                  <Tooltip />
-                  <Bar dataKey="score">
-                    {phaseScores.map((entry, idx) => (
-                      <Cell key={`cell-${idx}`} fill={getRiskColor(entry.score, theme)} />
-                    ))}
-                    <LabelList dataKey="score" position="top" style={{ fontSize: 14, fontWeight: 600 }} />
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
-              
-              <IconRow>
-                {phaseIcons.map(({ phase, icon, color }) => (
-                  <IconCol key={phase}>
-                    {React.cloneElement(icon, { color: theme.colors[color] })}
-                    <PhaseLabel>{phase}</PhaseLabel>
-                  </IconCol>
-                ))}
-              </IconRow>
+                <ResponsiveContainer width="100%" height={180}>
+                  <BarChart data={phaseScores} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
+                    <XAxis dataKey="phase" tick={{ fontSize: 14 }} />
+                    <YAxis domain={[0, 100]} hide />
+                    <Tooltip />
+                    <Bar dataKey="score">
+                      {phaseScores.map((entry, idx) => (
+                        <Cell key={`cell-${idx}`} fill={getRiskColor(entry.score, theme)} />
+                      ))}
+                      <LabelList dataKey="score" position="top" style={{ fontSize: 14, fontWeight: 600 }} />
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
+                
+                <IconRow>
+                  {phaseIcons.map(({ phase, icon, color }) => (
+                    <IconCol key={phase}>
+                      {React.cloneElement(icon, { color: theme.colors[color] })}
+                      <PhaseLabel>{phase}</PhaseLabel>
+                    </IconCol>
+                  ))}
+                </IconRow>
             </ChartContainer>
             
             <ChartContainer>

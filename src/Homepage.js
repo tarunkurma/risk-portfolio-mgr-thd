@@ -174,9 +174,10 @@ export default function Homepage() {
               <SubsectionLabel>Design</SubsectionLabel>
             </SubsectionRow>
             <PhaseList>
-              <PhaseListItem>UX Research</PhaseListItem>
-              <PhaseListItem>Accessibility</PhaseListItem>
               <PhaseListItem>A/B Testing</PhaseListItem>
+              <PhaseListItem>Accessibility</PhaseListItem>
+              <PhaseListItem>Prototyping</PhaseListItem>
+              <PhaseListItem>UX Research</PhaseListItem>
               <PhaseListItem>Wireframes</PhaseListItem>
             </PhaseList>
           </Subsection>
@@ -186,10 +187,11 @@ export default function Homepage() {
               <SubsectionLabel>Refine</SubsectionLabel>
             </SubsectionRow>
             <PhaseList>
+              <PhaseListItem>Feature 360</PhaseListItem>
               <PhaseListItem>Product Roadmap</PhaseListItem>
               <PhaseListItem>ROI Hypothesis</PhaseListItem>
-              <PhaseListItem>Feature 360</PhaseListItem>
               <PhaseListItem>Story Curation</PhaseListItem>
+              <PhaseListItem>Success Metrics</PhaseListItem>
             </PhaseList>
           </Subsection>
           <Subsection id="phase-develop">
@@ -198,10 +200,11 @@ export default function Homepage() {
               <SubsectionLabel>Develop</SubsectionLabel>
             </SubsectionRow>
             <PhaseList>
-              <PhaseListItem>Security Standards</PhaseListItem>
-              <PhaseListItem>Branching Strategy</PhaseListItem>
+              <PhaseListItem>Dev Standards</PhaseListItem>
               <PhaseListItem>Infra - Local | EUT</PhaseListItem>
-              <PhaseListItem>Test Coverage</PhaseListItem>
+              <PhaseListItem>Maintainability</PhaseListItem>
+              <PhaseListItem>Security Standards</PhaseListItem>
+              <PhaseListItem>Code Quality</PhaseListItem>
             </PhaseList>
           </Subsection>
           <Subsection id="phase-stabilize">
@@ -210,10 +213,11 @@ export default function Homepage() {
               <SubsectionLabel>Stabilize</SubsectionLabel>
             </SubsectionRow>
             <PhaseList>
-              <PhaseListItem>STLC</PhaseListItem>
-              <PhaseListItem>Data Management</PhaseListItem>
               <PhaseListItem>CICD - Stage Gates</PhaseListItem>
-              <PhaseListItem>Resilience Testing</PhaseListItem>
+              <PhaseListItem>Data Management</PhaseListItem>
+              <PhaseListItem>Resiliency</PhaseListItem>
+              <PhaseListItem>STLC</PhaseListItem>
+              <PhaseListItem>Usability</PhaseListItem>
             </PhaseList>
           </Subsection>
           <Subsection id="phase-deploy">
@@ -222,10 +226,11 @@ export default function Homepage() {
               <SubsectionLabel>Deploy</SubsectionLabel>
             </SubsectionRow>
             <PhaseList>
+              <PhaseListItem>Analytics</PhaseListItem>
+              <PhaseListItem>Contingencies</PhaseListItem>
               <PhaseListItem>Feature rollouts</PhaseListItem>
               <PhaseListItem>Observability</PhaseListItem>
-              <PhaseListItem>Contingencies</PhaseListItem>
-              <PhaseListItem>Analytics</PhaseListItem>
+              <PhaseListItem>Support</PhaseListItem>
             </PhaseList>
           </Subsection>
         </PhasesContainer>
