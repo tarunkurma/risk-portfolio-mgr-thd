@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import skLogo from './sk-logo-dark.svg';
-import { FaTwitter, FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
+import { FaXTwitter, FaFacebookF, FaLinkedinIn } from 'react-icons/fa6';
 
 const FooterBar = styled.footer`
   width: 100%;
@@ -78,16 +78,16 @@ export default function Footer() {
       <FooterContainer>
         <Logo src={skLogo} alt="Stable Kernel Logo" />
         <Nav>
-          <NavLink href="#services">Services</NavLink>
-          <NavLink href="#case-studies">Case Studies</NavLink>
-          <NavLink href="#about-us">About Us</NavLink>
-          <NavLink href="#resources">Resources</NavLink>
-          <NavLink href="#book-a-consultation">Book a Consultation</NavLink>
-          <NavLink href="#careers">Careers</NavLink>
-          <NavLink href="#privacy-policy">Privacy Policy</NavLink>
+          <NavLink href="https://stablekernel.com/services" target="_blank" rel="noopener noreferrer">Services</NavLink>
+          <NavLink href="https://stablekernel.com/case-studies" target="_blank" rel="noopener noreferrer">Case Studies</NavLink>
+          <NavLink href="https://stablekernel.com/about-us" target="_blank" rel="noopener noreferrer">About Us</NavLink>
+          <NavLink href="https://stablekernel.com/resources" target="_blank" rel="noopener noreferrer">Resources</NavLink>
+          <NavLink href="https://stablekernel.com/book-a-consultation" target="_blank" rel="noopener noreferrer">Book a Consultation</NavLink>
+          <NavLink href="https://stablekernel.com/about-us#careers" target="_blank" rel="noopener noreferrer">Careers</NavLink>
+          <NavLink href="https://stablekernel.com/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</NavLink>
         </Nav>
         <Socials>
-          <SocialIcon href="https://twitter.com/stablekernel" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><FaTwitter /></SocialIcon>
+          <SocialIcon href="https://twitter.com/stablekernel" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)"><FaXTwitter /></SocialIcon>
           <SocialIcon href="https://www.facebook.com/stablekernel/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><FaFacebookF /></SocialIcon>
           <SocialIcon href="https://www.linkedin.com/company/stable-kernel/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedinIn /></SocialIcon>
         </Socials>
