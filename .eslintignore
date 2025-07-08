@@ -1,0 +1,9 @@
+node_modules
+build
+public
+**/*.css
+**/*.svg
+serviceWorkerRegistration.js
+service-worker.js
+reportWebVitals.js
+setupTests.js
