@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/risk-portfolio-mgr-thd/static/css/main.435d5fe5.chunk.css",
-    "main.js": "/risk-portfolio-mgr-thd/static/js/main.349009d6.chunk.js",
-    "main.js.map": "/risk-portfolio-mgr-thd/static/js/main.349009d6.chunk.js.map",
+    "main.js": "/risk-portfolio-mgr-thd/static/js/main.1f722a8c.chunk.js",
+    "main.js.map": "/risk-portfolio-mgr-thd/static/js/main.1f722a8c.chunk.js.map",
     "runtime~main.js": "/risk-portfolio-mgr-thd/static/js/runtime~main.4ffeac4d.js",
     "runtime~main.js.map": "/risk-portfolio-mgr-thd/static/js/runtime~main.4ffeac4d.js.map",
     "static/js/2.7d810e95.chunk.js": "/risk-portfolio-mgr-thd/static/js/2.7d810e95.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/3.b51b35f2.chunk.js": "/risk-portfolio-mgr-thd/static/js/3.b51b35f2.chunk.js",
     "static/js/3.b51b35f2.chunk.js.map": "/risk-portfolio-mgr-thd/static/js/3.b51b35f2.chunk.js.map",
     "index.html": "/risk-portfolio-mgr-thd/index.html",
-    "precache-manifest.ac83be56f6acfa14cbae100207d8126d.js": "/risk-portfolio-mgr-thd/precache-manifest.ac83be56f6acfa14cbae100207d8126d.js",
+    "precache-manifest.210b6aa3a3ee9bedf7d2675287e92a43.js": "/risk-portfolio-mgr-thd/precache-manifest.210b6aa3a3ee9bedf7d2675287e92a43.js",
     "service-worker.js": "/risk-portfolio-mgr-thd/service-worker.js",
     "static/css/main.435d5fe5.chunk.css.map": "/risk-portfolio-mgr-thd/static/css/main.435d5fe5.chunk.css.map",
     "static/media/sk-logo-dark.svg": "/risk-portfolio-mgr-thd/static/media/sk-logo-dark.fbff4e0a.svg"
