@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/risk-portfolio-mgr-thd/precache-manifest.e4848c51d5895a0fb388bf626d435fd7.js"
+  "/risk-portfolio-mgr-thd/precache-manifest.bf99beb02f18f14fcf214c6b8ac32cfc.js"
 );
 
 self.addEventListener('message', (event) => {

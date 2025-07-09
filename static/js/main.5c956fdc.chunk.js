@@ -98,7 +98,7 @@
   font-size: 1rem;
   font-weight: ${e=>{let{theme:t}=e;return t.fonts.weights.medium}};
   color: ${e=>{let{theme:t,color:r,selected:a}=e;return a?t.colors[r]:t.colors.text}};
-`;function z(e){let{onSelect:t,selectedPhase:r}=e;const[l,o]=Object(a.useState)(r||v[0].key),i=Object(c.f)();return n.a.createElement(k,null,v.map(e=>n.a.createElement("div",{key:e.key,style:{textAlign:"center"}},n.a.createElement(w,{color:e.color,selected:l===e.key,onClick:()=>((e,r)=>{o(e),t&&t(e),r&&i.push(r)})(e.key,e.path),"aria-label":e.label},e.icon),n.a.createElement($,{color:e.color,selected:l===e.key},e.label))))}var S=r(508),C=r(509),D=r(267),R=r(268),B=r(54),A=r(114),I=r(110),M=r(68),P=r(510),F=r(269),j=r(71),T=r(511),O=r(512),L=r(111),U=r(113),K=r(272);const q={overallScore:72,phaseScores:[{phase:"Design",score:80,phaseName:"Design"},{phase:"Refine",score:60,phaseName:"Refine"},{phase:"Develop",score:70,phaseName:"Develop"},{phase:"Stabilize",score:75,phaseName:"Stabilize"},{phase:"Deploy",score:65,phaseName:"Deploy"}],riskCategories:[{name:"Security",value:65,fullMark:100},{name:"Compliance",value:80,fullMark:100},{name:"Infrastructure",value:75,fullMark:100},{name:"Process",value:68,fullMark:100},{name:"Team",value:85,fullMark:100}],riskSeverity:[{name:"High",value:4,color:"#ff4136"},{name:"Medium",value:7,color:"#ff851b"},{name:"Low",value:13,color:"#2ecc40"}],topRisks:["Release pipeline lacks automation (30-40 min builds)","Android: 103 SDKs, iOS: 44 SDKs - update risks","Configuration management prone to errors","Native-WebView data sharing complexity","Legacy code removal challenges","Manual App/Play Store uploads required"],mitigatedRisks:["Outdated dependencies with security vulnerabilities","Missing automated testing in CI pipeline","Inadequate error handling","Poor password policy requirements","Configuration drift across environments","Manual release process inefficiencies"],lastUpdated:"2024-05-06 15:00"},W=[{phase:"Design",icon:n.a.createElement(x.E,{size:24}),color:"text"},{phase:"Refine",icon:n.a.createElement(x.w,{size:24}),color:"feature"},{phase:"Develop",icon:n.a.createElement(x.q,{size:24}),color:"develop"},{phase:"Stabilize",icon:n.a.createElement(x.r,{size:24}),color:"stabilize"},{phase:"Deploy",icon:n.a.createElement(x.G,{size:24}),color:"deploy"}],H=m.c.div`
+`;function z(e){let{onSelect:t,selectedPhase:r}=e;const[l,o]=Object(a.useState)(r||v[0].key),i=Object(c.f)();return n.a.createElement(k,null,v.map(e=>n.a.createElement("div",{key:e.key,style:{textAlign:"center"}},n.a.createElement(w,{color:e.color,selected:l===e.key,onClick:()=>((e,r)=>{o(e),t&&t(e),r&&i.push(r)})(e.key,e.path),"aria-label":e.label},e.icon),n.a.createElement($,{color:e.color,selected:l===e.key},e.label))))}var S=r(508),C=r(509),D=r(267),R=r(268),M=r(54),B=r(114),A=r(110),I=r(68),P=r(510),F=r(269),j=r(71),T=r(511),L=r(512),O=r(111),U=r(113),K=r(272);const H={overallScore:72,phaseScores:[{phase:"Design",score:80,phaseName:"Design"},{phase:"Refine",score:60,phaseName:"Refine"},{phase:"Develop",score:70,phaseName:"Develop"},{phase:"Stabilize",score:75,phaseName:"Stabilize"},{phase:"Deploy",score:65,phaseName:"Deploy"}],riskCategories:[{name:"Security",value:65,fullMark:100},{name:"Compliance",value:80,fullMark:100},{name:"Infrastructure",value:75,fullMark:100},{name:"Process",value:68,fullMark:100},{name:"Team",value:85,fullMark:100}],riskSeverity:[{name:"High",value:4,color:"#ff4136"},{name:"Medium",value:7,color:"#ff851b"},{name:"Low",value:13,color:"#2ecc40"}],topRisks:["Release pipeline lacks automation (30-40 min builds)","Android: 103 SDKs, iOS: 44 SDKs - update risks","Configuration management prone to errors","Native-WebView data sharing complexity","Legacy code removal challenges","Manual App/Play Store uploads required"],mitigatedRisks:["Outdated dependencies with security vulnerabilities","Missing automated testing in CI pipeline","Inadequate error handling","Poor password policy requirements","Configuration drift across environments","Manual release process inefficiencies"],lastUpdated:"2024-05-06 15:00"},q=[{phase:"Design",icon:n.a.createElement(x.E,{size:24}),color:"text"},{phase:"Refine",icon:n.a.createElement(x.w,{size:24}),color:"feature"},{phase:"Develop",icon:n.a.createElement(x.q,{size:24}),color:"develop"},{phase:"Stabilize",icon:n.a.createElement(x.r,{size:24}),color:"stabilize"},{phase:"Deploy",icon:n.a.createElement(x.G,{size:24}),color:"deploy"}],W=m.c.div`
   background: ${e=>{let{theme:t}=e;return t.colors.background}};
   border-radius: 1.5rem;
   box-shadow: 0 2px 16px rgba(47, 72, 196, 0.08);
@@ -208,7 +208,7 @@
   border-radius: 1rem;
   padding: 1.5rem;
   height: 100%;
-`;function oe(e,t){return e>=75?"#2ecc40":e>=60?t.colors.accent:"#ff4136"}const ie=e=>{const{x:t,y:r,width:a,value:l}=e;return n.a.createElement("g",null,n.a.createElement("text",{x:t+a/2,y:r-10,fill:"#333",textAnchor:"middle",dominantBaseline:"middle"},l))};function ce(){const e=Object(m.e)(),[t,r]=Object(a.useState)("overview"),{overallScore:l,phaseScores:o,riskCategories:i,riskSeverity:c,topRisks:s,mitigatedRisks:u,lastUpdated:d}=q,g=oe(l,e);return n.a.createElement(H,null,n.a.createElement(G,null,n.a.createElement(N,null,n.a.createElement("div",null,"Comprehensive view of project risk factors and mitigation status"))),n.a.createElement(re,null,n.a.createElement(ae,{active:"overview"===t?"true":"false",onClick:()=>r("overview")},"Overview"),n.a.createElement(ae,{active:"details"===t?"true":"false",onClick:()=>r("details")},"Detailed Analysis")),"overview"===t?n.a.createElement(n.a.Fragment,null,n.a.createElement(J,null,n.a.createElement(x.h,{style:{color:e.colors.primary}}),"Overall Risk Assessment"),n.a.createElement(ne,null,n.a.createElement(le,{style:{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"}},n.a.createElement(_,{color:g},l),n.a.createElement(V,null,"Overall Risk Score"),n.a.createElement(S.a,{width:"100%",height:180},n.a.createElement(C.a,{data:o,margin:{top:10,right:20,left:0,bottom:0}},n.a.createElement(D.a,{dataKey:"phase",tick:{fontSize:14}}),n.a.createElement(R.a,{domain:[0,100],hide:!0}),n.a.createElement(B.a,null),n.a.createElement(A.a,{dataKey:"score"},o.map((t,r)=>n.a.createElement(I.a,{key:`cell-${r}`,fill:oe(t.score,e)})),n.a.createElement(M.a,{dataKey:"score",position:"top",style:{fontSize:14,fontWeight:600}})))),n.a.createElement(X,null,W.map(t=>{let{phase:r,icon:a,color:l}=t;return n.a.createElement(Q,{key:r},n.a.cloneElement(a,{color:e.colors[l]}),n.a.createElement(te,null,r))}))),n.a.createElement(le,null,n.a.createElement(J,null,n.a.createElement(x.u,{style:{color:e.colors.accent}}),"Top Risks"),n.a.createElement(Y,null,s.map((t,r)=>n.a.createElement(Z,{key:r},n.a.createElement(x.u,{size:14,style:{color:e.colors.accent}}),t))),n.a.createElement(J,{style:{marginTop:"1.5rem"}},n.a.createElement(x.i,{style:{color:e.colors.primary}}),"Recently Mitigated"),n.a.createElement(Y,null,u.map((t,r)=>n.a.createElement(Z,{key:r},n.a.createElement(x.i,{size:14,style:{color:e.colors.primary}}),t)))))):n.a.createElement(ne,null,n.a.createElement(le,null,n.a.createElement(J,null,n.a.createElement(x.J,{style:{color:e.colors.security}}),"Risk Severity Distribution"),n.a.createElement(S.a,{width:"100%",height:250},n.a.createElement(P.a,null,n.a.createElement(F.a,{data:c,cx:"50%",cy:"50%",labelLine:!1,label:ie,outerRadius:80,fill:"#8884d8",dataKey:"value"},c.map((e,t)=>n.a.createElement(I.a,{key:`cell-${t}`,fill:e.color}))),n.a.createElement(B.a,null),n.a.createElement(j.a,null)))),n.a.createElement(le,null,n.a.createElement(J,null,n.a.createElement(x.h,{style:{color:e.colors.primary}}),"Risk Category Assessment"),n.a.createElement(S.a,{width:"100%",height:250},n.a.createElement(T.a,{cx:"50%",cy:"50%",outerRadius:80,data:i},n.a.createElement(O.a,null),n.a.createElement(L.a,{dataKey:"name"}),n.a.createElement(U.a,{angle:30,domain:[0,100]}),n.a.createElement(K.a,{name:"Risk Score",dataKey:"value",stroke:e.colors.primary,fill:e.colors.primary,fillOpacity:.6}),n.a.createElement(B.a,null))))),n.a.createElement(ee,null,"Last updated: ",d))}const me=m.c.section`
+`;function oe(e,t){return e>=75?"#2ecc40":e>=60?t.colors.accent:"#ff4136"}const ie=e=>{const{x:t,y:r,width:a,value:l}=e;return n.a.createElement("g",null,n.a.createElement("text",{x:t+a/2,y:r-10,fill:"#333",textAnchor:"middle",dominantBaseline:"middle"},l))};function ce(){const e=Object(m.e)(),[t,r]=Object(a.useState)("overview"),{overallScore:l,phaseScores:o,riskCategories:i,riskSeverity:c,topRisks:s,mitigatedRisks:u,lastUpdated:d}=H,g=oe(l,e);return n.a.createElement(W,null,n.a.createElement(G,null,n.a.createElement(N,null,n.a.createElement("div",null,"Comprehensive view of project risk factors and mitigation status"))),n.a.createElement(re,null,n.a.createElement(ae,{active:"overview"===t?"true":"false",onClick:()=>r("overview")},"Overview"),n.a.createElement(ae,{active:"details"===t?"true":"false",onClick:()=>r("details")},"Detailed Analysis")),"overview"===t?n.a.createElement(n.a.Fragment,null,n.a.createElement(J,null,n.a.createElement(x.h,{style:{color:e.colors.primary}}),"Overall Risk Assessment"),n.a.createElement(ne,null,n.a.createElement(le,{style:{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"}},n.a.createElement(_,{color:g},l),n.a.createElement(V,null,"Overall Risk Score"),n.a.createElement(S.a,{width:"100%",height:180},n.a.createElement(C.a,{data:o,margin:{top:10,right:20,left:0,bottom:0}},n.a.createElement(D.a,{dataKey:"phase",tick:{fontSize:14}}),n.a.createElement(R.a,{domain:[0,100],hide:!0}),n.a.createElement(M.a,null),n.a.createElement(B.a,{dataKey:"score"},o.map((t,r)=>n.a.createElement(A.a,{key:`cell-${r}`,fill:oe(t.score,e)})),n.a.createElement(I.a,{dataKey:"score",position:"top",style:{fontSize:14,fontWeight:600}})))),n.a.createElement(X,null,q.map(t=>{let{phase:r,icon:a,color:l}=t;return n.a.createElement(Q,{key:r},n.a.cloneElement(a,{color:e.colors[l]}),n.a.createElement(te,null,r))}))),n.a.createElement(le,null,n.a.createElement(J,null,n.a.createElement(x.u,{style:{color:e.colors.accent}}),"Top Risks"),n.a.createElement(Y,null,s.map((t,r)=>n.a.createElement(Z,{key:r},n.a.createElement(x.u,{size:14,style:{color:e.colors.accent}}),t))),n.a.createElement(J,{style:{marginTop:"1.5rem"}},n.a.createElement(x.i,{style:{color:e.colors.primary}}),"Recently Mitigated"),n.a.createElement(Y,null,u.map((t,r)=>n.a.createElement(Z,{key:r},n.a.createElement(x.i,{size:14,style:{color:e.colors.primary}}),t)))))):n.a.createElement(ne,null,n.a.createElement(le,null,n.a.createElement(J,null,n.a.createElement(x.J,{style:{color:e.colors.security}}),"Risk Severity Distribution"),n.a.createElement(S.a,{width:"100%",height:250},n.a.createElement(P.a,null,n.a.createElement(F.a,{data:c,cx:"50%",cy:"50%",labelLine:!1,label:ie,outerRadius:80,fill:"#8884d8",dataKey:"value"},c.map((e,t)=>n.a.createElement(A.a,{key:`cell-${t}`,fill:e.color}))),n.a.createElement(M.a,null),n.a.createElement(j.a,null)))),n.a.createElement(le,null,n.a.createElement(J,null,n.a.createElement(x.h,{style:{color:e.colors.primary}}),"Risk Category Assessment"),n.a.createElement(S.a,{width:"100%",height:250},n.a.createElement(T.a,{cx:"50%",cy:"50%",outerRadius:80,data:i},n.a.createElement(L.a,null),n.a.createElement(O.a,{dataKey:"name"}),n.a.createElement(U.a,{angle:30,domain:[0,100]}),n.a.createElement(K.a,{name:"Risk Score",dataKey:"value",stroke:e.colors.primary,fill:e.colors.primary,fillOpacity:.6}),n.a.createElement(M.a,null))))),n.a.createElement(ee,null,"Last updated: ",d))}const me=m.c.section`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -327,7 +327,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 2rem;
-`,Be=Object(m.c)(i.b)`
+`,Me=Object(m.c)(i.b)`
   display: flex;
   align-items: center;
   color: ${e=>{let{theme:t}=e;return t.colors.text}};
@@ -342,13 +342,13 @@
   svg {
     margin-right: 0.5rem;
   }
-`,Ae=m.c.div`
+`,Be=m.c.div`
   display: flex;
   align-items: center;
   margin-bottom: 2rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid ${e=>{let{theme:t}=e;return t.colors.secondaryBackground}};
-`,Ie=m.c.div`
+`,Ae=m.c.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -360,7 +360,7 @@
   border-radius: 50%;
   font-size: 2rem;
   margin-right: 1.5rem;
-`,Me=m.c.div`
+`,Ie=m.c.div`
   flex: 1;
 `,Pe=m.c.h1`
   font-size: 2.5rem;
@@ -384,11 +384,11 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-`,Oe=m.c.div`
+`,Le=m.c.div`
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
-`,Le=m.c.div`
+`,Oe=m.c.div`
   font-size: 1.5rem;
   color: ${e=>{let{theme:t,color:r}=e;return t.colors[r]||t.colors.primary}};
   margin-right: 1rem;
@@ -402,15 +402,15 @@
   opacity: 0.9;
   line-height: 1.6;
   text-align: left;
-`,qe=m.c.ul`
+`,He=m.c.ul`
   margin: 0.5rem 0;
   padding-left: 1.5rem;
   list-style-type: disc;
   text-align: left;
-`,We=m.c.li`
+`,qe=m.c.li`
   margin-bottom: 0.5rem;
   text-align: left;
-`;function He(){return n.a.createElement(De,null,n.a.createElement(Re,null,n.a.createElement(Be,{to:"/"},n.a.createElement(x.c,null)," Back to Home Page")),n.a.createElement(Ae,null,n.a.createElement(Ie,null,n.a.createElement(x.E,null)),n.a.createElement(Me,null,n.a.createElement(Pe,null,"Design Phase"),n.a.createElement(Fe,null,"The foundation of successful software projects starts with thoughtful design"))),n.a.createElement(je,null,n.a.createElement(Te,null,n.a.createElement(Oe,null,n.a.createElement(Le,{color:"text"},n.a.createElement(x.y,null)),n.a.createElement(Ue,null,"UX Research")),n.a.createElement(Ke,null,"User experience research forms the backbone of effective design, ensuring products meet user needs and expectations.",n.a.createElement(qe,null,n.a.createElement(We,null,"User interviews and surveys"),n.a.createElement(We,null,"Personas and user journey mapping"),n.a.createElement(We,null,"Competitive analysis"),n.a.createElement(We,null,"Usability testing")))),n.a.createElement(Te,null,n.a.createElement(Oe,null,n.a.createElement(Le,{color:"text"},n.a.createElement(x.a,null)),n.a.createElement(Ue,null,"Accessibility")),n.a.createElement(Ke,null,"Designing for all users enhances product reach and compliance with legal standards.",n.a.createElement(qe,null,n.a.createElement(We,null,"WCAG compliance"),n.a.createElement(We,null,"Screen reader compatibility"),n.a.createElement(We,null,"Color contrast and readability"),n.a.createElement(We,null,"Keyboard navigation support")))),n.a.createElement(Te,null,n.a.createElement(Oe,null,n.a.createElement(Le,{color:"text"},n.a.createElement(x.h,null)),n.a.createElement(Ue,null,"A/B Testing")),n.a.createElement(Ke,null,"Data-driven design decisions lead to optimized user experiences and better business outcomes.",n.a.createElement(qe,null,n.a.createElement(We,null,"Test hypothesis formation"),n.a.createElement(We,null,"Statistical significance planning"),n.a.createElement(We,null,"Multivariate testing"),n.a.createElement(We,null,"Iterative design improvements")))),n.a.createElement(Te,null,n.a.createElement(Oe,null,n.a.createElement(Le,{color:"text"},n.a.createElement(x.N,null)),n.a.createElement(Ue,null,"Wireframes")),n.a.createElement(Ke,null,"Visual blueprints that guide development and align stakeholder expectations.",n.a.createElement(qe,null,n.a.createElement(We,null,"Low-fidelity sketches"),n.a.createElement(We,null,"Interactive prototypes"),n.a.createElement(We,null,"Information architecture"),n.a.createElement(We,null,"User flow diagrams"))))))}const Ge=m.c.div`
+`;function We(){return n.a.createElement(De,null,n.a.createElement(Re,null,n.a.createElement(Me,{to:"/"},n.a.createElement(x.c,null)," Back to Home Page")),n.a.createElement(Be,null,n.a.createElement(Ae,null,n.a.createElement(x.E,null)),n.a.createElement(Ie,null,n.a.createElement(Pe,null,"Design Phase"),n.a.createElement(Fe,null,"The foundation of successful software projects starts with thoughtful design"))),n.a.createElement(je,null,n.a.createElement(Te,null,n.a.createElement(Le,null,n.a.createElement(Oe,{color:"text"},n.a.createElement(x.y,null)),n.a.createElement(Ue,null,"UX Research")),n.a.createElement(Ke,null,"User experience research forms the backbone of effective design, ensuring products meet user needs and expectations.",n.a.createElement(He,null,n.a.createElement(qe,null,"User interviews and surveys"),n.a.createElement(qe,null,"Personas and user journey mapping"),n.a.createElement(qe,null,"Competitive analysis"),n.a.createElement(qe,null,"Usability testing")))),n.a.createElement(Te,null,n.a.createElement(Le,null,n.a.createElement(Oe,{color:"text"},n.a.createElement(x.a,null)),n.a.createElement(Ue,null,"Accessibility")),n.a.createElement(Ke,null,"Designing for all users enhances product reach and compliance with legal standards.",n.a.createElement(He,null,n.a.createElement(qe,null,"WCAG compliance"),n.a.createElement(qe,null,"Screen reader compatibility"),n.a.createElement(qe,null,"Color contrast and readability"),n.a.createElement(qe,null,"Keyboard navigation support")))),n.a.createElement(Te,null,n.a.createElement(Le,null,n.a.createElement(Oe,{color:"text"},n.a.createElement(x.h,null)),n.a.createElement(Ue,null,"A/B Testing")),n.a.createElement(Ke,null,"Data-driven design decisions lead to optimized user experiences and better business outcomes.",n.a.createElement(He,null,n.a.createElement(qe,null,"Test hypothesis formation"),n.a.createElement(qe,null,"Statistical significance planning"),n.a.createElement(qe,null,"Multivariate testing"),n.a.createElement(qe,null,"Iterative design improvements")))),n.a.createElement(Te,null,n.a.createElement(Le,null,n.a.createElement(Oe,{color:"text"},n.a.createElement(x.N,null)),n.a.createElement(Ue,null,"Wireframes")),n.a.createElement(Ke,null,"Visual blueprints that guide development and align stakeholder expectations.",n.a.createElement(He,null,n.a.createElement(qe,null,"Low-fidelity sketches"),n.a.createElement(qe,null,"Interactive prototypes"),n.a.createElement(qe,null,"Information architecture"),n.a.createElement(qe,null,"User flow diagrams"))))))}const Ge=m.c.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
@@ -692,7 +692,7 @@
   border-radius: 0.5rem;
   border-left: 4px solid ${e=>{let{score:t,theme:r}=e;return t>=80?"#2ecc40":t>=60?"#ff851b":"#ff4136"}};
   overflow: hidden;
-`,Bt=m.c.div`
+`,Mt=m.c.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -703,17 +703,17 @@
   &:hover {
     background-color: ${e=>{let{theme:t}=e;return t.colors.background}};
   }
+`,Bt=m.d`
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+  }
 `,At=m.d`
   from {
-    opacity: 0;
-    max-height: 0;
-  }
-  to {
-    opacity: 1;
-    max-height: 500px;
-  }
-`,It=m.d`
-  from {
     opacity: 1;
     max-height: 500px;
   }
@@ -721,7 +721,7 @@
     opacity: 0;
     max-height: 0;
   }
-`,Mt=m.c.div`
+`,It=m.c.div`
   font-size: 0.8rem;
   color: ${e=>{let{theme:t}=e;return t.colors.text}};
   opacity: 0.7;
@@ -741,7 +741,7 @@
   line-height: 1.5;
   color: ${e=>{let{theme:t}=e;return t.colors.text}};
   opacity: 0.9;
-  animation: ${e=>{let{expanded:t}=e;return t?At:It}} 0.3s ease;
+  animation: ${e=>{let{expanded:t}=e;return t?Bt:At}} 0.3s ease;
   overflow: hidden;
 `,jt=m.c.ul`
   margin: 0.5rem 0;
@@ -749,14 +749,14 @@
   list-style-type: disc;
 `,Tt=m.c.li`
   margin-bottom: 0.5rem;
-`,Ot=m.c.div`
+`,Lt=m.c.div`
   background: ${e=>{let{theme:t}=e;return t.colors.primary}}10;
   border-left: 3px solid ${e=>{let{theme:t}=e;return t.colors.primary}};
   padding: 0.75rem;
   margin: 0.5rem 0;
   border-radius: 0.25rem;
   font-size: 0.85rem;
-`,Lt=m.c.div`
+`,Ot=m.c.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
@@ -777,7 +777,7 @@
   padding: 1rem;
   background: ${e=>{let{theme:t}=e;return t.colors.secondaryBackground}};
   border-radius: 0.5rem;
-`,qt=m.c.div`
+`,Ht=m.c.div`
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -786,7 +786,7 @@
   background: ${e=>{let{theme:t}=e;return t.colors.background}};
   border-radius: 0.25rem;
   font-size: 0.85rem;
-`,Wt=m.c.input`
+`,qt=(m.c.input`
   background: none;
   border: none;
   font-size: 1.2rem;
@@ -801,7 +801,7 @@
     border-radius: 0.25rem;
     padding: 0.25rem;
   }
-`,Ht=m.c.div`
+`,m.c.div`
   background: linear-gradient(135deg, ${e=>{let{score:t,theme:r}=e;return t>=80?"#2ecc40":t>=60?"#ff851b":"#ff4136"}}15, ${e=>{let{score:t,theme:r}=e;return t>=80?"#2ecc40":t>=60?"#ff851b":"#ff4136"}}05);
   border: 2px solid ${e=>{let{score:t,theme:r}=e;return t>=80?"#2ecc40":t>=60?"#ff851b":"#ff4136"}};
   border-radius: 0.75rem;
@@ -813,7 +813,7 @@
   max-width: 300px;
   margin-left: auto;
   margin-right: auto;
-`,Gt=m.c.div`
+`),Wt=m.c.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -822,12 +822,12 @@
   font-size: 1rem;
   font-weight: ${e=>{let{theme:t}=e;return t.fonts.weights.bold}};
   color: ${e=>{let{theme:t}=e;return t.colors.text}};
-`,Nt=m.c.div`
+`,Gt=m.c.div`
   font-size: 2.5rem;
   font-weight: ${e=>{let{theme:t}=e;return t.fonts.weights.bold}};
   color: ${e=>{let{score:t,theme:r}=e;return t>=80?"#2ecc40":t>=60?"#ff851b":"#ff4136"}};
   margin-bottom: 0.25rem;
-`,_t=(m.c.div`
+`,Nt=(m.c.div`
   font-size: 1rem;
   color: ${e=>{let{theme:t}=e;return t.colors.text}};
   opacity: 0.8;
@@ -866,10 +866,10 @@
   padding: 1rem;
   border-bottom: 1px solid ${e=>{let{theme:t}=e;return t.colors.background}};
   margin: 0 -1rem 1rem -1rem;
-`),Vt=m.c.div`
+`),_t=m.c.div`
   display: flex;
   gap: 0.5rem;
-`,Jt=m.c.button`
+`,Vt=m.c.button`
   background: ${e=>{let{theme:t}=e;return t.colors.primary}};
   color: white;
   border: none;
@@ -890,23 +890,25 @@
   &:focus {
     outline: none;
   }
-`,Xt=m.c.span`
+`,Jt=m.c.span`
   font-size: 1rem;
   color: ${e=>{let{theme:t}=e;return t.colors.text}};
   font-weight: ${e=>{let{theme:t}=e;return t.fonts.weights.medium}};
-`,Qt=m.c.span`
+`,Xt=m.c.span`
   font-size: 1.2rem;
   font-weight: ${e=>{let{theme:t}=e;return t.fonts.weights.bold}};
-  color: ${e=>{let{score:t,theme:r}=e;return t>=80?"#2ecc40":t>=60?"#ff851b":"#ff4136"}};
-`;function Yt(){const[e,t]=Object(a.useState)({}),[r,l]=Object(a.useState)(null),[o,i]=n.a.useState({securityStandards:{inputValidation:!1,authenticationProtocols:!1,dataEncryption:!1,owaspPrevention:!1,securityReviews:!1},branchingStrategy:{featureBranchWorkflow:!1,pullRequestProcesses:!1,branchProtectionRules:!1,mergeConflictResolution:!1,releaseBranchManagement:!1},infrastructure:{localDevelopmentEnvironments:!1,containerization:!1,environmentUniformity:!1,endUserTestingEnvironments:!1,environmentConfigurationManagement:!1},testCoverage:{unitTestingFrameworks:!1,integrationTesting:!1,codeCoverageMetrics:!1,testDrivenDevelopment:!1,automatedRegressionTesting:!1},readability:{linters:!1,patterns:!1,tasks:!1,docs:!1},reviewProcess:{architectureReview:!1,designReview:!1,codeReview:!1,technicalReview:!1},testStrategy:{unitTesting:!1,integrationTesting:!1,dataMockSynthetic:!1},tools:{observability:!1,featureFlagging:!1,codeAnalysis:!1,crashReporting:!1,userAnalytics:!1,alerting:!1}}),[c,m]=n.a.useState({releasePipelineAutomation:35,sdkManagementComplexity:25,configurationManagement:40,nativeWebviewDataSharing:30,legacyCodeRemoval:20}),s=(e,t)=>{i(r=>({...r,[e]:{...r[e],[t]:!r[e][t]}}))},u=e=>{l(e)},d=()=>{l(null)},g=Math.round(Object.values(c).reduce((e,t)=>e+t,0)/Object.values(c).length);return n.a.createElement(ct,null,n.a.createElement(mt,null,n.a.createElement(st,{to:"/"},n.a.createElement(x.c,null)," Back to Home Page")),n.a.createElement(ut,null,n.a.createElement(dt,null,n.a.createElement(x.q,null)),n.a.createElement(gt,null,n.a.createElement(pt,null,"Develop Phase"),n.a.createElement(ht,null,"Building robust, maintainable, and secure code for your application"))),n.a.createElement($t,null,n.a.createElement(zt,null,n.a.createElement(x.n,null),"Assessment Criteria"),n.a.createElement(ft,null,n.a.createElement(Et,null,n.a.createElement(bt,null,n.a.createElement(xt,{color:"develop"},n.a.createElement(x.p,null)),n.a.createElement(vt,null,"Dev Standards")),n.a.createElement(kt,null,"Core development practices and architectural standards for building robust, maintainable applications."),n.a.createElement(wt,null,Object.entries({architectureReview:"Architecture review",branchingStrategy:"Branching Strategy",codeAnalysis:"Code Analysis",featureFlagging:"Feature Flagging",observability:"Observability"}).map(e=>{let[t,r]=e;return n.a.createElement(St,{key:t},n.a.createElement(Ct,{type:"checkbox",checked:o.branchingStrategy[t],onChange:()=>s("branchingStrategy",t)}),n.a.createElement(Dt,null,r))}))),n.a.createElement(Et,null,n.a.createElement(bt,null,n.a.createElement(xt,{color:"develop"},n.a.createElement(x.I,null)),n.a.createElement(vt,null,"Infra - Local | EUT")),n.a.createElement(kt,null,"IAC practices for local and provisioned environments for efficient workflows."),n.a.createElement(wt,null,Object.entries({localStack:"Local Stack",containerization:"Containerization",environmentUniformity:"Environment uniformity",endUserTestingSetup:"End-user testing setup",environmentConfigurationManagement:"Configuration management"}).map(e=>{let[t,r]=e;return n.a.createElement(St,{key:t},n.a.createElement(Ct,{type:"checkbox",checked:o.infrastructure[t],onChange:()=>s("infrastructure",t)}),n.a.createElement(Dt,null,r))}))),n.a.createElement(Et,null,n.a.createElement(bt,null,n.a.createElement(xt,{color:"develop"},n.a.createElement(x.J,null)),n.a.createElement(vt,null,"Security Standards")),n.a.createElement(kt,null,"Security protocols and best practices to protect applications and data from vulnerabilities."),n.a.createElement(wt,null,Object.entries({inputValidation:"Input validation and sanitization",authenticationProtocols:"Secure authentication protocols",dataEncryption:"Sensitive data encryption",owaspPrevention:"OWASP vulnerability prevention",securityReviews:"Security code reviews"}).map(e=>{let[t,r]=e;return n.a.createElement(St,{key:t},n.a.createElement(Ct,{type:"checkbox",checked:o.securityStandards[t],onChange:()=>s("securityStandards",t)}),n.a.createElement(Dt,null,r))}))),n.a.createElement(Et,null,n.a.createElement(bt,null,n.a.createElement(xt,{color:"develop"},n.a.createElement(x.j,null)),n.a.createElement(vt,null,"Code Quality")),n.a.createElement(kt,null,"Testing frameworks and quality assurance practices to ensure reliable, well-tested code."),n.a.createElement(wt,null,Object.entries({unitTestingFrameworks:"Unit testing frameworks",integrationTesting:"Integration testing",codeCoverageMetrics:"Code coverage metrics",testDrivenDevelopment:"Test-driven development",automatedRegressionTesting:"Automated regression testing"}).map(e=>{let[t,r]=e;return n.a.createElement(St,{key:t},n.a.createElement(Ct,{type:"checkbox",checked:o.testCoverage[t],onChange:()=>s("testCoverage",t)}),n.a.createElement(Dt,null,r))}))))),n.a.createElement($t,null,n.a.createElement(zt,null,n.a.createElement(x.u,null),"Assessment Results"),n.a.createElement(ft,null,n.a.createElement(Et,{style:{position:"relative"}},n.a.createElement(yt,null,n.a.createElement(bt,null,n.a.createElement(xt,{color:"security"},n.a.createElement(x.u,null)),n.a.createElement(vt,null,"Maintainability"),n.a.createElement(Vt,null,n.a.createElement(Jt,{onClick:()=>{t(["releasePipelineAutomation","sdkManagementComplexity","configurationManagement","nativeWebviewDataSharing","legacyCodeRemoval"].reduce((e,t)=>({...e,[t]:!0}),{}))},title:"Expand All"},n.a.createElement(x.k,null)),n.a.createElement(Jt,{onClick:()=>{t({})},title:"Collapse All"},n.a.createElement(x.m,null))))),n.a.createElement(wt,null,Object.entries({releasePipelineAutomation:{label:"Release Pipeline Automation",trend:"down",risks:["App has planned releases every 2 weeks (10 business days)","3 of those 10 days are devoted to preparing for the release","Build Release Pipelines lack automation unit test coverage","Engineers must manually input the values for App and Build versions","Builds typically run for 30-40 minutes before complete"],actions:["Implement automated CI/CD pipeline with unit test coverage","Add automated uploads to App/Play Stores","Reduce build time through parallel processing","Implement automated version management"],correlations:["sdkManagementComplexity","configurationManagement"],timeline:[{date:"2024-01-15",event:"Identified manual release process bottleneck"},{date:"2024-03-20",event:"Started CI/CD pipeline planning"},{date:"2024-05-01",event:"Pilot automated testing implementation"}]},sdkManagementComplexity:{label:"SDK Management Complexity",trend:"stable",risks:["Android has 103 SDKs; iOS has 44","Updating SDKs when required is risky","SDK updates typically introduce bugs","Complex dependency management across platforms"],actions:["Implement automated SDK update testing","Create SDK compatibility matrix","Establish SDK update review process","Implement gradual rollout strategy"],correlations:["releasePipelineAutomation","configurationManagement"],timeline:[{date:"2024-02-10",event:"Documented SDK inventory"},{date:"2024-04-05",event:"Created update testing framework"}]},configurationManagement:{label:"Configuration Management",trend:"down",risks:["Configuration values prone to errors","Feature switches difficult to maintain","Challenges maintaining configs across environments","Manual configuration deployment process"],actions:["Implement configuration as code","Create centralized configuration management","Add configuration validation and testing","Implement environment-specific config validation"],correlations:["releasePipelineAutomation","nativeWebviewDataSharing"],timeline:[{date:"2024-01-20",event:"Identified configuration drift issues"},{date:"2024-03-15",event:"Started configuration audit"}]},nativeWebviewDataSharing:{label:"Native-WebView Data Sharing",trend:"up",risks:["Increased complexity of data sharing between native and WebView","Maintaining source of truth for data is challenging","Synchronization issues between components","Complex state management across platforms"],actions:["Implement unified data layer","Create data synchronization protocols","Add data validation and error handling","Implement data versioning strategy"],correlations:["configurationManagement","legacyCodeRemoval"],timeline:[{date:"2024-02-25",event:"Identified data sharing complexity"},{date:"2024-04-10",event:"Started unified data layer design"}]},legacyCodeRemoval:{label:"Legacy Code Removal",trend:"stable",risks:["Legacy code is intertwined with new implementation","Difficult to remove legacy code safely","Risk of breaking existing functionality","Complex dependency analysis required"],actions:["Create comprehensive dependency mapping","Implement gradual legacy code removal strategy","Add extensive testing for each removal step","Establish rollback procedures"],correlations:["nativeWebviewDataSharing"],timeline:[{date:"2024-01-30",event:"Started legacy code audit"},{date:"2024-03-25",event:"Created removal roadmap"}]}}).map(a=>{let[l,o]=a;return n.a.createElement(Rt,{key:l,score:c[l]},n.a.createElement(Bt,{onClick:()=>(e=>{t(t=>({...t,[e]:!t[e]}))})(l)},n.a.createElement("div",{style:{display:"flex",alignItems:"center",gap:"0.5rem"}},n.a.createElement(Xt,null,o.label),n.a.createElement(Pt,{trend:o.trend},"up"===o.trend&&n.a.createElement(x.d,null),"down"===o.trend&&n.a.createElement(x.b,null),"stable"===o.trend&&n.a.createElement(x.B,null))),n.a.createElement("div",{style:{display:"flex",alignItems:"center",gap:"0.5rem"}},r===l?n.a.createElement(Wt,{score:c[l],value:c[l],onChange:e=>((e,t)=>{m(r=>({...r,[e]:Math.max(1,Math.min(100,parseInt(t)||0))}))})(l,e.target.value),onBlur:d,onKeyPress:e=>"Enter"===e.key&&d(),autoFocus:!0}):n.a.createElement(Qt,{score:c[l],onClick:()=>u(l),style:{cursor:"pointer"}},c[l],"/100"),n.a.createElement(x.t,{size:12,style:{cursor:"pointer",opacity:.7},onClick:e=>{e.stopPropagation(),u(l)}}),n.a.createElement(Mt,{expanded:e[l]},e[l]?n.a.createElement(x.k,null):n.a.createElement(x.l,null)))),e[l]&&n.a.createElement(Ft,{expanded:e[l]},n.a.createElement(_t,null,n.a.createElement("div",{style:{display:"flex",alignItems:"center",gap:"0.5rem",marginBottom:"0.5rem"}},n.a.createElement(x.y,{style:{color:"#ff851b"}}),n.a.createElement("strong",null,"Risk Factors"))),n.a.createElement(jt,null,o.risks.map((e,t)=>n.a.createElement(Tt,{key:t},e))),n.a.createElement("div",{style:{marginTop:"1rem"}},n.a.createElement("div",{style:{display:"flex",alignItems:"center",gap:"0.5rem",marginBottom:"0.5rem"}},n.a.createElement(x.y,{style:{color:"#2ecc40"}}),n.a.createElement("strong",null,"Recommended Actions")),o.actions.map((e,t)=>n.a.createElement(Ot,{key:t},e))),n.a.createElement("div",{style:{marginTop:"1rem"}},n.a.createElement("div",{style:{display:"flex",alignItems:"center",gap:"0.5rem",marginBottom:"0.5rem"}},n.a.createElement(x.z,{style:{color:"#0074d9"}}),n.a.createElement("strong",null,"Risk Correlations")),n.a.createElement(Lt,null,o.correlations.map((e,t)=>n.a.createElement(Ut,{key:t},n.a.createElement(x.z,{size:10}),e.replace(/([A-Z])/g," $1").replace(/^./,e=>e.toUpperCase()))))),n.a.createElement("div",{style:{marginTop:"1rem"}},n.a.createElement("div",{style:{display:"flex",alignItems:"center",gap:"0.5rem",marginBottom:"0.5rem"}},n.a.createElement(x.o,{style:{color:"#85144b"}}),n.a.createElement("strong",null,"Timeline")),n.a.createElement(Kt,null,o.timeline.map((e,t)=>n.a.createElement(qt,{key:t},n.a.createElement("div",{style:{fontSize:"0.75rem",opacity:.7}},new Date(e.date).toLocaleDateString()),n.a.createElement("div",null,e.event)))))))}),n.a.createElement(Ht,{score:g},n.a.createElement(Gt,null,"Maintainability Score"),n.a.createElement(Nt,{score:g},g)))))))}const Zt=m.c.div`
+  min-width: 1.5rem;
+  text-align: center;
+  display: inline-block;
+`;function Qt(){const[e,t]=Object(a.useState)({}),[r,l]=Object(a.useState)(null),[o,i]=n.a.useState({securityStandards:{inputValidation:!1,authenticationProtocols:!1,dataEncryption:!1,owaspPrevention:!1,securityReviews:!1},branchingStrategy:{featureBranchWorkflow:!1,pullRequestProcesses:!1,branchProtectionRules:!1,mergeConflictResolution:!1,releaseBranchManagement:!1},infrastructure:{localDevelopmentEnvironments:!1,containerization:!1,environmentUniformity:!1,endUserTestingEnvironments:!1,environmentConfigurationManagement:!1},testCoverage:{unitTestingFrameworks:!1,integrationTesting:!1,codeCoverageMetrics:!1,testDrivenDevelopment:!1,automatedRegressionTesting:!1},readability:{linters:!1,patterns:!1,tasks:!1,docs:!1},reviewProcess:{architectureReview:!1,designReview:!1,codeReview:!1,technicalReview:!1},testStrategy:{unitTesting:!1,integrationTesting:!1,dataMockSynthetic:!1},tools:{observability:!1,featureFlagging:!1,codeAnalysis:!1,crashReporting:!1,userAnalytics:!1,alerting:!1}}),[c,m]=n.a.useState({releasePipelineAutomation:"M",sdkManagementComplexity:"L",configurationManagement:"M",nativeWebviewDataSharing:"M",legacyCodeRemoval:"L"}),s=(e,t)=>{i(r=>({...r,[e]:{...r[e],[t]:!r[e][t]}}))},u=e=>{l(e)},d=()=>{l(null)},g=e=>{switch(e){case"H":return"#28a745";case"M":return"#ffc107";case"L":return"#dc3545";case"High":return"#28a745";case"Medium":return"#ffc107";case"Low":return"#dc3545";default:return"#6c757d"}},p=Math.round(Object.values(c).reduce((e,t)=>e+(e=>{switch(e){case"H":return 3;case"M":return 2;case"L":return 1;default:return 2}})(t),0)/Object.values(c).length),h=(f=p)>=2.5?"High":f>=1.5?"Medium":"Low";var f;return n.a.createElement(ct,null,n.a.createElement(mt,null,n.a.createElement(st,{to:"/"},n.a.createElement(x.c,null)," Back to Home Page")),n.a.createElement(ut,null,n.a.createElement(dt,null,n.a.createElement(x.q,null)),n.a.createElement(gt,null,n.a.createElement(pt,null,"Develop Phase"),n.a.createElement(ht,null,"Building robust, maintainable, and secure code for your application"))),n.a.createElement($t,null,n.a.createElement(zt,null,n.a.createElement(x.n,null),"Assessment Criteria"),n.a.createElement(ft,null,n.a.createElement(Et,null,n.a.createElement(bt,null,n.a.createElement(xt,{color:"develop"},n.a.createElement(x.p,null)),n.a.createElement(vt,null,"Dev Standards")),n.a.createElement(kt,null,"Core development practices and architectural standards for building robust, maintainable applications."),n.a.createElement(wt,null,Object.entries({architectureReview:"Architecture review",branchingStrategy:"Branching Strategy",codeAnalysis:"Code Analysis",featureFlagging:"Feature Flagging",observability:"Observability"}).map(e=>{let[t,r]=e;return n.a.createElement(St,{key:t},n.a.createElement(Ct,{type:"checkbox",checked:o.branchingStrategy[t],onChange:()=>s("branchingStrategy",t)}),n.a.createElement(Dt,null,r))}))),n.a.createElement(Et,null,n.a.createElement(bt,null,n.a.createElement(xt,{color:"develop"},n.a.createElement(x.I,null)),n.a.createElement(vt,null,"Infra - Local | EUT")),n.a.createElement(kt,null,"IAC practices for local and provisioned environments for efficient workflows."),n.a.createElement(wt,null,Object.entries({localStack:"Local Stack",containerization:"Containerization",environmentUniformity:"Environment uniformity",endUserTestingSetup:"End-user testing setup",environmentConfigurationManagement:"Configuration management"}).map(e=>{let[t,r]=e;return n.a.createElement(St,{key:t},n.a.createElement(Ct,{type:"checkbox",checked:o.infrastructure[t],onChange:()=>s("infrastructure",t)}),n.a.createElement(Dt,null,r))}))),n.a.createElement(Et,null,n.a.createElement(bt,null,n.a.createElement(xt,{color:"develop"},n.a.createElement(x.J,null)),n.a.createElement(vt,null,"Security Standards")),n.a.createElement(kt,null,"Security protocols and best practices to protect applications and data from vulnerabilities."),n.a.createElement(wt,null,Object.entries({inputValidation:"Input validation and sanitization",authenticationProtocols:"Secure authentication protocols",dataEncryption:"Sensitive data encryption",owaspPrevention:"OWASP vulnerability prevention",securityReviews:"Security code reviews"}).map(e=>{let[t,r]=e;return n.a.createElement(St,{key:t},n.a.createElement(Ct,{type:"checkbox",checked:o.securityStandards[t],onChange:()=>s("securityStandards",t)}),n.a.createElement(Dt,null,r))}))),n.a.createElement(Et,null,n.a.createElement(bt,null,n.a.createElement(xt,{color:"develop"},n.a.createElement(x.j,null)),n.a.createElement(vt,null,"Code Quality")),n.a.createElement(kt,null,"Testing frameworks and quality assurance practices to ensure reliable, well-tested code."),n.a.createElement(wt,null,Object.entries({unitTestingFrameworks:"Unit testing frameworks",integrationTesting:"Integration testing",codeCoverageMetrics:"Code coverage metrics",testDrivenDevelopment:"Test-driven development",automatedRegressionTesting:"Automated regression testing"}).map(e=>{let[t,r]=e;return n.a.createElement(St,{key:t},n.a.createElement(Ct,{type:"checkbox",checked:o.testCoverage[t],onChange:()=>s("testCoverage",t)}),n.a.createElement(Dt,null,r))}))))),n.a.createElement($t,null,n.a.createElement(zt,null,n.a.createElement(x.u,null),"Assessment Results"),n.a.createElement(ft,null,n.a.createElement(Et,{style:{position:"relative"}},n.a.createElement(yt,null,n.a.createElement(bt,null,n.a.createElement(xt,{color:"security"},n.a.createElement(x.u,null)),n.a.createElement(vt,null,"Maintainability"),n.a.createElement(_t,null,n.a.createElement(Vt,{onClick:()=>{t(["releasePipelineAutomation","sdkManagementComplexity","configurationManagement","nativeWebviewDataSharing","legacyCodeRemoval"].reduce((e,t)=>({...e,[t]:!0}),{}))},title:"Expand All"},n.a.createElement(x.k,null)),n.a.createElement(Vt,{onClick:()=>{t({})},title:"Collapse All"},n.a.createElement(x.m,null))))),n.a.createElement(wt,null,Object.entries({releasePipelineAutomation:{label:"Release Pipeline Automation",trend:"down",risks:["App has planned releases every 2 weeks (10 business days)","3 of those 10 days are devoted to preparing for the release","Build Release Pipelines lack automation unit test coverage","Engineers must manually input the values for App and Build versions","Builds typically run for 30-40 minutes before complete"],actions:["Implement automated CI/CD pipeline with unit test coverage","Add automated uploads to App/Play Stores","Reduce build time through parallel processing","Implement automated version management"],correlations:["sdkManagementComplexity","configurationManagement"],timeline:[{date:"2024-01-15",event:"Identified manual release process bottleneck"},{date:"2024-03-20",event:"Started CI/CD pipeline planning"},{date:"2024-05-01",event:"Pilot automated testing implementation"}]},sdkManagementComplexity:{label:"SDK Management Complexity",trend:"stable",risks:["Android has 103 SDKs; iOS has 44","Updating SDKs when required is risky","SDK updates typically introduce bugs","Complex dependency management across platforms"],actions:["Implement automated SDK update testing","Create SDK compatibility matrix","Establish SDK update review process","Implement gradual rollout strategy"],correlations:["releasePipelineAutomation","configurationManagement"],timeline:[{date:"2024-02-10",event:"Documented SDK inventory"},{date:"2024-04-05",event:"Created update testing framework"}]},configurationManagement:{label:"Configuration Management",trend:"down",risks:["Configuration values prone to errors","Feature switches difficult to maintain","Challenges maintaining configs across environments","Manual configuration deployment process"],actions:["Implement configuration as code","Create centralized configuration management","Add configuration validation and testing","Implement environment-specific config validation"],correlations:["releasePipelineAutomation","nativeWebviewDataSharing"],timeline:[{date:"2024-01-20",event:"Identified configuration drift issues"},{date:"2024-03-15",event:"Started configuration audit"}]},nativeWebviewDataSharing:{label:"Native-WebView Data Sharing",trend:"up",risks:["Increased complexity of data sharing between native and WebView","Maintaining source of truth for data is challenging","Synchronization issues between components","Complex state management across platforms"],actions:["Implement unified data layer","Create data synchronization protocols","Add data validation and error handling","Implement data versioning strategy"],correlations:["configurationManagement","legacyCodeRemoval"],timeline:[{date:"2024-02-25",event:"Identified data sharing complexity"},{date:"2024-04-10",event:"Started unified data layer design"}]},legacyCodeRemoval:{label:"Legacy Code Removal",trend:"stable",risks:["Legacy code is intertwined with new implementation","Difficult to remove legacy code safely","Risk of breaking existing functionality","Complex dependency analysis required"],actions:["Create comprehensive dependency mapping","Implement gradual legacy code removal strategy","Add extensive testing for each removal step","Establish rollback procedures"],correlations:["nativeWebviewDataSharing"],timeline:[{date:"2024-01-30",event:"Started legacy code audit"},{date:"2024-03-25",event:"Created removal roadmap"}]}}).map(a=>{let[l,o]=a;return n.a.createElement(Rt,{key:l,score:c[l]},n.a.createElement(Mt,{onClick:()=>(e=>{t(t=>({...t,[e]:!t[e]}))})(l)},n.a.createElement("div",{style:{display:"flex",alignItems:"center",gap:"0.5rem"}},n.a.createElement(Jt,null,o.label),n.a.createElement(Pt,{trend:o.trend},"up"===o.trend&&n.a.createElement(x.d,null),"down"===o.trend&&n.a.createElement(x.b,null),"stable"===o.trend&&n.a.createElement(x.B,null))),n.a.createElement("div",{style:{display:"flex",alignItems:"center",gap:"0.5rem"}},r===l?n.a.createElement("select",{value:c[l],onChange:e=>((e,t)=>{m(r=>({...r,[e]:t}))})(l,e.target.value),onBlur:d,style:{padding:"0.25rem 0.5rem",border:"1px solid #ddd",borderRadius:"4px",fontSize:"0.875rem",backgroundColor:"white",color:g(c[l])},autoFocus:!0},n.a.createElement("option",{value:"H"},"H"),n.a.createElement("option",{value:"M"},"M"),n.a.createElement("option",{value:"L"},"L")):n.a.createElement(Xt,{score:c[l],onClick:()=>u(l),style:{cursor:"pointer",color:g(c[l])}},c[l]),n.a.createElement(x.t,{size:12,style:{cursor:"pointer",opacity:.7},onClick:e=>{e.stopPropagation(),u(l)}}),n.a.createElement(It,{expanded:e[l]},e[l]?n.a.createElement(x.k,null):n.a.createElement(x.l,null)))),e[l]&&n.a.createElement(Ft,{expanded:e[l]},n.a.createElement(Nt,null,n.a.createElement("div",{style:{display:"flex",alignItems:"center",gap:"0.5rem",marginBottom:"0.5rem"}},n.a.createElement(x.y,{style:{color:"#ff851b"}}),n.a.createElement("strong",null,"Risk Factors"))),n.a.createElement(jt,null,o.risks.map((e,t)=>n.a.createElement(Tt,{key:t},e))),n.a.createElement("div",{style:{marginTop:"1rem"}},n.a.createElement("div",{style:{display:"flex",alignItems:"center",gap:"0.5rem",marginBottom:"0.5rem"}},n.a.createElement(x.y,{style:{color:"#2ecc40"}}),n.a.createElement("strong",null,"Recommended Actions")),o.actions.map((e,t)=>n.a.createElement(Lt,{key:t},e))),n.a.createElement("div",{style:{marginTop:"1rem"}},n.a.createElement("div",{style:{display:"flex",alignItems:"center",gap:"0.5rem",marginBottom:"0.5rem"}},n.a.createElement(x.z,{style:{color:"#0074d9"}}),n.a.createElement("strong",null,"Risk Correlations")),n.a.createElement(Ot,null,o.correlations.map((e,t)=>n.a.createElement(Ut,{key:t},n.a.createElement(x.z,{size:10}),e.replace(/([A-Z])/g," $1").replace(/^./,e=>e.toUpperCase()))))),n.a.createElement("div",{style:{marginTop:"1rem"}},n.a.createElement("div",{style:{display:"flex",alignItems:"center",gap:"0.5rem",marginBottom:"0.5rem"}},n.a.createElement(x.o,{style:{color:"#85144b"}}),n.a.createElement("strong",null,"Timeline")),n.a.createElement(Kt,null,o.timeline.map((e,t)=>n.a.createElement(Ht,{key:t},n.a.createElement("div",{style:{fontSize:"0.75rem",opacity:.7}},new Date(e.date).toLocaleDateString()),n.a.createElement("div",null,e.event)))))))}),n.a.createElement(qt,{score:p},n.a.createElement(Wt,null,"Overall Maintainability"),n.a.createElement(Gt,{score:p,style:{color:g(h)}},h)))))))}const Yt=m.c.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-`,er=m.c.div`
+`,Zt=m.c.div`
   display: flex;
   align-items: center;
   margin-bottom: 2rem;
-`,tr=Object(m.c)(i.b)`
+`,er=Object(m.c)(i.b)`
   display: flex;
   align-items: center;
   color: ${e=>{let{theme:t}=e;return t.colors.text}};
@@ -921,13 +923,13 @@
   svg {
     margin-right: 0.5rem;
   }
-`,rr=m.c.div`
+`,tr=m.c.div`
   display: flex;
   align-items: center;
   margin-bottom: 2rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid ${e=>{let{theme:t}=e;return t.colors.secondaryBackground}};
-`,ar=m.c.div`
+`,rr=m.c.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -939,23 +941,23 @@
   border-radius: 50%;
   font-size: 2rem;
   margin-right: 1.5rem;
-`,nr=m.c.div`
+`,ar=m.c.div`
   flex: 1;
-`,lr=m.c.h1`
+`,nr=m.c.h1`
   font-size: 2.5rem;
   margin: 0 0 0.5rem 0;
   color: ${e=>{let{theme:t}=e;return t.colors.primary}};
-`,or=m.c.p`
+`,lr=m.c.p`
   margin: 0;
   font-size: 1.2rem;
   color: ${e=>{let{theme:t}=e;return t.colors.text}};
   opacity: 0.8;
-`,ir=m.c.div`
+`,or=m.c.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
-`,cr=m.c.div`
+`,ir=m.c.div`
   background: ${e=>{let{theme:t}=e;return t.colors.secondaryBackground}};
   border-radius: 0.5rem;
   padding: 1.5rem;
@@ -963,41 +965,41 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-`,mr=m.c.div`
+`,cr=m.c.div`
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
-`,sr=m.c.div`
+`,mr=m.c.div`
   font-size: 1.5rem;
   color: ${e=>{let{theme:t,color:r}=e;return t.colors[r]||t.colors.primary}};
   margin-right: 1rem;
-`,ur=m.c.h2`
+`,sr=m.c.h2`
   font-size: 1.3rem;
   margin: 0;
   color: ${e=>{let{theme:t}=e;return t.colors.text}};
-`,dr=m.c.div`
+`,ur=m.c.div`
   font-size: 1rem;
   color: ${e=>{let{theme:t}=e;return t.colors.text}};
   opacity: 0.9;
   line-height: 1.6;
   text-align: left;
-`,gr=m.c.ul`
+`,dr=m.c.ul`
   margin: 0.5rem 0;
   padding-left: 1.5rem;
   list-style-type: disc;
   text-align: left;
-`,pr=m.c.li`
+`,gr=m.c.li`
   margin-bottom: 0.5rem;
   text-align: left;
-`;function hr(){return n.a.createElement(Zt,null,n.a.createElement(er,null,n.a.createElement(tr,{to:"/"},n.a.createElement(x.c,null)," Back to Home Page")),n.a.createElement(rr,null,n.a.createElement(ar,null,n.a.createElement(x.r,null)),n.a.createElement(nr,null,n.a.createElement(lr,null,"Stabilize Phase"),n.a.createElement(or,null,"Ensuring your software is reliable, robust, and ready for production deployment"))),n.a.createElement(ir,null,n.a.createElement(cr,null,n.a.createElement(mr,null,n.a.createElement(sr,{color:"stabilize"},n.a.createElement(x.v,null)),n.a.createElement(ur,null,"STLC")),n.a.createElement(dr,null,"Structured Software Testing Life Cycle that ensures comprehensive coverage.",n.a.createElement(gr,null,n.a.createElement(pr,null,"Test planning and strategy"),n.a.createElement(pr,null,"Test case development"),n.a.createElement(pr,null,"Test environment preparation"),n.a.createElement(pr,null,"Test execution and reporting"),n.a.createElement(pr,null,"Test closure and lessons learned")))),n.a.createElement(cr,null,n.a.createElement(mr,null,n.a.createElement(sr,{color:"stabilize"},n.a.createElement(x.s,null)),n.a.createElement(ur,null,"Data Management")),n.a.createElement(dr,null,"Robust handling of data throughout testing and stabilization processes.",n.a.createElement(gr,null,n.a.createElement(pr,null,"Test data generation and management"),n.a.createElement(pr,null,"Data migration validation"),n.a.createElement(pr,null,"Database performance testing"),n.a.createElement(pr,null,"Data integrity checks"),n.a.createElement(pr,null,"Data backup and recovery verification")))),n.a.createElement(cr,null,n.a.createElement(mr,null,n.a.createElement(sr,{color:"stabilize"},n.a.createElement(x.G,null)),n.a.createElement(ur,null,"CICD - Stage Gates")),n.a.createElement(dr,null,"Automated quality gates that ensure only stable code progresses to production.",n.a.createElement(gr,null,n.a.createElement(pr,null,"Code quality gates (linting, static analysis)"),n.a.createElement(pr,null,"Automated testing gates"),n.a.createElement(pr,null,"Performance benchmarking gates"),n.a.createElement(pr,null,"Security scanning gates"),n.a.createElement(pr,null,"Approval workflows")))),n.a.createElement(cr,null,n.a.createElement(mr,null,n.a.createElement(sr,{color:"stabilize"},n.a.createElement(x.e,null)),n.a.createElement(ur,null,"Resilience Testing")),n.a.createElement(dr,null,"Verifying system stability under stress, unusual conditions, and component failures.",n.a.createElement(gr,null,n.a.createElement(pr,null,"Chaos engineering experiments"),n.a.createElement(pr,null,"Load and stress testing"),n.a.createElement(pr,null,"Failover and recovery testing"),n.a.createElement(pr,null,"Degraded service simulation"),n.a.createElement(pr,null,"Long-haul reliability testing")))),n.a.createElement(cr,null,n.a.createElement(mr,null,n.a.createElement(sr,{color:"stabilize"},n.a.createElement(x.K,null)),n.a.createElement(ur,null,"Performance Optimization")),n.a.createElement(dr,null,"Monitoring and enhancing system performance to meet user expectations.",n.a.createElement(gr,null,n.a.createElement(pr,null,"Response time optimization"),n.a.createElement(pr,null,"Resource utilization analysis"),n.a.createElement(pr,null,"Database query optimization"),n.a.createElement(pr,null,"Network latency reduction"),n.a.createElement(pr,null,"Caching strategy implementation"))))))}const fr=m.c.div`
+`;function pr(){return n.a.createElement(Yt,null,n.a.createElement(Zt,null,n.a.createElement(er,{to:"/"},n.a.createElement(x.c,null)," Back to Home Page")),n.a.createElement(tr,null,n.a.createElement(rr,null,n.a.createElement(x.r,null)),n.a.createElement(ar,null,n.a.createElement(nr,null,"Stabilize Phase"),n.a.createElement(lr,null,"Ensuring your software is reliable, robust, and ready for production deployment"))),n.a.createElement(or,null,n.a.createElement(ir,null,n.a.createElement(cr,null,n.a.createElement(mr,{color:"stabilize"},n.a.createElement(x.v,null)),n.a.createElement(sr,null,"STLC")),n.a.createElement(ur,null,"Structured Software Testing Life Cycle that ensures comprehensive coverage.",n.a.createElement(dr,null,n.a.createElement(gr,null,"Test planning and strategy"),n.a.createElement(gr,null,"Test case development"),n.a.createElement(gr,null,"Test environment preparation"),n.a.createElement(gr,null,"Test execution and reporting"),n.a.createElement(gr,null,"Test closure and lessons learned")))),n.a.createElement(ir,null,n.a.createElement(cr,null,n.a.createElement(mr,{color:"stabilize"},n.a.createElement(x.s,null)),n.a.createElement(sr,null,"Data Management")),n.a.createElement(ur,null,"Robust handling of data throughout testing and stabilization processes.",n.a.createElement(dr,null,n.a.createElement(gr,null,"Test data generation and management"),n.a.createElement(gr,null,"Data migration validation"),n.a.createElement(gr,null,"Database performance testing"),n.a.createElement(gr,null,"Data integrity checks"),n.a.createElement(gr,null,"Data backup and recovery verification")))),n.a.createElement(ir,null,n.a.createElement(cr,null,n.a.createElement(mr,{color:"stabilize"},n.a.createElement(x.G,null)),n.a.createElement(sr,null,"CICD - Stage Gates")),n.a.createElement(ur,null,"Automated quality gates that ensure only stable code progresses to production.",n.a.createElement(dr,null,n.a.createElement(gr,null,"Code quality gates (linting, static analysis)"),n.a.createElement(gr,null,"Automated testing gates"),n.a.createElement(gr,null,"Performance benchmarking gates"),n.a.createElement(gr,null,"Security scanning gates"),n.a.createElement(gr,null,"Approval workflows")))),n.a.createElement(ir,null,n.a.createElement(cr,null,n.a.createElement(mr,{color:"stabilize"},n.a.createElement(x.e,null)),n.a.createElement(sr,null,"Resilience Testing")),n.a.createElement(ur,null,"Verifying system stability under stress, unusual conditions, and component failures.",n.a.createElement(dr,null,n.a.createElement(gr,null,"Chaos engineering experiments"),n.a.createElement(gr,null,"Load and stress testing"),n.a.createElement(gr,null,"Failover and recovery testing"),n.a.createElement(gr,null,"Degraded service simulation"),n.a.createElement(gr,null,"Long-haul reliability testing")))),n.a.createElement(ir,null,n.a.createElement(cr,null,n.a.createElement(mr,{color:"stabilize"},n.a.createElement(x.K,null)),n.a.createElement(sr,null,"Performance Optimization")),n.a.createElement(ur,null,"Monitoring and enhancing system performance to meet user expectations.",n.a.createElement(dr,null,n.a.createElement(gr,null,"Response time optimization"),n.a.createElement(gr,null,"Resource utilization analysis"),n.a.createElement(gr,null,"Database query optimization"),n.a.createElement(gr,null,"Network latency reduction"),n.a.createElement(gr,null,"Caching strategy implementation"))))))}const hr=m.c.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-`,Er=m.c.div`
+`,fr=m.c.div`
   display: flex;
   align-items: center;
   margin-bottom: 2rem;
-`,yr=Object(m.c)(i.b)`
+`,Er=Object(m.c)(i.b)`
   display: flex;
   align-items: center;
   color: ${e=>{let{theme:t}=e;return t.colors.text}};
@@ -1012,13 +1014,13 @@
   svg {
     margin-right: 0.5rem;
   }
-`,br=m.c.div`
+`,yr=m.c.div`
   display: flex;
   align-items: center;
   margin-bottom: 2rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid ${e=>{let{theme:t}=e;return t.colors.secondaryBackground}};
-`,xr=m.c.div`
+`,br=m.c.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1030,23 +1032,23 @@
   border-radius: 50%;
   font-size: 2rem;
   margin-right: 1.5rem;
-`,vr=m.c.div`
+`,xr=m.c.div`
   flex: 1;
-`,kr=m.c.h1`
+`,vr=m.c.h1`
   font-size: 2.5rem;
   margin: 0 0 0.5rem 0;
   color: ${e=>{let{theme:t}=e;return t.colors.primary}};
-`,wr=m.c.p`
+`,kr=m.c.p`
   margin: 0;
   font-size: 1.2rem;
   color: ${e=>{let{theme:t}=e;return t.colors.text}};
   opacity: 0.8;
-`,$r=m.c.div`
+`,wr=m.c.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
-`,zr=m.c.div`
+`,$r=m.c.div`
   background: ${e=>{let{theme:t}=e;return t.colors.secondaryBackground}};
   border-radius: 0.5rem;
   padding: 1.5rem;
@@ -1054,33 +1056,33 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-`,Sr=m.c.div`
+`,zr=m.c.div`
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
-`,Cr=m.c.div`
+`,Sr=m.c.div`
   font-size: 1.5rem;
   color: ${e=>{let{theme:t,color:r}=e;return t.colors[r]||t.colors.deploy}};
   margin-right: 1rem;
-`,Dr=m.c.h2`
+`,Cr=m.c.h2`
   font-size: 1.3rem;
   margin: 0;
   color: ${e=>{let{theme:t}=e;return t.colors.text}};
-`,Rr=m.c.div`
+`,Dr=m.c.div`
   font-size: 1rem;
   color: ${e=>{let{theme:t}=e;return t.colors.text}};
   opacity: 0.9;
   line-height: 1.6;
   text-align: left;
-`,Br=m.c.ul`
+`,Rr=m.c.ul`
   margin: 0.5rem 0;
   padding-left: 1.5rem;
   list-style-type: disc;
   text-align: left;
-`,Ar=m.c.li`
+`,Mr=m.c.li`
   margin-bottom: 0.5rem;
   text-align: left;
-`;function Ir(){return n.a.createElement(fr,null,n.a.createElement(Er,null,n.a.createElement(yr,{to:"/"},n.a.createElement(x.c,null)," Back to Home Page")),n.a.createElement(br,null,n.a.createElement(xr,null,n.a.createElement(x.G,null)),n.a.createElement(vr,null,n.a.createElement(kr,null,"Deploy Phase"),n.a.createElement(wr,null,"Safely delivering your software to production and ensuring operational excellence"))),n.a.createElement($r,null,n.a.createElement(zr,null,n.a.createElement(Sr,null,n.a.createElement(Cr,null,n.a.createElement(x.x,null)),n.a.createElement(Dr,null,"Feature Rollouts")),n.a.createElement(Rr,null,"Controlled introduction of new capabilities to minimize risk and maximize feedback.",n.a.createElement(Br,null,n.a.createElement(Ar,null,"Progressive delivery strategies"),n.a.createElement(Ar,null,"Canary deployments"),n.a.createElement(Ar,null,"Blue/Green deployments"),n.a.createElement(Ar,null,"Feature flags and toggles"),n.a.createElement(Ar,null,"Early user feedback loops")))),n.a.createElement(zr,null,n.a.createElement(Sr,null,n.a.createElement(Cr,null,n.a.createElement(x.H,null)),n.a.createElement(Dr,null,"Observability")),n.a.createElement(Rr,null,"Comprehensive monitoring to understand system behavior and troubleshoot issues.",n.a.createElement(Br,null,n.a.createElement(Ar,null,"Security Monitors & Alerts"),n.a.createElement(Ar,null,"Allow/Block list"),n.a.createElement(Ar,null,"Application Performance Monitoring"),n.a.createElement(Ar,null,"Distributed tracing"),n.a.createElement(Ar,null,"Logging strategies")))),n.a.createElement(zr,null,n.a.createElement(Sr,null,n.a.createElement(Cr,null,n.a.createElement(x.u,null)),n.a.createElement(Dr,null,"Contingencies")),n.a.createElement(Rr,null,"Planning for failures and ensuring business continuity in all scenarios.",n.a.createElement(Br,null,n.a.createElement(Ar,null,"Rollback/Rollforward strategies"),n.a.createElement(Ar,null,"Emergency response planning"),n.a.createElement(Ar,null,"Disaster recovery procedures"),n.a.createElement(Ar,null,"Incident management workflows"),n.a.createElement(Ar,null,"On-call rotation and escalation")))),n.a.createElement(zr,null,n.a.createElement(Sr,null,n.a.createElement(Cr,null,n.a.createElement(x.h,null)),n.a.createElement(Dr,null,"Analytics")),n.a.createElement(Rr,null,"Leveraging data to inform product decisions and business strategy.",n.a.createElement(Br,null,n.a.createElement(Ar,null,"User behavior tracking"),n.a.createElement(Ar,null,"Conversion and funnel analysis"),n.a.createElement(Ar,null,"Feature adoption metrics"),n.a.createElement(Ar,null,"Business impact measurement"),n.a.createElement(Ar,null,"Predictive usage modeling")))),n.a.createElement(zr,null,n.a.createElement(Sr,null,n.a.createElement(Cr,null,n.a.createElement(x.G,null)),n.a.createElement(Dr,null,"Continuous Improvement")),n.a.createElement(Rr,null,"Evolving delivery processes through regular feedback and adaptation.",n.a.createElement(Br,null,n.a.createElement(Ar,null,"Post-deployment reviews"),n.a.createElement(Ar,null,"Release process optimization"),n.a.createElement(Ar,null,"Deployment frequency metrics"),n.a.createElement(Ar,null,"Cycle time reduction"),n.a.createElement(Ar,null,"DevOps maturity assessments"))))))}var Mr=r(513);const Pr={riskCategories:[{name:"Security",unmitigated:8,mitigated:5,inProgress:3,icon:n.a.createElement(x.J,null),color:"security"},{name:"Privacy",unmitigated:6,mitigated:4,inProgress:2,icon:n.a.createElement(x.M,null),color:"highlight"},{name:"Infrastructure",unmitigated:5,mitigated:3,inProgress:2,icon:n.a.createElement(x.I,null),color:"contingencies"},{name:"Authentication",unmitigated:7,mitigated:3,inProgress:4,icon:n.a.createElement(x.A,null),color:"primary"},{name:"Network",unmitigated:4,mitigated:2,inProgress:2,icon:n.a.createElement(x.D,null),color:"analytics"}],topMitigations:[{risk:"SQL Injection Vulnerability",category:"Security",mitigation:"Implemented parameterized queries and input validation",impact:"High",completionDate:"2024-04-15"},{risk:"Clear-Text Password Storage",category:"Authentication",mitigation:"Added password hashing with bcrypt and salting",impact:"High",completionDate:"2024-04-18"},{risk:"Unprotected API Endpoints",category:"Security",mitigation:"Added JWT authentication to all endpoints",impact:"Medium",completionDate:"2024-04-22"},{risk:"Outdated Dependencies",category:"Infrastructure",mitigation:"Implemented dependency scanning and auto-updates",impact:"Medium",completionDate:"2024-04-25"}],pendingMitigations:[{risk:"Insufficient Rate Limiting",category:"Security",mitigation:"Implement API rate limiting and throttling",impact:"Medium",targetDate:"2024-05-15"},{risk:"Weak Password Requirements",category:"Authentication",mitigation:"Enforce stronger password policy",impact:"Medium",targetDate:"2024-05-20"},{risk:"Missing Data Backup Strategy",category:"Infrastructure",mitigation:"Implement automated backup and verification",impact:"High",targetDate:"2024-06-01"}],lastUpdated:"2024-05-06 15:00"},Fr=m.c.div`
+`;function Br(){return n.a.createElement(hr,null,n.a.createElement(fr,null,n.a.createElement(Er,{to:"/"},n.a.createElement(x.c,null)," Back to Home Page")),n.a.createElement(yr,null,n.a.createElement(br,null,n.a.createElement(x.G,null)),n.a.createElement(xr,null,n.a.createElement(vr,null,"Deploy Phase"),n.a.createElement(kr,null,"Safely delivering your software to production and ensuring operational excellence"))),n.a.createElement(wr,null,n.a.createElement($r,null,n.a.createElement(zr,null,n.a.createElement(Sr,null,n.a.createElement(x.x,null)),n.a.createElement(Cr,null,"Feature Rollouts")),n.a.createElement(Dr,null,"Controlled introduction of new capabilities to minimize risk and maximize feedback.",n.a.createElement(Rr,null,n.a.createElement(Mr,null,"Progressive delivery strategies"),n.a.createElement(Mr,null,"Canary deployments"),n.a.createElement(Mr,null,"Blue/Green deployments"),n.a.createElement(Mr,null,"Feature flags and toggles"),n.a.createElement(Mr,null,"Early user feedback loops")))),n.a.createElement($r,null,n.a.createElement(zr,null,n.a.createElement(Sr,null,n.a.createElement(x.H,null)),n.a.createElement(Cr,null,"Observability")),n.a.createElement(Dr,null,"Comprehensive monitoring to understand system behavior and troubleshoot issues.",n.a.createElement(Rr,null,n.a.createElement(Mr,null,"Security Monitors & Alerts"),n.a.createElement(Mr,null,"Allow/Block list"),n.a.createElement(Mr,null,"Application Performance Monitoring"),n.a.createElement(Mr,null,"Distributed tracing"),n.a.createElement(Mr,null,"Logging strategies")))),n.a.createElement($r,null,n.a.createElement(zr,null,n.a.createElement(Sr,null,n.a.createElement(x.u,null)),n.a.createElement(Cr,null,"Contingencies")),n.a.createElement(Dr,null,"Planning for failures and ensuring business continuity in all scenarios.",n.a.createElement(Rr,null,n.a.createElement(Mr,null,"Rollback/Rollforward strategies"),n.a.createElement(Mr,null,"Emergency response planning"),n.a.createElement(Mr,null,"Disaster recovery procedures"),n.a.createElement(Mr,null,"Incident management workflows"),n.a.createElement(Mr,null,"On-call rotation and escalation")))),n.a.createElement($r,null,n.a.createElement(zr,null,n.a.createElement(Sr,null,n.a.createElement(x.h,null)),n.a.createElement(Cr,null,"Analytics")),n.a.createElement(Dr,null,"Leveraging data to inform product decisions and business strategy.",n.a.createElement(Rr,null,n.a.createElement(Mr,null,"User behavior tracking"),n.a.createElement(Mr,null,"Conversion and funnel analysis"),n.a.createElement(Mr,null,"Feature adoption metrics"),n.a.createElement(Mr,null,"Business impact measurement"),n.a.createElement(Mr,null,"Predictive usage modeling")))),n.a.createElement($r,null,n.a.createElement(zr,null,n.a.createElement(Sr,null,n.a.createElement(x.G,null)),n.a.createElement(Cr,null,"Continuous Improvement")),n.a.createElement(Dr,null,"Evolving delivery processes through regular feedback and adaptation.",n.a.createElement(Rr,null,n.a.createElement(Mr,null,"Post-deployment reviews"),n.a.createElement(Mr,null,"Release process optimization"),n.a.createElement(Mr,null,"Deployment frequency metrics"),n.a.createElement(Mr,null,"Cycle time reduction"),n.a.createElement(Mr,null,"DevOps maturity assessments"))))))}var Ar=r(513);const Ir={riskCategories:[{name:"Security",unmitigated:8,mitigated:5,inProgress:3,icon:n.a.createElement(x.J,null),color:"security"},{name:"Privacy",unmitigated:6,mitigated:4,inProgress:2,icon:n.a.createElement(x.M,null),color:"highlight"},{name:"Infrastructure",unmitigated:5,mitigated:3,inProgress:2,icon:n.a.createElement(x.I,null),color:"contingencies"},{name:"Authentication",unmitigated:7,mitigated:3,inProgress:4,icon:n.a.createElement(x.A,null),color:"primary"},{name:"Network",unmitigated:4,mitigated:2,inProgress:2,icon:n.a.createElement(x.D,null),color:"analytics"}],topMitigations:[{risk:"SQL Injection Vulnerability",category:"Security",mitigation:"Implemented parameterized queries and input validation",impact:"High",completionDate:"2024-04-15"},{risk:"Clear-Text Password Storage",category:"Authentication",mitigation:"Added password hashing with bcrypt and salting",impact:"High",completionDate:"2024-04-18"},{risk:"Unprotected API Endpoints",category:"Security",mitigation:"Added JWT authentication to all endpoints",impact:"Medium",completionDate:"2024-04-22"},{risk:"Outdated Dependencies",category:"Infrastructure",mitigation:"Implemented dependency scanning and auto-updates",impact:"Medium",completionDate:"2024-04-25"}],pendingMitigations:[{risk:"Insufficient Rate Limiting",category:"Security",mitigation:"Implement API rate limiting and throttling",impact:"Medium",targetDate:"2024-05-15"},{risk:"Weak Password Requirements",category:"Authentication",mitigation:"Enforce stronger password policy",impact:"Medium",targetDate:"2024-05-20"},{risk:"Missing Data Backup Strategy",category:"Infrastructure",mitigation:"Implement automated backup and verification",impact:"High",targetDate:"2024-06-01"}],lastUpdated:"2024-05-06 15:00"},Pr=m.c.div`
   background: ${e=>{let{theme:t}=e;return t.colors.background}};
   border-radius: 1.5rem;
   box-shadow: 0 2px 16px rgba(47, 72, 196, 0.08);
@@ -1089,11 +1091,11 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-`,jr=m.c.div`
+`,Fr=m.c.div`
   display: flex;
   align-items: center;
   margin-bottom: 2rem;
-`,Tr=m.c.div`
+`,jr=m.c.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1104,7 +1106,7 @@
   border-radius: 50%;
   font-size: 1.75rem;
   margin-right: 1.5rem;
-`,Or=m.c.h2`
+`,Tr=m.c.h2`
   font-size: 1.75rem;
   margin: 0;
   color: ${e=>{let{theme:t}=e;return t.colors.primary}};
@@ -1119,9 +1121,9 @@
   svg {
     margin-right: 0.5rem;
   }
-`,Ur=m.c.div`
+`,Or=m.c.div`
   margin-bottom: 2rem;
-`,Kr=m.c.div`
+`,Ur=m.c.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
@@ -1129,29 +1131,29 @@
   @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr;
   }
-`,qr=m.c.div`
+`,Kr=m.c.div`
   background: ${e=>{let{theme:t}=e;return t.colors.secondaryBackground}};
   border-radius: 1rem;
   padding: 1.5rem;
-`,Wr=m.c.table`
+`,Hr=m.c.table`
   width: 100%;
   border-collapse: collapse;
   font-size: 0.9rem;
-`,Hr=m.c.th`
+`,qr=m.c.th`
   text-align: left;
   padding: 0.75rem 0.5rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   color: ${e=>{let{theme:t}=e;return t.colors.text}};
   font-weight: ${e=>{let{theme:t}=e;return t.fonts.weights.medium}};
-`,Gr=m.c.tr`
+`,Wr=m.c.tr`
   &:hover {
     background: rgba(0, 0, 0, 0.02);
   }
-`,Nr=m.c.td`
+`,Gr=m.c.td`
   padding: 0.75rem 0.5rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   color: ${e=>{let{theme:t}=e;return t.colors.text}};
-`,_r=m.c.span`
+`,Nr=m.c.span`
   display: inline-block;
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
@@ -1159,35 +1161,35 @@
   font-weight: ${e=>{let{theme:t}=e;return t.fonts.weights.medium}};
   background: ${e=>{let{impact:t,theme:r}=e;switch(t){case"High":return"rgba(255, 107, 87, 0.15)";case"Medium":return"rgba(255, 224, 102, 0.2)";case"Low":return"rgba(182, 226, 211, 0.15)";default:return"rgba(0, 0, 0, 0.05)"}}};
   color: ${e=>{let{impact:t,theme:r}=e;switch(t){case"High":return r.colors.feature;case"Medium":return"#D4AC0D";case"Low":return"#27AE60";default:return r.colors.text}}};
-`,Vr=m.c.div`
+`,_r=m.c.div`
   font-size: 0.85rem;
   color: ${e=>{let{theme:t}=e;return t.colors.text}};
   margin-top: 1.5rem;
   opacity: 0.7;
   text-align: right;
-`,Jr=m.c.div`
+`,Vr=m.c.div`
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
-`,Xr=m.c.div`
+`,Jr=m.c.div`
   display: flex;
   align-items: center;
   margin: 0 0.75rem;
   font-size: 0.85rem;
-`,Qr=m.c.div`
+`,Xr=m.c.div`
   width: 12px;
   height: 12px;
   background-color: ${e=>{let{color:t}=e;return t}};
   margin-right: 0.5rem;
   border-radius: 2px;
-`;function Yr(){const e=Object(m.e)(),{riskCategories:t,topMitigations:r,pendingMitigations:a,lastUpdated:l}=Pr,o=t.map(e=>({name:e.name,Mitigated:e.mitigated,"In Progress":e.inProgress,Unmitigated:e.unmitigated-e.mitigated-e.inProgress,icon:e.icon,color:e.color}));return n.a.createElement(Fr,null,n.a.createElement(jr,null,n.a.createElement(Tr,null,n.a.createElement(x.u,null)),n.a.createElement(Or,null,"Risk Mitigation Roadmap")),n.a.createElement(Ur,null,n.a.createElement(Lr,null,"Risk Mitigation Status by Category"),n.a.createElement(Jr,null,n.a.createElement(Xr,null,n.a.createElement(Qr,{color:e.colors.primary}),"Mitigated"),n.a.createElement(Xr,null,n.a.createElement(Qr,{color:e.colors.accent}),"In Progress"),n.a.createElement(Xr,null,n.a.createElement(Qr,{color:"#D6D6D6"}),"Unmitigated")),n.a.createElement(S.a,{width:"100%",height:250},n.a.createElement(C.a,{data:o,margin:{top:20,right:30,left:20,bottom:5},barGap:0,barCategoryGap:"20%"},n.a.createElement(Mr.a,{strokeDasharray:"3 3",vertical:!1}),n.a.createElement(D.a,{dataKey:"name",tick:{fontSize:12},tickLine:!1}),n.a.createElement(R.a,{allowDecimals:!1,axisLine:!1,tickLine:!1,tick:{fontSize:12}}),n.a.createElement(B.a,null),n.a.createElement(A.a,{dataKey:"Mitigated",stackId:"a",fill:e.colors.primary}),n.a.createElement(A.a,{dataKey:"In Progress",stackId:"a",fill:e.colors.accent}),n.a.createElement(A.a,{dataKey:"Unmitigated",stackId:"a",fill:"#D6D6D6"})))),n.a.createElement(Kr,null,n.a.createElement(qr,null,n.a.createElement(Lr,null,n.a.createElement(x.J,{style:{color:e.colors.security}}),"Completed Mitigations"),n.a.createElement(Wr,null,n.a.createElement("thead",null,n.a.createElement("tr",null,n.a.createElement(Hr,null,"Risk"),n.a.createElement(Hr,null,"Category"),n.a.createElement(Hr,null,"Impact"),n.a.createElement(Hr,null,"Date"))),n.a.createElement("tbody",null,r.map((e,t)=>n.a.createElement(Gr,{key:t},n.a.createElement(Nr,null,e.risk),n.a.createElement(Nr,null,e.category),n.a.createElement(Nr,null,n.a.createElement(_r,{impact:e.impact},e.impact)),n.a.createElement(Nr,null,e.completionDate)))))),n.a.createElement(qr,null,n.a.createElement(Lr,null,n.a.createElement(x.M,{style:{color:e.colors.highlight}}),"Pending Mitigations"),n.a.createElement(Wr,null,n.a.createElement("thead",null,n.a.createElement("tr",null,n.a.createElement(Hr,null,"Risk"),n.a.createElement(Hr,null,"Category"),n.a.createElement(Hr,null,"Impact"),n.a.createElement(Hr,null,"Target Date"))),n.a.createElement("tbody",null,a.map((e,t)=>n.a.createElement(Gr,{key:t},n.a.createElement(Nr,null,e.risk),n.a.createElement(Nr,null,e.category),n.a.createElement(Nr,null,n.a.createElement(_r,{impact:e.impact},e.impact)),n.a.createElement(Nr,null,e.targetDate))))))),n.a.createElement(Vr,null,"Last updated: ",l))}var Zr=r(115);const ea=m.c.footer`
+`;function Qr(){const e=Object(m.e)(),{riskCategories:t,topMitigations:r,pendingMitigations:a,lastUpdated:l}=Ir,o=t.map(e=>({name:e.name,Mitigated:e.mitigated,"In Progress":e.inProgress,Unmitigated:e.unmitigated-e.mitigated-e.inProgress,icon:e.icon,color:e.color}));return n.a.createElement(Pr,null,n.a.createElement(Fr,null,n.a.createElement(jr,null,n.a.createElement(x.u,null)),n.a.createElement(Tr,null,"Risk Mitigation Roadmap")),n.a.createElement(Or,null,n.a.createElement(Lr,null,"Risk Mitigation Status by Category"),n.a.createElement(Vr,null,n.a.createElement(Jr,null,n.a.createElement(Xr,{color:e.colors.primary}),"Mitigated"),n.a.createElement(Jr,null,n.a.createElement(Xr,{color:e.colors.accent}),"In Progress"),n.a.createElement(Jr,null,n.a.createElement(Xr,{color:"#D6D6D6"}),"Unmitigated")),n.a.createElement(S.a,{width:"100%",height:250},n.a.createElement(C.a,{data:o,margin:{top:20,right:30,left:20,bottom:5},barGap:0,barCategoryGap:"20%"},n.a.createElement(Ar.a,{strokeDasharray:"3 3",vertical:!1}),n.a.createElement(D.a,{dataKey:"name",tick:{fontSize:12},tickLine:!1}),n.a.createElement(R.a,{allowDecimals:!1,axisLine:!1,tickLine:!1,tick:{fontSize:12}}),n.a.createElement(M.a,null),n.a.createElement(B.a,{dataKey:"Mitigated",stackId:"a",fill:e.colors.primary}),n.a.createElement(B.a,{dataKey:"In Progress",stackId:"a",fill:e.colors.accent}),n.a.createElement(B.a,{dataKey:"Unmitigated",stackId:"a",fill:"#D6D6D6"})))),n.a.createElement(Ur,null,n.a.createElement(Kr,null,n.a.createElement(Lr,null,n.a.createElement(x.J,{style:{color:e.colors.security}}),"Completed Mitigations"),n.a.createElement(Hr,null,n.a.createElement("thead",null,n.a.createElement("tr",null,n.a.createElement(qr,null,"Risk"),n.a.createElement(qr,null,"Category"),n.a.createElement(qr,null,"Impact"),n.a.createElement(qr,null,"Date"))),n.a.createElement("tbody",null,r.map((e,t)=>n.a.createElement(Wr,{key:t},n.a.createElement(Gr,null,e.risk),n.a.createElement(Gr,null,e.category),n.a.createElement(Gr,null,n.a.createElement(Nr,{impact:e.impact},e.impact)),n.a.createElement(Gr,null,e.completionDate)))))),n.a.createElement(Kr,null,n.a.createElement(Lr,null,n.a.createElement(x.M,{style:{color:e.colors.highlight}}),"Pending Mitigations"),n.a.createElement(Hr,null,n.a.createElement("thead",null,n.a.createElement("tr",null,n.a.createElement(qr,null,"Risk"),n.a.createElement(qr,null,"Category"),n.a.createElement(qr,null,"Impact"),n.a.createElement(qr,null,"Target Date"))),n.a.createElement("tbody",null,a.map((e,t)=>n.a.createElement(Wr,{key:t},n.a.createElement(Gr,null,e.risk),n.a.createElement(Gr,null,e.category),n.a.createElement(Gr,null,n.a.createElement(Nr,{impact:e.impact},e.impact)),n.a.createElement(Gr,null,e.targetDate))))))),n.a.createElement(_r,null,"Last updated: ",l))}var Yr=r(115);const Zr=m.c.footer`
   width: 100%;
   background: ${e=>{let{theme:t}=e;return t.colors.secondaryBackground}};
   color: ${e=>{let{theme:t}=e;return t.colors.text}};
   border-top: 1px solid #e5e7eb;
   padding: 2rem 0 0.5rem 0;
   margin-top: 3rem;
-`,ta=m.c.div`
+`,ea=m.c.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
@@ -1195,16 +1197,16 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-`,ra=m.c.img`
+`,ta=m.c.img`
   height: 36px;
   width: auto;
   margin-right: 2rem;
-`,aa=m.c.nav`
+`,ra=m.c.nav`
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
   align-items: center;
-`,na=m.c.a`
+`,aa=m.c.a`
   font-size: 1rem;
   color: ${e=>{let{theme:t}=e;return t.colors.text}};
   text-decoration: none;
@@ -1213,11 +1215,11 @@
   &:hover {
     color: ${e=>{let{theme:t}=e;return t.colors.primary}};
   }
-`,la=m.c.div`
+`,na=m.c.div`
   display: flex;
   gap: 1.5rem;
   align-items: center;
-`,oa=m.c.a`
+`,la=m.c.a`
   color: ${e=>{let{theme:t}=e;return t.colors.text}};
   font-size: 1.3rem;
   display: flex;
@@ -1226,18 +1228,18 @@
   &:hover {
     color: ${e=>{let{theme:t}=e;return t.colors.primary}};
   }
-`,ia=m.c.div`
+`,oa=m.c.div`
   width: 100%;
   text-align: center;
   color: ${e=>{let{theme:t}=e;return t.colors.text}};
   font-size: 0.95rem;
   margin-top: 2rem;
   opacity: 0.7;
-`;function ca(){return n.a.createElement(ea,null,n.a.createElement(ta,null,n.a.createElement(ra,{src:u.a,alt:"Stable Kernel Logo"}),n.a.createElement(aa,null,n.a.createElement(na,{href:"https://stablekernel.com/services",target:"_blank",rel:"noopener noreferrer"},"Services"),n.a.createElement(na,{href:"https://stablekernel.com/case-studies",target:"_blank",rel:"noopener noreferrer"},"Case Studies"),n.a.createElement(na,{href:"https://stablekernel.com/about-us",target:"_blank",rel:"noopener noreferrer"},"About Us"),n.a.createElement(na,{href:"https://stablekernel.com/resources",target:"_blank",rel:"noopener noreferrer"},"Resources"),n.a.createElement(na,{href:"https://stablekernel.com/book-a-consultation",target:"_blank",rel:"noopener noreferrer"},"Book a Consultation"),n.a.createElement(na,{href:"https://stablekernel.com/about-us#careers",target:"_blank",rel:"noopener noreferrer"},"Careers"),n.a.createElement(na,{href:"https://stablekernel.com/privacy-policy",target:"_blank",rel:"noopener noreferrer"},"Privacy Policy")),n.a.createElement(la,null,n.a.createElement(oa,{href:"https://twitter.com/stablekernel",target:"_blank",rel:"noopener noreferrer","aria-label":"X (formerly Twitter)"},n.a.createElement(Zr.c,null)),n.a.createElement(oa,{href:"https://www.facebook.com/stablekernel/",target:"_blank",rel:"noopener noreferrer","aria-label":"Facebook"},n.a.createElement(Zr.a,null)),n.a.createElement(oa,{href:"https://www.linkedin.com/company/stable-kernel/",target:"_blank",rel:"noopener noreferrer","aria-label":"LinkedIn"},n.a.createElement(Zr.b,null)))),n.a.createElement(ia,null,"\xa9 ",(new Date).getFullYear()," Stable Kernel. All rights reserved."))}r(506);const ma=m.c.div`
+`;function ia(){return n.a.createElement(Zr,null,n.a.createElement(ea,null,n.a.createElement(ta,{src:u.a,alt:"Stable Kernel Logo"}),n.a.createElement(ra,null,n.a.createElement(aa,{href:"https://stablekernel.com/services",target:"_blank",rel:"noopener noreferrer"},"Services"),n.a.createElement(aa,{href:"https://stablekernel.com/case-studies",target:"_blank",rel:"noopener noreferrer"},"Case Studies"),n.a.createElement(aa,{href:"https://stablekernel.com/about-us",target:"_blank",rel:"noopener noreferrer"},"About Us"),n.a.createElement(aa,{href:"https://stablekernel.com/resources",target:"_blank",rel:"noopener noreferrer"},"Resources"),n.a.createElement(aa,{href:"https://stablekernel.com/book-a-consultation",target:"_blank",rel:"noopener noreferrer"},"Book a Consultation"),n.a.createElement(aa,{href:"https://stablekernel.com/about-us#careers",target:"_blank",rel:"noopener noreferrer"},"Careers"),n.a.createElement(aa,{href:"https://stablekernel.com/privacy-policy",target:"_blank",rel:"noopener noreferrer"},"Privacy Policy")),n.a.createElement(na,null,n.a.createElement(la,{href:"https://twitter.com/stablekernel",target:"_blank",rel:"noopener noreferrer","aria-label":"X (formerly Twitter)"},n.a.createElement(Yr.c,null)),n.a.createElement(la,{href:"https://www.facebook.com/stablekernel/",target:"_blank",rel:"noopener noreferrer","aria-label":"Facebook"},n.a.createElement(Yr.a,null)),n.a.createElement(la,{href:"https://www.linkedin.com/company/stable-kernel/",target:"_blank",rel:"noopener noreferrer","aria-label":"LinkedIn"},n.a.createElement(Yr.b,null)))),n.a.createElement(oa,null,"\xa9 ",(new Date).getFullYear()," Stable Kernel. All rights reserved."))}r(506);const ca=m.c.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
-`;var sa=function(){return n.a.createElement(i.a,{basename:"/risk-portfolio-mgr-thd"},n.a.createElement("div",{className:"App"},n.a.createElement(b,null),n.a.createElement(ma,null,n.a.createElement(c.c,null,n.a.createElement(c.a,{exact:!0,path:"/",component:Ce}),n.a.createElement(c.a,{path:"/design",component:He}),n.a.createElement(c.a,{path:"/refine",component:it}),n.a.createElement(c.a,{path:"/develop",component:Yt}),n.a.createElement(c.a,{path:"/stabilize",component:hr}),n.a.createElement(c.a,{path:"/deploy",component:Ir}),n.a.createElement(c.a,{path:"/risk-dashboard",component:ce}),n.a.createElement(c.a,{path:"/risk-mitigation",component:Yr}))),n.a.createElement(ca,null)))};Boolean("localhost"===window.location.hostname||"[::1]"===window.location.hostname||window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/));var ua=e=>{e&&e instanceof Function&&r.e(3).then(r.bind(null,514)).then(t=>{let{getCLS:r,getFID:a,getFCP:n,getLCP:l,getTTFB:o}=t;r(e),a(e),n(e),l(e),o(e)})};const da=m.b`
+`;var ma=function(){return n.a.createElement(i.a,{basename:"/risk-portfolio-mgr-thd"},n.a.createElement("div",{className:"App"},n.a.createElement(b,null),n.a.createElement(ca,null,n.a.createElement(c.c,null,n.a.createElement(c.a,{exact:!0,path:"/",component:Ce}),n.a.createElement(c.a,{path:"/design",component:We}),n.a.createElement(c.a,{path:"/refine",component:it}),n.a.createElement(c.a,{path:"/develop",component:Qt}),n.a.createElement(c.a,{path:"/stabilize",component:pr}),n.a.createElement(c.a,{path:"/deploy",component:Br}),n.a.createElement(c.a,{path:"/risk-dashboard",component:ce}),n.a.createElement(c.a,{path:"/risk-mitigation",component:Qr}))),n.a.createElement(ia,null)))};Boolean("localhost"===window.location.hostname||"[::1]"===window.location.hostname||window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/));var sa=e=>{e&&e instanceof Function&&r.e(3).then(r.bind(null,514)).then(t=>{let{getCLS:r,getFID:a,getFCP:n,getLCP:l,getTTFB:o}=t;r(e),a(e),n(e),l(e),o(e)})};const ua=m.b`
   body {
     font-family: ${e=>{let{theme:t}=e;return t.fonts.primary}};
     background: ${e=>{let{theme:t}=e;return t.colors.background}};
@@ -1275,5 +1277,5 @@
   button:hover {
     background: ${e=>{let{theme:t}=e;return t.colors.accent}};
   }
-`;o.a.createRoot(document.getElementById("root")).render(n.a.createElement(n.a.StrictMode,null,n.a.createElement(m.a,{theme:{colors:{primary:"#2F48C4",accent:"#FF6B57",background:"#FFFFFF",secondaryBackground:"#F7F8FA",text:"#22223B",highlight:"#A3A3FF",feature:"#FF6B57",story:"#00CFE8",develop:"#A3A3FF",stabilize:"#B6E2D3",deploy:"#FFF3B0",security:"#FFB3B3",analytics:"#FFE066",contingencies:"#D6C1FF"},fonts:{primary:"'Inter', 'Segoe UI', Arial, sans-serif",weights:{regular:400,medium:500,bold:700}}}},n.a.createElement(da,null),n.a.createElement(sa,null)))),"serviceWorker"in navigator&&navigator.serviceWorker.ready.then(e=>{e.unregister()}).catch(e=>{console.error(e.message)}),ua()},66:function(e,t,r){e.exports=r.p+"static/media/sk-logo-dark.fbff4e0a.svg"}},[[277,1,2]]]);
-//# sourceMappingURL=main.83bc0848.chunk.js.map
+`;o.a.createRoot(document.getElementById("root")).render(n.a.createElement(n.a.StrictMode,null,n.a.createElement(m.a,{theme:{colors:{primary:"#2F48C4",accent:"#FF6B57",background:"#FFFFFF",secondaryBackground:"#F7F8FA",text:"#22223B",highlight:"#A3A3FF",feature:"#FF6B57",story:"#00CFE8",develop:"#A3A3FF",stabilize:"#B6E2D3",deploy:"#FFF3B0",security:"#FFB3B3",analytics:"#FFE066",contingencies:"#D6C1FF"},fonts:{primary:"'Inter', 'Segoe UI', Arial, sans-serif",weights:{regular:400,medium:500,bold:700}}}},n.a.createElement(ua,null),n.a.createElement(ma,null)))),"serviceWorker"in navigator&&navigator.serviceWorker.ready.then(e=>{e.unregister()}).catch(e=>{console.error(e.message)}),sa()},66:function(e,t,r){e.exports=r.p+"static/media/sk-logo-dark.fbff4e0a.svg"}},[[277,1,2]]]);
+//# sourceMappingURL=main.5c956fdc.chunk.js.map
