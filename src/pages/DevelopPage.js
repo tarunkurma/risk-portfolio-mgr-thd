@@ -547,11 +547,9 @@ const ScoreLabel = styled.span`
 const ScoreValue = styled.span`
   font-size: 1.2rem;
   font-weight: ${({ theme }) => theme.fonts.weights.bold};
-  color: ${({ score, theme }) => {
-    if (score >= 80) return '#2ecc40';
-    if (score >= 60) return '#ff851b';
-    return '#ff4136';
-  }};
+  min-width: 1.5rem;
+  text-align: center;
+  display: inline-block;
 `;
 
 export default function DevelopPage() {
@@ -614,11 +612,11 @@ export default function DevelopPage() {
   });
 
   const [maintainabilityScores, setMaintainabilityScores] = React.useState({
-    releasePipelineAutomation: 35,
-    sdkManagementComplexity: 25,
-    configurationManagement: 40,
-    nativeWebviewDataSharing: 30,
-    legacyCodeRemoval: 20
+    releasePipelineAutomation: 'M',
+    sdkManagementComplexity: 'L',
+    configurationManagement: 'M',
+    nativeWebviewDataSharing: 'M',
+    legacyCodeRemoval: 'L'
   });
 
   const handleCheckboxChange = (category, item) => {
@@ -634,7 +632,7 @@ export default function DevelopPage() {
   const handleScoreChange = (item, value) => {
     setMaintainabilityScores(prev => ({
       ...prev,
-      [item]: Math.max(1, Math.min(100, value))
+      [item]: value
     }));
   };
 
@@ -648,7 +646,7 @@ export default function DevelopPage() {
   const handleScoreEdit = (key, value) => {
     setMaintainabilityScores(prev => ({
       ...prev,
-      [key]: Math.max(1, Math.min(100, parseInt(value) || 0))
+      [key]: value
     }));
   };
 
@@ -672,10 +670,39 @@ export default function DevelopPage() {
   };
 
   // Calculate overall average score
+  const getScoreValue = (score) => {
+    switch(score) {
+      case 'H': return 3;
+      case 'M': return 2;
+      case 'L': return 1;
+      default: return 2;
+    }
+  };
+
+  const getScoreColor = (score) => {
+    switch(score) {
+      case 'H': return '#28a745';
+      case 'M': return '#ffc107';
+      case 'L': return '#dc3545';
+      case 'High': return '#28a745';
+      case 'Medium': return '#ffc107';
+      case 'Low': return '#dc3545';
+      default: return '#6c757d';
+    }
+  };
+
+  const getAverageScoreLabel = (averageValue) => {
+    if (averageValue >= 2.5) return 'High';
+    if (averageValue >= 1.5) return 'Medium';
+    return 'Low';
+  };
+
   const averageScore = Math.round(
-    Object.values(maintainabilityScores).reduce((sum, score) => sum + score, 0) / 
+    Object.values(maintainabilityScores).reduce((sum, score) => sum + getScoreValue(score), 0) / 
     Object.values(maintainabilityScores).length
   );
+
+  const averageScoreLabel = getAverageScoreLabel(averageScore);
   return (
     <PageContainer>
       <BreadcrumbNav>
@@ -963,21 +990,31 @@ export default function DevelopPage() {
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                       {editingScore === key ? (
-                        <EditableScore
-                          score={maintainabilityScores[key]}
+                        <select
                           value={maintainabilityScores[key]}
                           onChange={(e) => handleScoreEdit(key, e.target.value)}
                           onBlur={finishScoreEdit}
-                          onKeyPress={(e) => e.key === 'Enter' && finishScoreEdit()}
+                          style={{
+                            padding: '0.25rem 0.5rem',
+                            border: '1px solid #ddd',
+                            borderRadius: '4px',
+                            fontSize: '0.875rem',
+                            backgroundColor: 'white',
+                            color: getScoreColor(maintainabilityScores[key])
+                          }}
                           autoFocus
-                        />
+                        >
+                          <option value="H">H</option>
+                          <option value="M">M</option>
+                          <option value="L">L</option>
+                        </select>
                       ) : (
                         <ScoreValue 
                           score={maintainabilityScores[key]}
                           onClick={() => startScoreEdit(key)}
-                          style={{ cursor: 'pointer' }}
+                          style={{ cursor: 'pointer', color: getScoreColor(maintainabilityScores[key]) }}
                         >
-                          {maintainabilityScores[key]}/100
+                          {maintainabilityScores[key]}
                         </ScoreValue>
                       )}
                       <FaEdit 
@@ -1057,11 +1094,11 @@ export default function DevelopPage() {
               
               <OverallScoreContainer score={averageScore}>
                 <OverallScoreHeader>
-                  Maintainability Score
+                  Overall Maintainability
                 </OverallScoreHeader>
                 
-                <OverallScoreValue score={averageScore}>
-                  {averageScore}
+                <OverallScoreValue score={averageScore} style={{ color: getScoreColor(averageScoreLabel) }}>
+                  {averageScoreLabel}
                 </OverallScoreValue>
               </OverallScoreContainer>
             </SectionContent>
