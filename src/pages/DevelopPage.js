@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { 
   FaCodeBranch, FaArrowLeft, FaShieldAlt, FaCode, FaServer, FaCheckSquare,
-  FaBook, FaRegListAlt, FaTools, FaBullseye, FaExclamationTriangle, FaMobile,
-  FaCogs, FaSync, FaDatabase, FaClipboardCheck, FaChevronDown, FaChevronRight,
+  FaExclamationTriangle, FaClipboardCheck, FaChevronDown, FaChevronRight,
   FaArrowUp, FaArrowDown, FaMinus, FaEdit, FaLightbulb, FaClock, FaLink,
-  FaChartLine, FaChevronUp
+  FaChevronUp
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
@@ -84,18 +83,7 @@ const SectionGrid = styled.div`
   margin-top: 2rem;
 `;
 
-const SectionDivider = styled.div`
-  width: 100%;
-  margin: 3rem 0 1.5rem 0;
-`;
 
-const SectionGroupTitle = styled.h2`
-  font-size: 1.8rem;
-  color: ${({ theme }) => theme.colors.primary};
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.secondaryBackground};
-`;
 
 const Section = styled.div`
   background: ${({ theme }) => theme.colors.secondaryBackground};
@@ -126,30 +114,27 @@ const StickySectionHeader = styled.div`
   width: 100%;
 `;
 
-const StickyButtonsContainer = styled.div`
-  position: sticky;
-  top: 80px;
-  background: ${({ theme }) => theme.colors.secondaryBackground};
-  z-index: 15;
-  padding: 0 0 1rem 0;
-  margin: 0 -1.5rem 1rem -1.5rem;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.background};
-`;
+
 
 const SectionHeader = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   margin-bottom: 1.5rem;
-  text-align: center;
+  text-align: left;
   padding-bottom: 1rem;
   border-bottom: 2px solid ${({ theme }) => theme.colors.background};
+`;
+
+const SectionHeaderLeft = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 `;
 
 const SectionIcon = styled.div`
   font-size: 2rem;
   color: ${({ theme, color }) => theme.colors[color] || theme.colors.primary};
-  margin-right: 1rem;
   background: ${({ theme, color }) => theme.colors[color] || theme.colors.primary}15;
   padding: 0.75rem;
   border-radius: 50%;
@@ -158,6 +143,7 @@ const SectionIcon = styled.div`
   justify-content: center;
   width: 3rem;
   height: 3rem;
+  flex-shrink: 0;
 `;
 
 const SectionTitle = styled.h2`
@@ -165,6 +151,9 @@ const SectionTitle = styled.h2`
   margin: 0;
   color: ${({ theme }) => theme.colors.text};
   font-weight: ${({ theme }) => theme.fonts.weights.bold};
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
 `;
 
 const SectionDescription = styled.p`
@@ -187,17 +176,7 @@ const SectionContent = styled.div`
   text-align: left;
 `;
 
-const SectionList = styled.ul`
-  margin: 0.5rem 0;
-  padding-left: 1.5rem;
-  list-style-type: disc;
-  text-align: left;
-`;
 
-const SectionListItem = styled.li`
-  margin-bottom: 0.5rem;
-  text-align: left;
-`;
 
 const AssessmentSection = styled.div`
   margin-bottom: 3rem;
@@ -212,6 +191,29 @@ const AssessmentTitle = styled.h2`
   
   svg {
     margin-right: 0.75rem;
+  }
+`;
+
+const AssessmentDivider = styled.div`
+  height: 2px;
+  background: linear-gradient(90deg, 
+    ${({ theme }) => theme.colors.primary}20 0%, 
+    ${({ theme }) => theme.colors.primary} 50%, 
+    ${({ theme }) => theme.colors.primary}20 100%);
+  margin: 3rem 0;
+  border-radius: 1px;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: ${({ theme }) => theme.colors.primary};
+    border-radius: 50%;
   }
 `;
 
@@ -619,6 +621,8 @@ export default function DevelopPage() {
     legacyCodeRemoval: 'L'
   });
 
+
+
   const handleCheckboxChange = (category, item) => {
     setAssessmentCriteria(prev => ({
       ...prev,
@@ -733,8 +737,10 @@ export default function DevelopPage() {
         <SectionGrid>
           <Section>
             <SectionHeader>
-              <SectionIcon color="develop"><FaCode /></SectionIcon>
-              <SectionTitle>Dev Standards</SectionTitle>
+              <SectionHeaderLeft>
+                <SectionIcon color="develop"><FaCode /></SectionIcon>
+                <SectionTitle>Dev Standards</SectionTitle>
+              </SectionHeaderLeft>
             </SectionHeader>
             <SectionDescription>
               Core development practices and architectural standards for building robust, maintainable applications.
@@ -761,8 +767,10 @@ export default function DevelopPage() {
           
           <Section>
             <SectionHeader>
-              <SectionIcon color="develop"><FaServer /></SectionIcon>
-              <SectionTitle>Infra - Local | EUT</SectionTitle>
+              <SectionHeaderLeft>
+                <SectionIcon color="develop"><FaServer /></SectionIcon>
+                <SectionTitle>Infra - Local | EUT</SectionTitle>
+              </SectionHeaderLeft>
             </SectionHeader>
             <SectionDescription>
               IAC practices for local and provisioned environments for efficient workflows.
@@ -817,8 +825,10 @@ export default function DevelopPage() {
           
           <Section>
             <SectionHeader>
-              <SectionIcon color="develop"><FaCheckSquare /></SectionIcon>
-              <SectionTitle>Code Quality</SectionTitle>
+              <SectionHeaderLeft>
+                <SectionIcon color="develop"><FaCheckSquare /></SectionIcon>
+                <SectionTitle>Code Quality</SectionTitle>
+              </SectionHeaderLeft>
             </SectionHeader>
             <SectionDescription>
               Testing frameworks and quality assurance practices to ensure reliable, well-tested code.
@@ -845,6 +855,8 @@ export default function DevelopPage() {
         </SectionGrid>
       </AssessmentSection>
       
+      <AssessmentDivider />
+      
       {/* Assessment Results Section */}
       <AssessmentSection>
         <AssessmentTitle>
@@ -853,11 +865,48 @@ export default function DevelopPage() {
         </AssessmentTitle>
         
         <SectionGrid>
+          {/* Dev Standards Container */}
           <Section style={{ position: 'relative' }}>
             <StickySectionHeader>
               <SectionHeader>
-                <SectionIcon color="security"><FaExclamationTriangle /></SectionIcon>
-                <SectionTitle>Maintainability</SectionTitle>
+                <SectionHeaderLeft>
+                  <SectionIcon color="develop"><FaCode /></SectionIcon>
+                  <SectionTitle>Dev Standards</SectionTitle>
+                </SectionHeaderLeft>
+              </SectionHeader>
+            </StickySectionHeader>
+            <SectionContent>
+              <div style={{ padding: '1rem', textAlign: 'center', color: '#666' }}>
+                Dev Standards assessment container - coming soon
+              </div>
+            </SectionContent>
+          </Section>
+
+          {/* Infra - Local | EUT Container */}
+          <Section style={{ position: 'relative' }}>
+            <StickySectionHeader>
+              <SectionHeader>
+                <SectionHeaderLeft>
+                  <SectionIcon color="develop"><FaServer /></SectionIcon>
+                  <SectionTitle>Infra - Local | EUT</SectionTitle>
+                </SectionHeaderLeft>
+              </SectionHeader>
+            </StickySectionHeader>
+            <SectionContent>
+              <div style={{ padding: '1rem', textAlign: 'center', color: '#666' }}>
+                Infrastructure assessment container - coming soon
+              </div>
+            </SectionContent>
+          </Section>
+
+          {/* Maintainability Container */}
+          <Section style={{ position: 'relative' }}>
+            <StickySectionHeader>
+              <SectionHeader>
+                <SectionHeaderLeft>
+                  <SectionIcon color="security"><FaExclamationTriangle /></SectionIcon>
+                  <SectionTitle>Maintainability</SectionTitle>
+                </SectionHeaderLeft>
                 <ExpandCollapseButtons>
                   <ExpandCollapseButton onClick={expandAll} title="Expand All">
                     <FaChevronDown />
@@ -1101,6 +1150,40 @@ export default function DevelopPage() {
                   {averageScoreLabel}
                 </OverallScoreValue>
               </OverallScoreContainer>
+            </SectionContent>
+          </Section>
+
+          {/* Security Standards Container */}
+          <Section style={{ position: 'relative' }}>
+            <StickySectionHeader>
+                          <SectionHeader>
+              <SectionHeaderLeft>
+                <SectionIcon color="security"><FaShieldAlt /></SectionIcon>
+                <SectionTitle>Security Standards</SectionTitle>
+              </SectionHeaderLeft>
+            </SectionHeader>
+            </StickySectionHeader>
+            <SectionContent>
+              <div style={{ padding: '1rem', textAlign: 'center', color: '#666' }}>
+                Security Standards assessment container - coming soon
+              </div>
+            </SectionContent>
+          </Section>
+
+          {/* Code Quality Container */}
+          <Section style={{ position: 'relative' }}>
+            <StickySectionHeader>
+              <SectionHeader>
+                <SectionHeaderLeft>
+                  <SectionIcon color="develop"><FaCheckSquare /></SectionIcon>
+                  <SectionTitle>Code Quality</SectionTitle>
+                </SectionHeaderLeft>
+              </SectionHeader>
+            </StickySectionHeader>
+            <SectionContent>
+              <div style={{ padding: '1rem', textAlign: 'center', color: '#666' }}>
+                Code Quality assessment container - coming soon
+              </div>
             </SectionContent>
           </Section>
         </SectionGrid>
