@@ -7,6 +7,8 @@ import {
   FaChevronUp
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import AgentAssistant from '../components/AgentAssistant';
+import AgentDemo from '../components/AgentDemo';
 
 const PageContainer = styled.div`
   max-width: 1200px;
@@ -727,6 +729,14 @@ export default function DevelopPage() {
         </HeaderContent>
       </PageHeader>
       
+      {/* AI Agent Demo/Information */}
+      <AgentDemo 
+        assessmentData={{
+          criteria: assessmentCriteria,
+          scores: { maintainability: maintainabilityScores }
+        }}
+      />
+      
       {/* Assessment Criteria Section */}
       <AssessmentSection>
         <AssessmentTitle>
@@ -1188,6 +1198,22 @@ export default function DevelopPage() {
           </Section>
         </SectionGrid>
       </AssessmentSection>
+      
+      {/* AI Agent Assistant */}
+      <AgentAssistant 
+        assessmentData={{
+          criteria: assessmentCriteria,
+          scores: { maintainability: maintainabilityScores },
+          phase: 'develop',
+          completionStatus: Object.values(assessmentCriteria).reduce((total, category) => {
+            const completed = Object.values(category).filter(Boolean).length;
+            const totalItems = Object.keys(category).length;
+            return total + (totalItems > 0 ? completed / totalItems : 0);
+          }, 0) / Object.keys(assessmentCriteria).length,
+          lastUpdated: new Date().toISOString()
+        }}
+        phase="develop"
+      />
     </PageContainer>
   );
 }

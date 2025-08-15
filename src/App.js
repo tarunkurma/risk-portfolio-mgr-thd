@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import Header from './Header';
 import Homepage from './Homepage';
 import DesignPage from './pages/DesignPage';
@@ -37,6 +38,29 @@ function App() {
           </Switch>
         </Container>
         <Footer />
+        {/* Toast notifications for user feedback */}
+        <Toaster 
+          position="top-right"
+          toastOptions={{
+            duration: 4000,
+            style: {
+              background: '#363636',
+              color: '#fff',
+            },
+            success: {
+              duration: 3000,
+              theme: {
+                primary: '#4aed88',
+              },
+            },
+            error: {
+              duration: 5000,
+              theme: {
+                primary: '#ff6b6b',
+              },
+            },
+          }}
+        />
       </div>
     </Router>
   );
