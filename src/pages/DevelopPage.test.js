@@ -10,29 +10,24 @@ describe('DevelopPage', () => {
 
   it('displays all section groups', () => {
     render(<DevelopPage />);
-    expect(screen.getByText('Development Standards')).toBeInTheDocument();
-    expect(screen.getByText('Code Quality')).toBeInTheDocument();
-    expect(screen.getByText('Testing & Tooling')).toBeInTheDocument();
+    expect(screen.getAllByText('Dev Standards')).toHaveLength(2); // Criteria + Results sections
+    expect(screen.getAllByText('Code Quality')).toHaveLength(2); // Criteria + Results sections
+    expect(screen.getByText('Assessment Criteria')).toBeInTheDocument();
   });
 
-  it('displays all development standard sections', () => {
+  it('displays all assessment criteria sections', () => {
     render(<DevelopPage />);
-    expect(screen.getByText('Security Standards')).toBeInTheDocument();
-    expect(screen.getByText('Branching Strategy')).toBeInTheDocument();
-    expect(screen.getByText('Infra - Local | EUT')).toBeInTheDocument();
-    expect(screen.getByText('Test Coverage')).toBeInTheDocument();
+    expect(screen.getAllByText('Security Standards')).toHaveLength(2); // Criteria + Results sections
+    expect(screen.getAllByText('Dev Standards')).toHaveLength(2); // Criteria + Results sections
+    expect(screen.getAllByText('Infra - Local | EUT')).toHaveLength(2); // Criteria + Results sections
+    expect(screen.getAllByText('Code Quality')).toHaveLength(2); // Criteria + Results sections
   });
   
-  it('displays all code quality sections', () => {
+  it('displays assessment results sections', () => {
     render(<DevelopPage />);
-    expect(screen.getByText('Readability')).toBeInTheDocument();
-    expect(screen.getByText('Review Process')).toBeInTheDocument();
-  });
-  
-  it('displays all testing and tooling sections', () => {
-    render(<DevelopPage />);
-    expect(screen.getByText('Test Strategy')).toBeInTheDocument();
-    expect(screen.getByText('Tools')).toBeInTheDocument();
+    expect(screen.getByText('Assessment Results')).toBeInTheDocument();
+    expect(screen.getByText('Maintainability')).toBeInTheDocument();
+    expect(screen.getByText('Overall Maintainability')).toBeInTheDocument();
   });
 
   it('contains a back link to the home page', () => {

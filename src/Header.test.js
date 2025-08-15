@@ -11,9 +11,8 @@ describe('Header', () => {
   it('renders all navigation links', () => {
     render(<Header />);
     expect(screen.getByText(/Home/i)).toBeInTheDocument();
-    expect(screen.getByText(/About/i)).toBeInTheDocument();
-    expect(screen.getByText(/Case Studies/i)).toBeInTheDocument();
-    expect(screen.getByText(/Resources/i)).toBeInTheDocument();
-    expect(screen.getByText(/Contact/i)).toBeInTheDocument();
+    expect(screen.getByText(/Maturity Dashboard/i)).toBeInTheDocument();
+    expect(screen.getByText(/Mitigation Roadmap/i)).toBeInTheDocument();
+    expect(screen.getByText(/View Assessment/i)).toBeInTheDocument();
   });
 }); 

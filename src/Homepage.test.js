@@ -5,13 +5,15 @@ import Homepage from './Homepage';
 describe('Homepage', () => {
   it('renders the main title and subtitle', () => {
     render(<Homepage />);
-    expect(screen.getByText(/Software Lifecycle Risk Evaluation/i)).toBeInTheDocument();
-    expect(screen.getByText(/Assess risk across every phase/i)).toBeInTheDocument();
+    expect(screen.getByText(/Software Lifecycle Maturity Assessment/i)).toBeInTheDocument();
+    expect(screen.getByText(/Evaluate and improve capabilities across every phase/i)).toBeInTheDocument();
   });
 
-  it('renders the CTA button', () => {
+  it('renders the lifecycle phase navigation buttons', () => {
     render(<Homepage />);
-    expect(screen.getByRole('button', { name: /Start Assessment/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Design/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Develop/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Deploy/i })).toBeInTheDocument();
   });
 
   it('renders the watermark image', () => {

@@ -9,8 +9,8 @@ import {
   FaLock, FaNetworkWired, FaServer 
 } from 'react-icons/fa';
 
-const dummyMitigationData = {
-  riskCategories: [
+const dummyMaturityData = {
+  maturityCategories: [
     { name: 'Security', unmitigated: 8, mitigated: 5, inProgress: 3, icon: <FaShieldAlt />, color: 'security' },
     { name: 'Privacy', unmitigated: 6, mitigated: 4, inProgress: 2, icon: <FaUserShield />, color: 'highlight' },
     { name: 'Infrastructure', unmitigated: 5, mitigated: 3, inProgress: 2, icon: <FaServer />, color: 'contingencies' },
@@ -182,12 +182,12 @@ const LegendColor = styled.div`
   border-radius: 2px;
 `;
 
-export default function RiskMitigationRoadmap() {
+export default function MaturityMitigationRoadmap() {
   const theme = useTheme();
-  const { riskCategories, topMitigations, pendingMitigations, lastUpdated } = dummyMitigationData;
+  const { maturityCategories, topMitigations, pendingMitigations, lastUpdated } = dummyMaturityData;
   
   // Transform data for the stacked bar chart
-  const chartData = riskCategories.map(category => ({
+  const chartData = maturityCategories.map(category => ({
     name: category.name,
     Mitigated: category.mitigated,
     "In Progress": category.inProgress,

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { render, screen } from '../test/test-utils';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders main application title', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const titleElement = screen.getByText(/Software Lifecycle Maturity Assessment/i);
+  expect(titleElement).toBeInTheDocument();
 });

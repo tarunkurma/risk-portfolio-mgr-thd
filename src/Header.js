@@ -97,9 +97,9 @@ export default function Header() {
         </ExternalLink>
         <Nav>
           <NavLink to="/">Home</NavLink>
-          <NavLink to="/risk-dashboard">Risk Dashboard</NavLink>
-          <NavLink to="/risk-mitigation">Risk Mitigation</NavLink>
-          <NavButton to="/risk-dashboard">View Risks</NavButton>
+          <NavLink to="/maturity-dashboard">Maturity Dashboard</NavLink>
+          <NavLink to="/mitigation-roadmap">Mitigation Roadmap</NavLink>
+          <NavButton to="/maturity-dashboard">View Assessment</NavButton>
         </Nav>
       </NavContainer>
     </HeaderBar>

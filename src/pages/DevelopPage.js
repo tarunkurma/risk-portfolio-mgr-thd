@@ -1084,7 +1084,7 @@ export default function DevelopPage() {
                       <StickyHeader>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
                           <FaLightbulb style={{ color: '#ff851b' }} />
-                          <strong>Risk Factors</strong>
+                          <strong>Maturity Factors</strong>
                         </div>
                       </StickyHeader>
                       <RiskBulletList>
@@ -1108,7 +1108,7 @@ export default function DevelopPage() {
                       <div style={{ marginTop: '1rem' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
                           <FaLink style={{ color: '#0074d9' }} />
-                          <strong>Risk Correlations</strong>
+                          <strong>Maturity Correlations</strong>
                         </div>
                         <CorrelationMatrix>
                           {item.correlations.map((correlation, idx) => (

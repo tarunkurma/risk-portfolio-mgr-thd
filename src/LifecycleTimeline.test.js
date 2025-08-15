@@ -21,7 +21,7 @@ describe('LifecycleTimeline', () => {
   it('calls onSelect when a phase is clicked', () => {
     const onSelect = jest.fn();
     render(<LifecycleTimeline onSelect={onSelect} selectedPhase="design" />);
-    fireEvent.click(screen.getByText('Stabilize'));
+    fireEvent.click(screen.getByRole('button', { name: 'Stabilize' }));
     expect(onSelect).toHaveBeenCalledWith('stabilize');
   });
 }); 

@@ -9,7 +9,7 @@ import {
   FaExclamationTriangle, FaShieldAlt, FaChartLine, FaCheck
 } from 'react-icons/fa';
 
-const dummyRiskData = {
+const dummyMaturityData = {
   overallScore: 72, // out of 100
   phaseScores: [
     { phase: 'Design', score: 80, phaseName: 'Design' },
@@ -18,19 +18,19 @@ const dummyRiskData = {
     { phase: 'Stabilize', score: 75, phaseName: 'Stabilize' },
     { phase: 'Deploy', score: 65, phaseName: 'Deploy' },
   ],
-  riskCategories: [
+  maturityCategories: [
     { name: 'Security', value: 65, fullMark: 100 },
     { name: 'Compliance', value: 80, fullMark: 100 },
     { name: 'Infrastructure', value: 75, fullMark: 100 },
     { name: 'Process', value: 68, fullMark: 100 },
     { name: 'Team', value: 85, fullMark: 100 },
   ],
-  riskSeverity: [
+  maturitySeverity: [
     { name: 'High', value: 4, color: '#ff4136' },
     { name: 'Medium', value: 7, color: '#ff851b' },
     { name: 'Low', value: 13, color: '#2ecc40' },
   ],
-  topRisks: [
+  improvementAreas: [
     'Release pipeline lacks automation (30-40 min builds)',
     'Android: 103 SDKs, iOS: 44 SDKs - update risks',
     'Configuration management prone to errors',
@@ -38,7 +38,7 @@ const dummyRiskData = {
     'Legacy code removal challenges',
     'Manual App/Play Store uploads required',
   ],
-  mitigatedRisks: [
+  completedImprovements: [
     'Outdated dependencies with security vulnerabilities',
     'Missing automated testing in CI pipeline',
     'Inadequate error handling',
@@ -123,14 +123,14 @@ const IconCol = styled.div`
   flex: 1;
 `;
 
-const RiskList = styled.ul`
+const ItemList = styled.ul`
   margin: 0;
   padding: 0;
   list-style: none;
   width: 100%;
 `;
 
-const RiskItem = styled.li`
+const ItemListItem = styled.li`
   background: ${({ theme }) => theme.colors.secondaryBackground};
   color: ${({ theme }) => theme.colors.text};
   border-radius: 8px;
@@ -220,14 +220,14 @@ const renderCustomizedLabel = (props) => {
   );
 };
 
-export default function RiskDashboard() {
+export default function MaturityDashboard() {
   const theme = useTheme();
   const [activeTab, setActiveTab] = useState('overview');
   
   const { 
-    overallScore, phaseScores, riskCategories, riskSeverity,
-    topRisks, mitigatedRisks, lastUpdated 
-  } = dummyRiskData;
+    overallScore, phaseScores, maturityCategories, maturitySeverity,
+    improvementAreas, completedImprovements, lastUpdated 
+  } = dummyMaturityData;
   
   const riskColor = getRiskColor(overallScore, theme);
 
@@ -235,7 +235,7 @@ export default function RiskDashboard() {
     <Card>
       <Header>
         <HeaderContent>
-          <div>Comprehensive view of project risk factors and mitigation status</div>
+          <div>Comprehensive view of project maturity levels and improvement progress</div>
         </HeaderContent>
       </Header>
       
@@ -258,13 +258,13 @@ export default function RiskDashboard() {
         <>
           <ChartTitle>
             <FaChartLine style={{ color: theme.colors.primary }} />
-            Overall Risk Assessment
+            Overall Maturity Assessment
           </ChartTitle>
           
           <DashboardContent>
             <ChartContainer style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
               <Score color={riskColor}>{overallScore}</Score>
-              <ScoreLabel>Overall Risk Score</ScoreLabel>
+              <ScoreLabel>Overall Maturity Score</ScoreLabel>
               
                 <ResponsiveContainer width="100%" height={180}>
                   <BarChart data={phaseScores} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
@@ -293,29 +293,29 @@ export default function RiskDashboard() {
             <ChartContainer>
               <ChartTitle>
                 <FaExclamationTriangle style={{ color: theme.colors.accent }} />
-                Top Risks
+                Improvement Areas
               </ChartTitle>
-              <RiskList>
-                {topRisks.map((risk, idx) => (
-                  <RiskItem key={idx}>
+              <ItemList>
+                {improvementAreas.map((item, idx) => (
+                  <ItemListItem key={idx}>
                     <FaExclamationTriangle size={14} style={{ color: theme.colors.accent }} />
-                    {risk}
-                  </RiskItem>
+                    {item}
+                  </ItemListItem>
                 ))}
-              </RiskList>
+              </ItemList>
               
               <ChartTitle style={{ marginTop: '1.5rem' }}>
                 <FaCheck style={{ color: theme.colors.primary }} />
                 Recently Mitigated
               </ChartTitle>
-              <RiskList>
-                {mitigatedRisks.map((risk, idx) => (
-                  <RiskItem key={idx}>
+              <ItemList>
+                {completedImprovements.map((item, idx) => (
+                  <ItemListItem key={idx}>
                     <FaCheck size={14} style={{ color: theme.colors.primary }} />
-                    {risk}
-                  </RiskItem>
+                    {item}
+                  </ItemListItem>
                 ))}
-              </RiskList>
+              </ItemList>
             </ChartContainer>
           </DashboardContent>
         </>
@@ -329,7 +329,7 @@ export default function RiskDashboard() {
             <ResponsiveContainer width="100%" height={250}>
               <PieChart>
                 <Pie
-                  data={riskSeverity}
+                  data={maturitySeverity}
                   cx="50%"
                   cy="50%"
                   labelLine={false}
@@ -338,7 +338,7 @@ export default function RiskDashboard() {
                   fill="#8884d8"
                   dataKey="value"
                 >
-                  {riskSeverity.map((entry, index) => (
+                  {maturitySeverity.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
                 </Pie>
@@ -351,15 +351,15 @@ export default function RiskDashboard() {
           <ChartContainer>
             <ChartTitle>
               <FaChartLine style={{ color: theme.colors.primary }} />
-              Risk Category Assessment
+              Category Maturity Assessment
             </ChartTitle>
             <ResponsiveContainer width="100%" height={250}>
-              <RadarChart cx="50%" cy="50%" outerRadius={80} data={riskCategories}>
+              <RadarChart cx="50%" cy="50%" outerRadius={80} data={maturityCategories}>
                 <PolarGrid />
                 <PolarAngleAxis dataKey="name" />
                 <PolarRadiusAxis angle={30} domain={[0, 100]} />
                 <Radar
-                  name="Risk Score"
+                  name="Maturity Score"
                   dataKey="value"
                   stroke={theme.colors.primary}
                   fill={theme.colors.primary}

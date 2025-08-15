@@ -1,6 +1,6 @@
 {
-  "short_name": "Risk Portfolio Manager",
-  "name": "Risk Portfolio Manager - Stable Kernel",
+  "short_name": "Maturity Portfolio Manager",
+  "name": "Maturity Portfolio Manager - Stable Kernel",
   "icons": [
     {
       "src": "sk-logo.png",

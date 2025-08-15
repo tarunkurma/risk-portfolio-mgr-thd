@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import skLogo from './sk-logo-dark.svg';
 import LifecycleTimeline from './LifecycleTimeline';
-import RiskDashboard from './RiskDashboard';
+import MaturityDashboard from './MaturityDashboard';
 import { FaPencilRuler, FaFilter, FaCodeBranch, FaCogs, FaRocket, FaTools } from 'react-icons/fa';
 
 const HeroSection = styled.section`
@@ -159,8 +159,8 @@ export default function Homepage() {
     <>
       <HeroSection>
         <HeroContent>
-          <Title>Software Lifecycle Risk Evaluation</Title>
-          <Subtitle>Assess risk across every phase of your software development lifecycle</Subtitle>
+          <Title>Software Lifecycle Maturity Assessment</Title>
+          <Subtitle>Evaluate and improve capabilities across every phase of your software development lifecycle</Subtitle>
         </HeroContent>
         <Watermark src={skLogo} alt="Watermark" />
       </HeroSection>
@@ -245,8 +245,8 @@ export default function Homepage() {
         </CrossPhaseContainer>
       </Section>
       <Section>
-        <SectionTitle>Risk Dashboard</SectionTitle>
-        <RiskDashboard />
+        <SectionTitle>Maturity Dashboard</SectionTitle>
+        <MaturityDashboard />
       </Section>
     </>
   );
