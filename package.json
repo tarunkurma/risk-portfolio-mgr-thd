@@ -23,12 +23,18 @@
     "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
     "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
     "test": "react-scripts test",
+    "test:watch": "react-scripts test --watchAll",
+    "test:coverage": "react-scripts test --coverage --watchAll=false",
+    "test:staged": "react-scripts test --findRelatedTests --watchAll=false",
+    "test:ci": "CI=true react-scripts test --coverage --watchAll=false",
+    "test:quick": "react-scripts test --watchAll=false --maxWorkers=4",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.js",
     "lint:fix": "eslint src/**/*.js --fix",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "postbuild": "cp build/index.html build/404.html"
+    "postbuild": "cp build/index.html build/404.html",
+    "prepare": "husky"
   },
   "eslintConfig": {
     "extends": [
@@ -54,6 +60,8 @@
     "eslint": "^5.16.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^1.7.0",
-    "gh-pages": "^6.3.0"
+    "gh-pages": "^6.3.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.6"
   }
 }

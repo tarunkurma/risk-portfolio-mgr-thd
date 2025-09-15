@@ -616,11 +616,24 @@ export default function DevelopPage() {
   });
 
   const [maintainabilityScores, setMaintainabilityScores] = React.useState({
+    // Maintainability section
     releasePipelineAutomation: 'M',
     sdkManagementComplexity: 'L',
     configurationManagement: 'M',
     nativeWebviewDataSharing: 'M',
-    legacyCodeRemoval: 'L'
+    legacyCodeRemoval: 'L',
+    // Dev Standards section
+    releaseProcessMaturity: 'M',
+    developmentPracticesMaturity: 'M',
+    // Infrastructure section
+    environmentConfigurationMaturity: 'L',
+    testingMaturityInfrastructure: 'M',
+    // Code Quality section
+    testingMaturityMetrics: 'M',
+    codeQualityAutomation: 'M',
+    // Security Standards section (placeholder for future implementation)
+    securityImplementationMaturity: 'M',
+    vulnerabilityManagementMaturity: 'L'
   });
 
 
@@ -665,7 +678,19 @@ export default function DevelopPage() {
   };
 
   const expandAll = () => {
-    const allKeys = ['releasePipelineAutomation', 'sdkManagementComplexity', 'configurationManagement', 'nativeWebviewDataSharing', 'legacyCodeRemoval'];
+    const allKeys = [
+      // Maintainability section
+      'releasePipelineAutomation', 'sdkManagementComplexity', 'configurationManagement', 
+      'nativeWebviewDataSharing', 'legacyCodeRemoval',
+      // Dev Standards section
+      'releaseProcessMaturity', 'developmentPracticesMaturity',
+      // Infrastructure section
+      'environmentConfigurationMaturity', 'testingMaturityInfrastructure',
+      // Code Quality section
+      'testingMaturityMetrics', 'codeQualityAutomation',
+      // Security Standards section
+      'securityImplementationMaturity', 'vulnerabilityManagementMaturity'
+    ];
     setExpandedScores(
       allKeys.reduce((acc, key) => ({ ...acc, [key]: true }), {})
     );
@@ -883,12 +908,144 @@ export default function DevelopPage() {
                   <SectionIcon color="develop"><FaCode /></SectionIcon>
                   <SectionTitle>Dev Standards</SectionTitle>
                 </SectionHeaderLeft>
+                <ExpandCollapseButtons>
+                  <ExpandCollapseButton onClick={expandAll} title="Expand All">
+                    <FaChevronDown />
+                  </ExpandCollapseButton>
+                  <ExpandCollapseButton onClick={collapseAll} title="Collapse All">
+                    <FaChevronUp />
+                  </ExpandCollapseButton>
+                </ExpandCollapseButtons>
               </SectionHeader>
             </StickySectionHeader>
             <SectionContent>
-              <div style={{ padding: '1rem', textAlign: 'center', color: '#666' }}>
-                Dev Standards assessment container - coming soon
-              </div>
+              {Object.entries({
+                releaseProcessMaturity: {
+                  label: 'Release Process Maturity',
+                  trend: 'down',
+                  risks: [
+                    'Manual release processes requiring 3 out of 10 days for preparation',
+                    'Lack of automated build and deployment pipelines',
+                    'Manual version management prone to human error',
+                    'Build times of 30-40 minutes indicate inefficient processes'
+                  ],
+                  actions: [
+                    'Implement automated CI/CD pipeline with parallel builds',
+                    'Add automated version tagging and release notes generation',
+                    'Implement blue-green deployment strategies',
+                    'Create automated rollback procedures'
+                  ],
+                  correlations: ['buildAutomation', 'testingMaturity'],
+                  timeline: [
+                    { date: '2024-01-15', event: 'Documented current manual release process' },
+                    { date: '2024-03-20', event: 'Started automation planning phase' }
+                  ]
+                },
+                developmentPracticesMaturity: {
+                  label: 'Development Practices Maturity',
+                  trend: 'stable',
+                  risks: [
+                    'Inconsistent code review processes across teams',
+                    'Limited automated code quality checks',
+                    'Variable adherence to coding standards',
+                    'Documentation gaps in development workflows'
+                  ],
+                  actions: [
+                    'Implement mandatory peer code reviews',
+                    'Add automated linting and formatting checks',
+                    'Create comprehensive coding standards documentation',
+                    'Establish development workflow documentation'
+                  ],
+                  correlations: ['codeQuality', 'testingMaturity'],
+                  timeline: [
+                    { date: '2024-02-10', event: 'Conducted development practices audit' },
+                    { date: '2024-04-05', event: 'Started standards documentation' }
+                  ]
+                }
+              }).map(([key, item]) => (
+                <ScoreItem key={key} score={maintainabilityScores[key] || 'M'}>
+                  <ScoreHeader onClick={() => toggleScoreExpansion(key)}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <ScoreLabel>{item.label}</ScoreLabel>
+                      <TrendIndicator trend={item.trend}>
+                        {item.trend === 'up' && <FaArrowUp />}
+                        {item.trend === 'down' && <FaArrowDown />}
+                        {item.trend === 'stable' && <FaMinus />}
+                      </TrendIndicator>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <ScoreValue 
+                        score={maintainabilityScores[key] || 'M'}
+                        style={{ cursor: 'pointer', color: getScoreColor(maintainabilityScores[key] || 'M') }}
+                      >
+                        {maintainabilityScores[key] || 'M'}
+                      </ScoreValue>
+                      <ExpandIcon expanded={expandedScores[key]}>
+                        {expandedScores[key] ? <FaChevronDown /> : <FaChevronRight />}
+                      </ExpandIcon>
+                    </div>
+                  </ScoreHeader>
+                  {expandedScores[key] && (
+                    <ScoreDetails expanded={expandedScores[key]}>
+                      <StickyHeader>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLightbulb style={{ color: '#ff851b' }} />
+                          <strong>Maturity Factors</strong>
+                        </div>
+                      </StickyHeader>
+                      <RiskBulletList>
+                        {item.risks.map((risk, idx) => (
+                          <RiskBulletItem key={idx}>{risk}</RiskBulletItem>
+                        ))}
+                      </RiskBulletList>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLightbulb style={{ color: '#2ecc40' }} />
+                          <strong>Recommended Actions</strong>
+                        </div>
+                        {item.actions.map((action, idx) => (
+                          <ActionItem key={idx}>
+                            {action}
+                          </ActionItem>
+                        ))}
+                      </div>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLink style={{ color: '#0074d9' }} />
+                          <strong>Maturity Correlations</strong>
+                        </div>
+                        <CorrelationMatrix>
+                          {item.correlations.map((correlation, idx) => (
+                            <CorrelationItem key={idx}>
+                              <FaLink size={10} />
+                              {correlation.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
+                            </CorrelationItem>
+                          ))}
+                        </CorrelationMatrix>
+                      </div>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaClock style={{ color: '#85144b' }} />
+                          <strong>Timeline</strong>
+                        </div>
+                        <TimelineView>
+                          {item.timeline.map((event, idx) => (
+                            <TimelineItem key={idx}>
+                              <div style={{ fontSize: '0.75rem', opacity: 0.7 }}>
+                                {new Date(event.date).toLocaleDateString()}
+                              </div>
+                              <div>{event.event}</div>
+                            </TimelineItem>
+                          ))}
+                        </TimelineView>
+                      </div>
+                    </ScoreDetails>
+                  )}
+                </ScoreItem>
+              ))}
             </SectionContent>
           </Section>
 
@@ -900,12 +1057,144 @@ export default function DevelopPage() {
                   <SectionIcon color="develop"><FaServer /></SectionIcon>
                   <SectionTitle>Infra - Local | EUT</SectionTitle>
                 </SectionHeaderLeft>
+                <ExpandCollapseButtons>
+                  <ExpandCollapseButton onClick={expandAll} title="Expand All">
+                    <FaChevronDown />
+                  </ExpandCollapseButton>
+                  <ExpandCollapseButton onClick={collapseAll} title="Collapse All">
+                    <FaChevronUp />
+                  </ExpandCollapseButton>
+                </ExpandCollapseButtons>
               </SectionHeader>
             </StickySectionHeader>
             <SectionContent>
-              <div style={{ padding: '1rem', textAlign: 'center', color: '#666' }}>
-                Infrastructure assessment container - coming soon
-              </div>
+              {Object.entries({
+                environmentConfigurationMaturity: {
+                  label: 'Environment Configuration Maturity',
+                  trend: 'down',
+                  risks: [
+                    'Configuration values prone to errors across environments',
+                    'Feature switches difficult to maintain and validate',
+                    'Manual configuration deployment processes',
+                    'Inconsistent environment parity causing deployment issues'
+                  ],
+                  actions: [
+                    'Implement Infrastructure as Code (IaC) practices',
+                    'Create centralized configuration management system',
+                    'Add automated configuration validation and testing',
+                    'Implement environment-specific configuration templates'
+                  ],
+                  correlations: ['deploymentAutomation', 'testingMaturity'],
+                  timeline: [
+                    { date: '2024-01-20', event: 'Identified configuration drift issues' },
+                    { date: '2024-03-15', event: 'Started configuration audit and documentation' }
+                  ]
+                },
+                testingMaturityInfrastructure: {
+                  label: 'Testing Infrastructure Maturity',
+                  trend: 'up',
+                  risks: [
+                    'Limited automated testing in build pipelines',
+                    'Insufficient test environment provisioning automation',
+                    'Manual testing processes slow down releases',
+                    'Test data management challenges across environments'
+                  ],
+                  actions: [
+                    'Implement automated test environment provisioning',
+                    'Create comprehensive test automation framework',
+                    'Add automated test data management and seeding',
+                    'Implement parallel test execution infrastructure'
+                  ],
+                  correlations: ['buildAutomation', 'environmentConfiguration'],
+                  timeline: [
+                    { date: '2024-02-25', event: 'Started test automation infrastructure planning' },
+                    { date: '2024-04-10', event: 'Pilot automated test environment deployment' }
+                  ]
+                }
+              }).map(([key, item]) => (
+                <ScoreItem key={key} score={maintainabilityScores[key] || 'M'}>
+                  <ScoreHeader onClick={() => toggleScoreExpansion(key)}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <ScoreLabel>{item.label}</ScoreLabel>
+                      <TrendIndicator trend={item.trend}>
+                        {item.trend === 'up' && <FaArrowUp />}
+                        {item.trend === 'down' && <FaArrowDown />}
+                        {item.trend === 'stable' && <FaMinus />}
+                      </TrendIndicator>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <ScoreValue 
+                        score={maintainabilityScores[key] || 'M'}
+                        style={{ cursor: 'pointer', color: getScoreColor(maintainabilityScores[key] || 'M') }}
+                      >
+                        {maintainabilityScores[key] || 'M'}
+                      </ScoreValue>
+                      <ExpandIcon expanded={expandedScores[key]}>
+                        {expandedScores[key] ? <FaChevronDown /> : <FaChevronRight />}
+                      </ExpandIcon>
+                    </div>
+                  </ScoreHeader>
+                  {expandedScores[key] && (
+                    <ScoreDetails expanded={expandedScores[key]}>
+                      <StickyHeader>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLightbulb style={{ color: '#ff851b' }} />
+                          <strong>Maturity Factors</strong>
+                        </div>
+                      </StickyHeader>
+                      <RiskBulletList>
+                        {item.risks.map((risk, idx) => (
+                          <RiskBulletItem key={idx}>{risk}</RiskBulletItem>
+                        ))}
+                      </RiskBulletList>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLightbulb style={{ color: '#2ecc40' }} />
+                          <strong>Recommended Actions</strong>
+                        </div>
+                        {item.actions.map((action, idx) => (
+                          <ActionItem key={idx}>
+                            {action}
+                          </ActionItem>
+                        ))}
+                      </div>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLink style={{ color: '#0074d9' }} />
+                          <strong>Maturity Correlations</strong>
+                        </div>
+                        <CorrelationMatrix>
+                          {item.correlations.map((correlation, idx) => (
+                            <CorrelationItem key={idx}>
+                              <FaLink size={10} />
+                              {correlation.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
+                            </CorrelationItem>
+                          ))}
+                        </CorrelationMatrix>
+                      </div>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaClock style={{ color: '#85144b' }} />
+                          <strong>Timeline</strong>
+                        </div>
+                        <TimelineView>
+                          {item.timeline.map((event, idx) => (
+                            <TimelineItem key={idx}>
+                              <div style={{ fontSize: '0.75rem', opacity: 0.7 }}>
+                                {new Date(event.date).toLocaleDateString()}
+                              </div>
+                              <div>{event.event}</div>
+                            </TimelineItem>
+                          ))}
+                        </TimelineView>
+                      </div>
+                    </ScoreDetails>
+                  )}
+                </ScoreItem>
+              ))}
             </SectionContent>
           </Section>
 
@@ -1166,17 +1455,179 @@ export default function DevelopPage() {
           {/* Security Standards Container */}
           <Section style={{ position: 'relative' }}>
             <StickySectionHeader>
-                          <SectionHeader>
-              <SectionHeaderLeft>
-                <SectionIcon color="security"><FaShieldAlt /></SectionIcon>
-                <SectionTitle>Security Standards</SectionTitle>
-              </SectionHeaderLeft>
-            </SectionHeader>
+              <SectionHeader>
+                <SectionHeaderLeft>
+                  <SectionIcon color="security"><FaShieldAlt /></SectionIcon>
+                  <SectionTitle>Security Standards</SectionTitle>
+                </SectionHeaderLeft>
+                <ExpandCollapseButtons>
+                  <ExpandCollapseButton onClick={expandAll} title="Expand All">
+                    <FaChevronDown />
+                  </ExpandCollapseButton>
+                  <ExpandCollapseButton onClick={collapseAll} title="Collapse All">
+                    <FaChevronUp />
+                  </ExpandCollapseButton>
+                </ExpandCollapseButtons>
+              </SectionHeader>
             </StickySectionHeader>
             <SectionContent>
-              <div style={{ padding: '1rem', textAlign: 'center', color: '#666' }}>
-                Security Standards assessment container - coming soon
-              </div>
+              {Object.entries({
+                securityImplementationMaturity: {
+                  label: 'Security Implementation Maturity',
+                  trend: 'up',
+                  risks: [
+                    'Inconsistent security protocol implementation across teams',
+                    'Limited automated security testing in CI/CD pipelines',
+                    'Manual security reviews creating bottlenecks in development',
+                    'Insufficient integration of security tools in development workflow'
+                  ],
+                  actions: [
+                    'Implement automated security scanning in build pipelines',
+                    'Create standardized security implementation guidelines',
+                    'Add security-focused code review templates and checklists',
+                    'Integrate OWASP security testing tools into development process'
+                  ],
+                  correlations: ['codeQualityAutomation', 'developmentPracticesMaturity'],
+                  timeline: [
+                    { date: '2024-01-25', event: 'Initiated security practices audit' },
+                    { date: '2024-03-30', event: 'Started security automation implementation' }
+                  ]
+                },
+                vulnerabilityManagementMaturity: {
+                  label: 'Vulnerability Management Maturity',
+                  trend: 'down',
+                  risks: [
+                    'Manual vulnerability discovery and tracking processes',
+                    'Delayed response time to security vulnerabilities',
+                    'Lack of automated dependency vulnerability scanning',
+                    'Insufficient security incident response procedures'
+                  ],
+                  actions: [
+                    'Implement automated vulnerability scanning for dependencies',
+                    'Create automated security incident response workflows',
+                    'Add continuous security monitoring and alerting',
+                    'Establish security vulnerability SLA and response procedures'
+                  ],
+                  correlations: ['testingMaturityMetrics', 'releaseProcessMaturity'],
+                  timeline: [
+                    { date: '2024-02-20', event: 'Started vulnerability management assessment' },
+                    { date: '2024-04-15', event: 'Implemented automated security scanning pilot' }
+                  ]
+                }
+              }).map(([key, item]) => (
+                <ScoreItem key={key} score={maintainabilityScores[key] || 'M'}>
+                  <ScoreHeader onClick={() => toggleScoreExpansion(key)}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <ScoreLabel>{item.label}</ScoreLabel>
+                      <TrendIndicator trend={item.trend}>
+                        {item.trend === 'up' && <FaArrowUp />}
+                        {item.trend === 'down' && <FaArrowDown />}
+                        {item.trend === 'stable' && <FaMinus />}
+                      </TrendIndicator>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      {editingScore === key ? (
+                        <select
+                          value={maintainabilityScores[key] || 'M'}
+                          onChange={(e) => handleScoreEdit(key, e.target.value)}
+                          onBlur={finishScoreEdit}
+                          style={{
+                            padding: '0.25rem 0.5rem',
+                            border: '1px solid #ddd',
+                            borderRadius: '4px',
+                            fontSize: '0.875rem',
+                            backgroundColor: 'white',
+                            color: getScoreColor(maintainabilityScores[key] || 'M')
+                          }}
+                          autoFocus
+                        >
+                          <option value="H">H</option>
+                          <option value="M">M</option>
+                          <option value="L">L</option>
+                        </select>
+                      ) : (
+                        <ScoreValue 
+                          score={maintainabilityScores[key] || 'M'}
+                          onClick={() => startScoreEdit(key)}
+                          style={{ cursor: 'pointer', color: getScoreColor(maintainabilityScores[key] || 'M') }}
+                        >
+                          {maintainabilityScores[key] || 'M'}
+                        </ScoreValue>
+                      )}
+                      <FaEdit 
+                        size={12} 
+                        style={{ cursor: 'pointer', opacity: 0.7 }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          startScoreEdit(key);
+                        }}
+                      />
+                      <ExpandIcon expanded={expandedScores[key]}>
+                        {expandedScores[key] ? <FaChevronDown /> : <FaChevronRight />}
+                      </ExpandIcon>
+                    </div>
+                  </ScoreHeader>
+                  {expandedScores[key] && (
+                    <ScoreDetails expanded={expandedScores[key]}>
+                      <StickyHeader>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLightbulb style={{ color: '#ff851b' }} />
+                          <strong>Maturity Factors</strong>
+                        </div>
+                      </StickyHeader>
+                      <RiskBulletList>
+                        {item.risks.map((risk, idx) => (
+                          <RiskBulletItem key={idx}>{risk}</RiskBulletItem>
+                        ))}
+                      </RiskBulletList>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLightbulb style={{ color: '#2ecc40' }} />
+                          <strong>Recommended Actions</strong>
+                        </div>
+                        {item.actions.map((action, idx) => (
+                          <ActionItem key={idx}>
+                            {action}
+                          </ActionItem>
+                        ))}
+                      </div>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLink style={{ color: '#0074d9' }} />
+                          <strong>Maturity Correlations</strong>
+                        </div>
+                        <CorrelationMatrix>
+                          {item.correlations.map((correlation, idx) => (
+                            <CorrelationItem key={idx}>
+                              <FaLink size={10} />
+                              {correlation.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
+                            </CorrelationItem>
+                          ))}
+                        </CorrelationMatrix>
+                      </div>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaClock style={{ color: '#85144b' }} />
+                          <strong>Timeline</strong>
+                        </div>
+                        <TimelineView>
+                          {item.timeline.map((event, idx) => (
+                            <TimelineItem key={idx}>
+                              <div style={{ fontSize: '0.75rem', opacity: 0.7 }}>
+                                {new Date(event.date).toLocaleDateString()}
+                              </div>
+                              <div>{event.event}</div>
+                            </TimelineItem>
+                          ))}
+                        </TimelineView>
+                      </div>
+                    </ScoreDetails>
+                  )}
+                </ScoreItem>
+              ))}
             </SectionContent>
           </Section>
 
@@ -1188,12 +1639,144 @@ export default function DevelopPage() {
                   <SectionIcon color="develop"><FaCheckSquare /></SectionIcon>
                   <SectionTitle>Code Quality</SectionTitle>
                 </SectionHeaderLeft>
+                <ExpandCollapseButtons>
+                  <ExpandCollapseButton onClick={expandAll} title="Expand All">
+                    <FaChevronDown />
+                  </ExpandCollapseButton>
+                  <ExpandCollapseButton onClick={collapseAll} title="Collapse All">
+                    <FaChevronUp />
+                  </ExpandCollapseButton>
+                </ExpandCollapseButtons>
               </SectionHeader>
             </StickySectionHeader>
             <SectionContent>
-              <div style={{ padding: '1rem', textAlign: 'center', color: '#666' }}>
-                Code Quality assessment container - coming soon
-              </div>
+              {Object.entries({
+                testingMaturityMetrics: {
+                  label: 'Testing Maturity Metrics',
+                  trend: 'up',
+                  risks: [
+                    'Insufficient unit test coverage in build pipelines',
+                    'Manual testing processes slowing release cycles',
+                    'Limited integration testing between native and WebView components',
+                    'Lack of automated regression testing for SDK updates'
+                  ],
+                  actions: [
+                    'Implement comprehensive automated test suite with 80%+ coverage',
+                    'Add automated integration testing for WebView-native interactions',
+                    'Create automated SDK compatibility testing framework',
+                    'Implement continuous testing in CI/CD pipelines'
+                  ],
+                  correlations: ['buildAutomation', 'releaseProcessMaturity'],
+                  timeline: [
+                    { date: '2024-01-30', event: 'Started comprehensive testing audit' },
+                    { date: '2024-03-25', event: 'Implemented automated test framework pilot' }
+                  ]
+                },
+                codeQualityAutomation: {
+                  label: 'Code Quality Automation',
+                  trend: 'stable',
+                  risks: [
+                    'Inconsistent code quality standards across teams',
+                    'Manual code review processes without automated checks',
+                    'Limited static analysis integration in development workflow',
+                    'Technical debt accumulation without tracking'
+                  ],
+                  actions: [
+                    'Implement automated code quality gates with SonarQube',
+                    'Add pre-commit hooks for linting and formatting',
+                    'Create automated technical debt tracking and reporting',
+                    'Implement automated security vulnerability scanning'
+                  ],
+                  correlations: ['developmentPracticesMaturity', 'securityStandards'],
+                  timeline: [
+                    { date: '2024-02-15', event: 'Evaluated code quality tooling options' },
+                    { date: '2024-04-01', event: 'Started automated quality gate implementation' }
+                  ]
+                }
+              }).map(([key, item]) => (
+                <ScoreItem key={key} score={maintainabilityScores[key] || 'M'}>
+                  <ScoreHeader onClick={() => toggleScoreExpansion(key)}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <ScoreLabel>{item.label}</ScoreLabel>
+                      <TrendIndicator trend={item.trend}>
+                        {item.trend === 'up' && <FaArrowUp />}
+                        {item.trend === 'down' && <FaArrowDown />}
+                        {item.trend === 'stable' && <FaMinus />}
+                      </TrendIndicator>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <ScoreValue 
+                        score={maintainabilityScores[key] || 'M'}
+                        style={{ cursor: 'pointer', color: getScoreColor(maintainabilityScores[key] || 'M') }}
+                      >
+                        {maintainabilityScores[key] || 'M'}
+                      </ScoreValue>
+                      <ExpandIcon expanded={expandedScores[key]}>
+                        {expandedScores[key] ? <FaChevronDown /> : <FaChevronRight />}
+                      </ExpandIcon>
+                    </div>
+                  </ScoreHeader>
+                  {expandedScores[key] && (
+                    <ScoreDetails expanded={expandedScores[key]}>
+                      <StickyHeader>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLightbulb style={{ color: '#ff851b' }} />
+                          <strong>Maturity Factors</strong>
+                        </div>
+                      </StickyHeader>
+                      <RiskBulletList>
+                        {item.risks.map((risk, idx) => (
+                          <RiskBulletItem key={idx}>{risk}</RiskBulletItem>
+                        ))}
+                      </RiskBulletList>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLightbulb style={{ color: '#2ecc40' }} />
+                          <strong>Recommended Actions</strong>
+                        </div>
+                        {item.actions.map((action, idx) => (
+                          <ActionItem key={idx}>
+                            {action}
+                          </ActionItem>
+                        ))}
+                      </div>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLink style={{ color: '#0074d9' }} />
+                          <strong>Maturity Correlations</strong>
+                        </div>
+                        <CorrelationMatrix>
+                          {item.correlations.map((correlation, idx) => (
+                            <CorrelationItem key={idx}>
+                              <FaLink size={10} />
+                              {correlation.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
+                            </CorrelationItem>
+                          ))}
+                        </CorrelationMatrix>
+                      </div>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaClock style={{ color: '#85144b' }} />
+                          <strong>Timeline</strong>
+                        </div>
+                        <TimelineView>
+                          {item.timeline.map((event, idx) => (
+                            <TimelineItem key={idx}>
+                              <div style={{ fontSize: '0.75rem', opacity: 0.7 }}>
+                                {new Date(event.date).toLocaleDateString()}
+                              </div>
+                              <div>{event.event}</div>
+                            </TimelineItem>
+                          ))}
+                        </TimelineView>
+                      </div>
+                    </ScoreDetails>
+                  )}
+                </ScoreItem>
+              ))}
             </SectionContent>
           </Section>
         </SectionGrid>

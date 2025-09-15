@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🧪 Running tests before push..."
+
+# Run full test suite with coverage
+npm run test:coverage
+
+# Check if tests passed
+if [ $? -ne 0 ]; then
+  echo "❌ Tests failed. Push aborted."
+  echo "💡 Fix the failing tests or use 'git push --no-verify' to bypass."
+  exit 1
+fi
+
+# Optional: Check coverage thresholds
+COVERAGE=$(npm run test:coverage 2>&1 | grep "All files" | awk '{print $3}' | sed 's/%//')
+MIN_COVERAGE=60
+
+if [ -n "$COVERAGE" ] && [ $(echo "$COVERAGE < $MIN_COVERAGE" | bc -l) -eq 1 ]; then
+  echo "⚠️  Warning: Coverage is below $MIN_COVERAGE% (current: $COVERAGE%)"
+  echo "Consider improving test coverage before pushing."
+fi
+
+echo "✅ All tests passed! Proceeding with push..."

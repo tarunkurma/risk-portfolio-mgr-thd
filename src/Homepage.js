@@ -159,7 +159,7 @@ export default function Homepage() {
     <>
       <HeroSection>
         <HeroContent>
-          <Title>Software Lifecycle Maturity Assessment</Title>
+          <Title>Capability Maturity Assessment</Title>
           <Subtitle>Evaluate and improve capabilities across every phase of your software development lifecycle</Subtitle>
         </HeroContent>
         <Watermark src={skLogo} alt="Watermark" />

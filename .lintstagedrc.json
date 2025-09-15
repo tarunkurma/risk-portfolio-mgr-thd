@@ -1,0 +1,9 @@
+{
+  "src/**/*.{js,jsx}": [
+    "eslint --fix",
+    "react-scripts test --findRelatedTests --watchAll=false --passWithNoTests"
+  ],
+  "src/**/*.{json,md,css}": [
+    "prettier --write"
+  ]
+}

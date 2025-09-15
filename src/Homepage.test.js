@@ -5,7 +5,7 @@ import Homepage from './Homepage';
 describe('Homepage', () => {
   it('renders the main title and subtitle', () => {
     render(<Homepage />);
-    expect(screen.getByText(/Software Lifecycle Maturity Assessment/i)).toBeInTheDocument();
+    expect(screen.getByText(/Capability Maturity Assessment/i)).toBeInTheDocument();
     expect(screen.getByText(/Evaluate and improve capabilities across every phase/i)).toBeInTheDocument();
   });
 
