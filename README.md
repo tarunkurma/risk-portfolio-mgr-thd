@@ -1,7 +1,7 @@
 
-# Comprehensive Maturity Dashboard
+# Comprehensive Capability Maturity Dashboard
 
-A modern, visually engaging web application for assessing and visualizing software lifecycle maturity, template inspired by Stable Kernel's design system.
+A modern, visually engaging web application for assessing and visualizing capability maturity across software development phases, template inspired by Stable Kernel's design system.
 
 ## Features
 - Lifecycle phase timeline (Design, Refine, Develop, Stabilize, Deploy)

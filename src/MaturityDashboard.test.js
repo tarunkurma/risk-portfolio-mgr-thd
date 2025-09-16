@@ -37,6 +37,6 @@ describe('MaturityDashboard', () => {
     
     // Check for elements that are only in the detailed view
     expect(screen.getByText(/Risk Severity Distribution/i)).toBeInTheDocument();
-    expect(screen.getByText(/Category Maturity Assessment/i)).toBeInTheDocument();
+    expect(screen.getByText(/Category Capability Maturity Assessment/i)).toBeInTheDocument();
   });
 });

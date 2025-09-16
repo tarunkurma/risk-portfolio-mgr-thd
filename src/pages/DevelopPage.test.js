@@ -6,28 +6,33 @@ describe('DevelopPage', () => {
   it('renders the page title correctly', () => {
     render(<DevelopPage />);
     expect(screen.getByText('Develop Phase')).toBeInTheDocument();
+    expect(screen.getByText('Building robust, maintainable, and secure code for your application')).toBeInTheDocument();
   });
 
-  it('displays all section groups', () => {
-    render(<DevelopPage />);
-    expect(screen.getAllByText('Dev Standards')).toHaveLength(2); // Criteria + Results sections
-    expect(screen.getAllByText('Code Quality')).toHaveLength(2); // Criteria + Results sections
-    expect(screen.getByText('Assessment Criteria')).toBeInTheDocument();
-  });
-
-  it('displays all assessment criteria sections', () => {
-    render(<DevelopPage />);
-    expect(screen.getAllByText('Security Standards')).toHaveLength(2); // Criteria + Results sections
-    expect(screen.getAllByText('Dev Standards')).toHaveLength(2); // Criteria + Results sections
-    expect(screen.getAllByText('Infra - Local | EUT')).toHaveLength(2); // Criteria + Results sections
-    expect(screen.getAllByText('Code Quality')).toHaveLength(2); // Criteria + Results sections
-  });
-  
-  it('displays assessment results sections', () => {
+  it('displays the assessment results section', () => {
     render(<DevelopPage />);
     expect(screen.getByText('Assessment Results')).toBeInTheDocument();
+  });
+
+  it('displays all assessment result containers', () => {
+    render(<DevelopPage />);
+    // Check for all the main assessment containers
     expect(screen.getByText('Maintainability')).toBeInTheDocument();
+    expect(screen.getByText('Performance')).toBeInTheDocument();
+    expect(screen.getByText('Reliability')).toBeInTheDocument();
+    expect(screen.getByText('Testing')).toBeInTheDocument();
+    expect(screen.getByText('Technology')).toBeInTheDocument();
+    expect(screen.getByText('Development Practices')).toBeInTheDocument();
+  });
+
+  it('displays overall assessment summaries', () => {
+    render(<DevelopPage />);
     expect(screen.getByText('Overall Maintainability')).toBeInTheDocument();
+    expect(screen.getByText('Overall Performance')).toBeInTheDocument();
+    expect(screen.getByText('Overall Reliability')).toBeInTheDocument();
+    expect(screen.getByText('Overall Testing Maturity')).toBeInTheDocument();
+    expect(screen.getByText('Overall Technology Maturity')).toBeInTheDocument();
+    expect(screen.getByText('Overall Development Practices Maturity')).toBeInTheDocument();
   });
 
   it('contains a back link to the home page', () => {

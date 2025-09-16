@@ -231,7 +231,7 @@ export default function DeployPage() {
               <SectionListItem>Release process optimization</SectionListItem>
               <SectionListItem>Deployment frequency metrics</SectionListItem>
               <SectionListItem>Cycle time reduction</SectionListItem>
-              <SectionListItem>DevOps maturity assessments</SectionListItem>
+              <SectionListItem>DevOps capability maturity assessments</SectionListItem>
             </SectionList>
           </SectionContent>
         </Section>

@@ -258,7 +258,7 @@ export default function MaturityDashboard() {
         <>
           <ChartTitle>
             <FaChartLine style={{ color: theme.colors.primary }} />
-            Overall Maturity Assessment
+            Overall Capability Maturity Assessment
           </ChartTitle>
           
           <DashboardContent>
@@ -351,7 +351,7 @@ export default function MaturityDashboard() {
           <ChartContainer>
             <ChartTitle>
               <FaChartLine style={{ color: theme.colors.primary }} />
-              Category Maturity Assessment
+              Category Capability Maturity Assessment
             </ChartTitle>
             <ResponsiveContainer width="100%" height={250}>
               <RadarChart cx="50%" cy="50%" outerRadius={80} data={maturityCategories}>
