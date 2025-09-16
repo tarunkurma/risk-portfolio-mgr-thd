@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5beb25e9ed6315bcf2158cec6d277fd7",
+    "revision": "31244a8002f5abfb892fddccd1183fb4",
     "url": "/risk-portfolio-mgr-thd/index.html"
   },
   {
-    "revision": "72c0843bab1482da6a9d",
+    "revision": "91531aa6bcd106fa45ca",
     "url": "/risk-portfolio-mgr-thd/static/css/main.435d5fe5.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/risk-portfolio-mgr-thd/static/js/3.7ddf7d35.chunk.js"
   },
   {
-    "revision": "72c0843bab1482da6a9d",
-    "url": "/risk-portfolio-mgr-thd/static/js/main.91716546.chunk.js"
+    "revision": "91531aa6bcd106fa45ca",
+    "url": "/risk-portfolio-mgr-thd/static/js/main.b6d27db7.chunk.js"
   },
   {
     "revision": "d581e95b09071ff031e4",
