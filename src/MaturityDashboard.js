@@ -8,46 +8,11 @@ import {
   FaPencilRuler, FaFilter, FaCodeBranch, FaCogs, FaRocket,
   FaExclamationTriangle, FaShieldAlt, FaChartLine, FaCheck
 } from 'react-icons/fa';
+import { transformTHDDataForDashboard, getCategoryInsights } from './services/thdAssessmentData';
 
-const dummyMaturityData = {
-  overallScore: 72, // out of 100
-  phaseScores: [
-    { phase: 'Design', score: 80, phaseName: 'Design' },
-    { phase: 'Refine', score: 60, phaseName: 'Refine' },
-    { phase: 'Develop', score: 70, phaseName: 'Develop' },
-    { phase: 'Stabilize', score: 75, phaseName: 'Stabilize' },
-    { phase: 'Deploy', score: 65, phaseName: 'Deploy' },
-  ],
-  maturityCategories: [
-    { name: 'Security', value: 65, fullMark: 100 },
-    { name: 'Compliance', value: 80, fullMark: 100 },
-    { name: 'Infrastructure', value: 75, fullMark: 100 },
-    { name: 'Process', value: 68, fullMark: 100 },
-    { name: 'Team', value: 85, fullMark: 100 },
-  ],
-  maturitySeverity: [
-    { name: 'High', value: 4, color: '#ff4136' },
-    { name: 'Medium', value: 7, color: '#ff851b' },
-    { name: 'Low', value: 13, color: '#2ecc40' },
-  ],
-  improvementAreas: [
-    'Release pipeline lacks automation (30-40 min builds)',
-    'Android: 103 SDKs, iOS: 44 SDKs - update risks',
-    'Configuration management prone to errors',
-    'Native-WebView data sharing complexity',
-    'Legacy code removal challenges',
-    'Manual App/Play Store uploads required',
-  ],
-  completedImprovements: [
-    'Outdated dependencies with security vulnerabilities',
-    'Missing automated testing in CI pipeline',
-    'Inadequate error handling',
-    'Poor password policy requirements',
-    'Configuration drift across environments',
-    'Manual release process inefficiencies'
-  ],
-  lastUpdated: '2024-05-06 15:00',
-};
+// Get real THD assessment data
+const thdMaturityData = transformTHDDataForDashboard();
+const categoryInsights = getCategoryInsights();
 
 const phaseIcons = [
   { phase: 'Design', icon: <FaPencilRuler size={24} />, color: 'text' },
@@ -224,10 +189,10 @@ export default function MaturityDashboard() {
   const theme = useTheme();
   const [activeTab, setActiveTab] = useState('overview');
   
-  const { 
+  const {
     overallScore, phaseScores, maturityCategories, maturitySeverity,
     improvementAreas, completedImprovements, lastUpdated 
-  } = dummyMaturityData;
+  } = thdMaturityData;
   
   const riskColor = getRiskColor(overallScore, theme);
 
@@ -266,6 +231,10 @@ export default function MaturityDashboard() {
               <Score color={riskColor}>{overallScore}</Score>
               <ScoreLabel>Overall Maturity Score</ScoreLabel>
               
+              <div style={{ marginBottom: '1rem', padding: '0.75rem', background: 'rgba(0, 123, 255, 0.1)', borderLeft: '4px solid #007bff', borderRadius: '0.25rem', fontSize: '0.9rem', textAlign: 'center', maxWidth: '400px' }}>
+                <strong>THD Assessment Overview:</strong> Based on 30 detailed metrics across 6 capability areas from The Home Depot's development maturity evaluation.
+              </div>
+              
                 <ResponsiveContainer width="100%" height={180}>
                   <BarChart data={phaseScores} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
                     <XAxis dataKey="phase" tick={{ fontSize: 14 }} />
@@ -292,27 +261,131 @@ export default function MaturityDashboard() {
             
             <ChartContainer>
               <ChartTitle>
-                <FaExclamationTriangle style={{ color: theme.colors.accent }} />
-                Improvement Areas
+                <FaShieldAlt style={{ color: theme.colors.primary }} />
+                THD Capability Assessment Categories
               </ChartTitle>
+              <div style={{ marginBottom: '1rem', padding: '0.75rem', background: 'rgba(0, 123, 255, 0.1)', borderLeft: '4px solid #007bff', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+                <strong>Assessment Areas:</strong> Six key capability domains covering The Home Depot's mobile app development maturity.
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
+                {Object.entries(categoryInsights).map(([category, insight]) => {
+                  const categoryData = maturityCategories.find(cat => cat.name.toLowerCase().includes(category));
+                  return (
+                    <div key={category} style={{ 
+                      padding: '0.75rem', 
+                      background: 'rgba(255, 255, 255, 0.05)', 
+                      border: `2px solid ${insight.color}20`,
+                      borderLeft: `4px solid ${insight.color}`,
+                      borderRadius: '0.5rem' 
+                    }}>
+                      <div style={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        justifyContent: 'space-between',
+                        marginBottom: '0.5rem' 
+                      }}>
+                        <strong style={{ color: insight.color, textTransform: 'capitalize' }}>
+                          {category === 'developmentPractices' ? 'Dev Practices' : category}
+                        </strong>
+                        <span style={{ 
+                          fontSize: '1.2rem', 
+                          fontWeight: 'bold', 
+                          color: insight.color 
+                        }}>
+                          {categoryData?.value || 'N/A'}%
+                        </span>
+                      </div>
+                      <div style={{ fontSize: '0.85rem', marginBottom: '0.25rem' }}>
+                        <strong>Challenge:</strong> {insight.highlight}
+                      </div>
+                      <div style={{ fontSize: '0.8rem', color: '#666', fontStyle: 'italic' }}>
+                        {insight.trend}
+                      </div>
+                      <div style={{ 
+                        marginTop: '0.5rem', 
+                        padding: '0.25rem 0.5rem', 
+                        background: insight.urgency === 'High' ? 'rgba(220, 53, 69, 0.1)' : 'rgba(255, 193, 7, 0.1)',
+                        borderRadius: '0.25rem',
+                        fontSize: '0.75rem',
+                        fontWeight: 'bold',
+                        color: insight.urgency === 'High' ? '#dc3545' : '#ffc107'
+                      }}>
+                        Priority: {insight.urgency}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </ChartContainer>
+            
+            <ChartContainer>
+              <ChartTitle>
+                <FaExclamationTriangle style={{ color: theme.colors.accent }} />
+                THD Priority Improvement Areas
+              </ChartTitle>
+              <div style={{ marginBottom: '1rem', padding: '0.75rem', background: 'rgba(220, 53, 69, 0.1)', borderLeft: '4px solid #dc3545', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+                <strong>Focus Areas:</strong> Items scored 'L' (Low) require immediate attention for capability maturity improvement.
+              </div>
               <ItemList>
                 {improvementAreas.map((item, idx) => (
-                  <ItemListItem key={idx}>
-                    <FaExclamationTriangle size={14} style={{ color: theme.colors.accent }} />
-                    {item}
+                  <ItemListItem key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
+                    <FaExclamationTriangle size={14} style={{ color: '#dc3545', marginTop: '0.2rem', flexShrink: 0 }} />
+                    <div style={{ flex: 1 }}>
+                      {item}
+                      {item.includes('manual') && (
+                        <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem', fontStyle: 'italic' }}>
+                          🤖 High priority: Automation opportunity
+                        </div>
+                      )}
+                      {item.includes('crash') && (
+                        <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem', fontStyle: 'italic' }}>
+                          📊 SLA impact: Affects customer experience
+                        </div>
+                      )}
+                      {item.includes('accessibility') && (
+                        <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem', fontStyle: 'italic' }}>
+                          👥 Cross-team blocker: Limits collaboration
+                        </div>
+                      )}
+                      {item.includes('device') && (
+                        <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem', fontStyle: 'italic' }}>
+                          📱 Market opportunity: Tablet, watch, auto support missing
+                        </div>
+                      )}
+                    </div>
                   </ItemListItem>
                 ))}
               </ItemList>
               
               <ChartTitle style={{ marginTop: '1.5rem' }}>
                 <FaCheck style={{ color: theme.colors.primary }} />
-                Recently Mitigated
+                THD Progress & Completed Initiatives
               </ChartTitle>
+              <div style={{ marginBottom: '1rem', padding: '0.75rem', background: 'rgba(40, 167, 69, 0.1)', borderLeft: '4px solid #28a745', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+                <strong>Foundation Established:</strong> Key infrastructure and processes already in place supporting capability maturity growth.
+              </div>
               <ItemList>
                 {completedImprovements.map((item, idx) => (
-                  <ItemListItem key={idx}>
-                    <FaCheck size={14} style={{ color: theme.colors.primary }} />
-                    {item}
+                  <ItemListItem key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
+                    <FaCheck size={14} style={{ color: theme.colors.primary, marginTop: '0.2rem', flexShrink: 0 }} />
+                    <div style={{ flex: 1 }}>
+                      {item}
+                      {item.includes('Embrace') && (
+                        <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem', fontStyle: 'italic' }}>
+                          📈 Reliability tracking: iOS 99.85%, Android 99.8%
+                        </div>
+                      )}
+                      {item.includes('80%') && (
+                        <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem', fontStyle: 'italic' }}>
+                          ✅ Standard established: JUnit (Android), XCTest (iOS)
+                        </div>
+                      )}
+                      {item.includes('Swift') && (
+                        <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem', fontStyle: 'italic' }}>
+                          🔄 Migration progress: Swift 63%, SwiftUI 15%, Kotlin 59%, Jetpack Compose 7%
+                        </div>
+                      )}
+                    </div>
                   </ItemListItem>
                 ))}
               </ItemList>
@@ -353,26 +426,33 @@ export default function MaturityDashboard() {
               <FaChartLine style={{ color: theme.colors.primary }} />
               Category Capability Maturity Assessment
             </ChartTitle>
+            <div style={{ marginBottom: '1rem', padding: '0.75rem', background: 'rgba(0, 123, 255, 0.1)', borderLeft: '4px solid #007bff', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+              <strong>THD Assessment Categories:</strong> Radar chart showing relative maturity across six key capability domains. Outer edge represents 100% maturity.
+            </div>
             <ResponsiveContainer width="100%" height={250}>
               <RadarChart cx="50%" cy="50%" outerRadius={80} data={maturityCategories}>
                 <PolarGrid />
-                <PolarAngleAxis dataKey="name" />
-                <PolarRadiusAxis angle={30} domain={[0, 100]} />
+                <PolarAngleAxis dataKey="name" tick={{ fontSize: 12 }} />
+                <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fontSize: 10 }} />
                 <Radar
-                  name="Maturity Score"
+                  name="Capability Maturity %"
                   dataKey="value"
                   stroke={theme.colors.primary}
                   fill={theme.colors.primary}
-                  fillOpacity={0.6}
+                  fillOpacity={0.3}
+                  strokeWidth={2}
                 />
-                <Tooltip />
+                <Tooltip formatter={(value) => [`${value}%`, 'Capability Maturity']} />
               </RadarChart>
             </ResponsiveContainer>
+            <div style={{ marginTop: '1rem', padding: '0.75rem', background: 'rgba(255, 193, 7, 0.1)', borderRadius: '0.25rem', fontSize: '0.85rem', textAlign: 'center' }}>
+              <strong>Scoring:</strong> H=100%, M=67%, L=33% | <strong>Current Range:</strong> {Math.min(...maturityCategories.map(c => c.value))}% - {Math.max(...maturityCategories.map(c => c.value))}%
+            </div>
           </ChartContainer>
         </DashboardContent>
       )}
       
-      <LastUpdated>Last updated: {lastUpdated}</LastUpdated>
+      <LastUpdated>Last updated: {new Date(lastUpdated).toLocaleString()}</LastUpdated>
     </Card>
   );
 }
