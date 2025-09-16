@@ -558,7 +558,14 @@ export default function DevelopPage() {
         
         <SectionGrid>
           {/* Maintainability Container */}
-          <Section style={{ position: 'relative' }}>
+          <Section style={{ 
+            position: 'relative',
+            transition: 'all 0.3s ease',
+            minHeight: expandedContainers.maintainability ? 'auto' : '120px',
+            maxHeight: expandedContainers.maintainability ? 'none' : '120px',
+            overflow: 'hidden',
+            opacity: expandedContainers.maintainability ? 1 : 0.7
+          }}>
             <StickySectionHeader>
               <SectionHeader 
                 onClick={() => toggleContainerExpansion('maintainability')}
@@ -877,15 +884,29 @@ export default function DevelopPage() {
           </Section>
 
           {/* Performance Container */}
-          <Section style={{ position: 'relative' }}>
+          <Section style={{ 
+            position: 'relative',
+            transition: 'all 0.3s ease',
+            minHeight: expandedContainers.performance ? 'auto' : '120px',
+            maxHeight: expandedContainers.performance ? 'none' : '120px',
+            overflow: 'hidden',
+            opacity: expandedContainers.performance ? 1 : 0.7
+          }}>
             <StickySectionHeader>
-              <SectionHeader>
+              <SectionHeader 
+                onClick={() => toggleContainerExpansion('performance')}
+                style={{ cursor: 'pointer', userSelect: 'none' }}
+              >
                 <SectionHeaderLeft>
                   <SectionIcon color="develop"><FaClock /></SectionIcon>
                   <SectionTitle>Performance</SectionTitle>
                 </SectionHeaderLeft>
+                <div style={{ display: 'flex', alignItems: 'center', fontSize: '1.2rem', color: '#A3A3FF' }}>
+                  {expandedContainers.performance ? <FaChevronDown /> : <FaChevronRight />}
+                </div>
               </SectionHeader>
             </StickySectionHeader>
+            {expandedContainers.performance && (
             <SectionContent>
               <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(255, 193, 7, 0.1)', borderLeft: '4px solid #ffc107', borderRadius: '0.25rem' }}>
                 <strong>How might we measure and improve the true and perceived performance of the app for The Home Depot customers?</strong>
@@ -1162,18 +1183,33 @@ export default function DevelopPage() {
                 </div>
               </OverallScoreContainer>
             </SectionContent>
+            )}
           </Section>
 
           {/* Reliability Container */}
-          <Section style={{ position: 'relative' }}>
+          <Section style={{ 
+            position: 'relative',
+            transition: 'all 0.3s ease',
+            minHeight: expandedContainers.reliability ? 'auto' : '120px',
+            maxHeight: expandedContainers.reliability ? 'none' : '120px',
+            overflow: 'hidden',
+            opacity: expandedContainers.reliability ? 1 : 0.7
+          }}>
             <StickySectionHeader>
-              <SectionHeader>
+              <SectionHeader 
+                onClick={() => toggleContainerExpansion('reliability')}
+                style={{ cursor: 'pointer', userSelect: 'none' }}
+              >
                 <SectionHeaderLeft>
                   <SectionIcon color="develop"><FaShieldAlt /></SectionIcon>
                   <SectionTitle>Reliability</SectionTitle>
                 </SectionHeaderLeft>
+                <div style={{ display: 'flex', alignItems: 'center', fontSize: '1.2rem', color: '#A3A3FF' }}>
+                  {expandedContainers.reliability ? <FaChevronDown /> : <FaChevronRight />}
+                </div>
               </SectionHeader>
             </StickySectionHeader>
+            {expandedContainers.reliability && (
             <SectionContent>
               <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(40, 167, 69, 0.1)', borderLeft: '4px solid #28a745', borderRadius: '0.25rem' }}>
                 <strong>Current Reliability Tracking</strong>
@@ -1458,18 +1494,33 @@ export default function DevelopPage() {
                 </div>
               </OverallScoreContainer>
             </SectionContent>
+            )}
           </Section>
 
           {/* Testing Container */}
-          <Section style={{ position: 'relative' }}>
+          <Section style={{ 
+            position: 'relative',
+            transition: 'all 0.3s ease',
+            minHeight: expandedContainers.testing ? 'auto' : '120px',
+            maxHeight: expandedContainers.testing ? 'none' : '120px',
+            overflow: 'hidden',
+            opacity: expandedContainers.testing ? 1 : 0.7
+          }}>
             <StickySectionHeader>
-              <SectionHeader>
+              <SectionHeader 
+                onClick={() => toggleContainerExpansion('testing')}
+                style={{ cursor: 'pointer', userSelect: 'none' }}
+              >
                 <SectionHeaderLeft>
                   <SectionIcon color="develop"><FaCheckSquare /></SectionIcon>
                   <SectionTitle>Testing</SectionTitle>
                 </SectionHeaderLeft>
+                <div style={{ display: 'flex', alignItems: 'center', fontSize: '1.2rem', color: '#A3A3FF' }}>
+                  {expandedContainers.testing ? <FaChevronDown /> : <FaChevronRight />}
+                </div>
               </SectionHeader>
             </StickySectionHeader>
+            {expandedContainers.testing && (
             <SectionContent>
               <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(0, 123, 255, 0.1)', borderLeft: '4px solid #007bff', borderRadius: '0.25rem' }}>
                 <strong>What best practice methodologies and technologies should be put in place for ensuring quality in app?</strong>
@@ -1764,18 +1815,33 @@ export default function DevelopPage() {
                 </div>
               </OverallScoreContainer>
             </SectionContent>
+            )}
           </Section>
 
           {/* Technology Container */}
-          <Section style={{ position: 'relative' }}>
+          <Section style={{ 
+            position: 'relative',
+            transition: 'all 0.3s ease',
+            minHeight: expandedContainers.technology ? 'auto' : '120px',
+            maxHeight: expandedContainers.technology ? 'none' : '120px',
+            overflow: 'hidden',
+            opacity: expandedContainers.technology ? 1 : 0.7
+          }}>
             <StickySectionHeader>
-              <SectionHeader>
+              <SectionHeader 
+                onClick={() => toggleContainerExpansion('technology')}
+                style={{ cursor: 'pointer', userSelect: 'none' }}
+              >
                 <SectionHeaderLeft>
                   <SectionIcon color="develop"><FaCode /></SectionIcon>
                   <SectionTitle>Technology</SectionTitle>
                 </SectionHeaderLeft>
+                <div style={{ display: 'flex', alignItems: 'center', fontSize: '1.2rem', color: '#A3A3FF' }}>
+                  {expandedContainers.technology ? <FaChevronDown /> : <FaChevronRight />}
+                </div>
               </SectionHeader>
             </StickySectionHeader>
+            {expandedContainers.technology && (
             <SectionContent>
               <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(0, 123, 255, 0.1)', borderLeft: '4px solid #007bff', borderRadius: '0.25rem' }}>
                 <strong>How should we evolve and/or rebuild our technology and architecture to achieve and maintain a modern approach?</strong>
@@ -2078,18 +2144,33 @@ export default function DevelopPage() {
                 </div>
               </OverallScoreContainer>
             </SectionContent>
+            )}
           </Section>
 
           {/* Development Practices Container */}
-          <Section style={{ position: 'relative' }}>
+          <Section style={{ 
+            position: 'relative',
+            transition: 'all 0.3s ease',
+            minHeight: expandedContainers.developmentPractices ? 'auto' : '120px',
+            maxHeight: expandedContainers.developmentPractices ? 'none' : '120px',
+            overflow: 'hidden',
+            opacity: expandedContainers.developmentPractices ? 1 : 0.7
+          }}>
             <StickySectionHeader>
-              <SectionHeader>
+              <SectionHeader 
+                onClick={() => toggleContainerExpansion('developmentPractices')}
+                style={{ cursor: 'pointer', userSelect: 'none' }}
+              >
                 <SectionHeaderLeft>
                   <SectionIcon color="develop"><FaCodeBranch /></SectionIcon>
                   <SectionTitle>Development Practices</SectionTitle>
                 </SectionHeaderLeft>
+                <div style={{ display: 'flex', alignItems: 'center', fontSize: '1.2rem', color: '#A3A3FF' }}>
+                  {expandedContainers.developmentPractices ? <FaChevronDown /> : <FaChevronRight />}
+                </div>
               </SectionHeader>
             </StickySectionHeader>
+            {expandedContainers.developmentPractices && (
             <SectionContent>
               <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(0, 123, 255, 0.1)', borderLeft: '4px solid #007bff', borderRadius: '0.25rem' }}>
                 <strong>Goal: Automated CI/CD state with comprehensive quality gates and AI assistance</strong>
@@ -2391,6 +2472,7 @@ export default function DevelopPage() {
                 </div>
               </OverallScoreContainer>
             </SectionContent>
+            )}
           </Section>
 
         </SectionGrid>

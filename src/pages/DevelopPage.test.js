@@ -61,4 +61,38 @@ describe('DevelopPage', () => {
     // Content should be visible again
     expect(screen.getByText(/How might we make our app smaller/i)).toBeInTheDocument();
   });
+
+  it('allows all assessment containers to be collapsed and expanded', () => {
+    render(<DevelopPage />);
+    
+    // Test Performance container
+    const performanceHeader = screen.getByText('Performance').closest('div');
+    expect(screen.getByText(/Customer feedback data tells us customers/i)).toBeInTheDocument();
+    fireEvent.click(performanceHeader);
+    expect(screen.queryByText(/Customer feedback data tells us customers/i)).not.toBeInTheDocument();
+    
+    // Test Reliability container
+    const reliabilityHeader = screen.getByText('Reliability').closest('div');
+    expect(screen.getByText(/Current Reliability Tracking/i)).toBeInTheDocument();
+    fireEvent.click(reliabilityHeader);
+    expect(screen.queryByText(/Current Reliability Tracking/i)).not.toBeInTheDocument();
+    
+    // Test Testing container
+    const testingHeader = screen.getByText('Testing').closest('div');
+    expect(screen.getByText(/What best practice methodologies/i)).toBeInTheDocument();
+    fireEvent.click(testingHeader);
+    expect(screen.queryByText(/What best practice methodologies/i)).not.toBeInTheDocument();
+    
+    // Test Technology container
+    const technologyHeader = screen.getByText('Technology').closest('div');
+    expect(screen.getByText(/How should we evolve and\/or rebuild/i)).toBeInTheDocument();
+    fireEvent.click(technologyHeader);
+    expect(screen.queryByText(/How should we evolve and\/or rebuild/i)).not.toBeInTheDocument();
+    
+    // Test Development Practices container
+    const devPracticesHeader = screen.getByText('Development Practices').closest('div');
+    expect(screen.getByText(/Goal: Automated CI\/CD state/i)).toBeInTheDocument();
+    fireEvent.click(devPracticesHeader);
+    expect(screen.queryByText(/Goal: Automated CI\/CD state/i)).not.toBeInTheDocument();
+  });
 });
