@@ -21,23 +21,14 @@ describe('MaturityDashboard', () => {
     expect(screen.getByRole('button', { name: /Detailed Analysis/i })).toBeInTheDocument();
   });
 
-  it('displays THD improvement areas section', () => {
-    render(<MaturityDashboard />);
-    expect(screen.getByText(/THD Priority Improvement Areas/i)).toBeInTheDocument();
-    expect(screen.getByText(/Focus Areas:/i)).toBeInTheDocument(); // Context description
-  });
-
-  it('displays THD completed improvements section', () => {
-    render(<MaturityDashboard />);
-    expect(screen.getByText(/THD Progress & Completed Initiatives/i)).toBeInTheDocument();
-    expect(screen.getByText(/Foundation Established:/i)).toBeInTheDocument(); // Context description
-  });
 
   it('displays THD capability assessment categories', () => {
     render(<MaturityDashboard />);
     expect(screen.getByText(/THD Capability Assessment Categories/i)).toBeInTheDocument();
-    // Should show category percentages in concise format
-    expect(screen.getByText(/Needs Attention|In Progress|Strong/i)).toBeInTheDocument();
+    // Should show H/M/L scores consistent with develop page
+    expect(screen.getAllByText(/Low|Medium|High/i).length).toBeGreaterThan(0);
+    // Should display H, M, or L letters
+    expect(screen.getAllByText(/^[HML]$/i).length).toBeGreaterThan(0);
   });
 
   it('switches to detailed analysis view when tab is clicked', () => {

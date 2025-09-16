@@ -3,10 +3,11 @@
 
 export const thdAssessmentScores = {
   maintainability: {
-    releasePipelineAutomation: 'M',
-    sdkManagementComplexity: 'L',
+    releaseCycleEfficiency: 'M',
     configurationManagement: 'M',
+    sdkManagementComplexity: 'L',
     nativeWebviewDataSharing: 'M',
+    buildPipelineAutomation: 'M',
     legacyCodeRemoval: 'L'
   },
   performance: {

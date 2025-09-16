@@ -8,11 +8,10 @@ import {
   FaPencilRuler, FaFilter, FaCodeBranch, FaCogs, FaRocket,
   FaExclamationTriangle, FaShieldAlt, FaChartLine, FaCheck
 } from 'react-icons/fa';
-import { transformTHDDataForDashboard, getCategoryInsights } from './services/thdAssessmentData';
+import { transformTHDDataForDashboard } from './services/thdAssessmentData';
 
 // Get real THD assessment data
 const thdMaturityData = transformTHDDataForDashboard();
-const categoryInsights = getCategoryInsights();
 
 const phaseIcons = [
   { phase: 'Design', icon: <FaPencilRuler size={24} />, color: 'text' },
@@ -191,7 +190,7 @@ export default function MaturityDashboard() {
   
   const {
     overallScore, phaseScores, maturityCategories, maturitySeverity,
-    improvementAreas, completedImprovements, lastUpdated 
+    lastUpdated 
   } = thdMaturityData;
   
   const riskColor = getRiskColor(overallScore, theme);
@@ -265,9 +264,19 @@ export default function MaturityDashboard() {
                 THD Capability Assessment Categories
               </ChartTitle>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.75rem' }}>
-                {maturityCategories.map((category) => {
-                  const insight = categoryInsights[category.name.toLowerCase().replace(' ', '').replace('dev practices', 'developmentPractices')];
-                  const priorityColor = category.value < 50 ? '#dc3545' : category.value < 70 ? '#ffc107' : '#28a745';
+                {[...maturityCategories]
+                  .sort((a, b) => a.name.localeCompare(b.name)) // Alphabetical order
+                  .map((category) => {
+                  // Convert percentage back to H/M/L for consistency with develop page
+                  const getScoreLetter = (value) => {
+                    if (value >= 84) return 'H';  // 100% = H
+                    if (value >= 50) return 'M';  // 67% = M  
+                    return 'L';                   // 33% = L
+                  };
+                  
+                  const scoreLetter = getScoreLetter(category.value);
+                  const priorityColor = scoreLetter === 'L' ? '#dc3545' : scoreLetter === 'M' ? '#ffc107' : '#28a745';
+                  
                   return (
                     <div key={category.name} style={{ 
                       padding: '1rem', 
@@ -285,100 +294,27 @@ export default function MaturityDashboard() {
                         {category.name}
                       </div>
                       <div style={{ 
-                        fontSize: '2rem', 
+                        fontSize: '2.5rem', 
                         fontWeight: 'bold', 
                         color: priorityColor,
                         marginBottom: '0.5rem'
                       }}>
-                        {category.value}%
+                        {scoreLetter}
                       </div>
                       <div style={{ 
                         fontSize: '0.8rem', 
                         color: '#666',
-                        backgroundColor: category.value < 50 ? 'rgba(220, 53, 69, 0.1)' : category.value < 70 ? 'rgba(255, 193, 7, 0.1)' : 'rgba(40, 167, 69, 0.1)',
+                        backgroundColor: scoreLetter === 'L' ? 'rgba(220, 53, 69, 0.1)' : scoreLetter === 'M' ? 'rgba(255, 193, 7, 0.1)' : 'rgba(40, 167, 69, 0.1)',
                         padding: '0.25rem 0.5rem',
                         borderRadius: '0.25rem',
                         fontWeight: 'bold'
                       }}>
-                        {category.value < 50 ? 'Needs Attention' : category.value < 70 ? 'In Progress' : 'Strong'}
+                        {scoreLetter === 'L' ? 'Low' : scoreLetter === 'M' ? 'Medium' : 'High'}
                       </div>
                     </div>
                   );
                 })}
               </div>
-            </ChartContainer>
-            
-            <ChartContainer>
-              <ChartTitle>
-                <FaExclamationTriangle style={{ color: theme.colors.accent }} />
-                THD Priority Improvement Areas
-              </ChartTitle>
-              <div style={{ marginBottom: '1rem', padding: '0.75rem', background: 'rgba(220, 53, 69, 0.1)', borderLeft: '4px solid #dc3545', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
-                <strong>Focus Areas:</strong> Items scored 'L' (Low) require immediate attention for capability maturity improvement.
-              </div>
-              <ItemList>
-                {improvementAreas.map((item, idx) => (
-                  <ItemListItem key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                    <FaExclamationTriangle size={14} style={{ color: '#dc3545', marginTop: '0.2rem', flexShrink: 0 }} />
-                    <div style={{ flex: 1 }}>
-                      {item}
-                      {item.includes('manual') && (
-                        <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem', fontStyle: 'italic' }}>
-                          <span role="img" aria-label="robot">🤖</span> High priority: Automation opportunity
-                        </div>
-                      )}
-                      {item.includes('crash') && (
-                        <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem', fontStyle: 'italic' }}>
-                          <span role="img" aria-label="chart">📊</span> SLA impact: Affects customer experience
-                        </div>
-                      )}
-                      {item.includes('accessibility') && (
-                        <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem', fontStyle: 'italic' }}>
-                          <span role="img" aria-label="people">👥</span> Cross-team blocker: Limits collaboration
-                        </div>
-                      )}
-                      {item.includes('device') && (
-                        <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem', fontStyle: 'italic' }}>
-                          <span role="img" aria-label="mobile device">📱</span> Market opportunity: Tablet, watch, auto support missing
-                        </div>
-                      )}
-                    </div>
-                  </ItemListItem>
-                ))}
-              </ItemList>
-              
-              <ChartTitle style={{ marginTop: '1.5rem' }}>
-                <FaCheck style={{ color: theme.colors.primary }} />
-                THD Progress & Completed Initiatives
-              </ChartTitle>
-              <div style={{ marginBottom: '1rem', padding: '0.75rem', background: 'rgba(40, 167, 69, 0.1)', borderLeft: '4px solid #28a745', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
-                <strong>Foundation Established:</strong> Key infrastructure and processes already in place supporting capability maturity growth.
-              </div>
-              <ItemList>
-                {completedImprovements.map((item, idx) => (
-                  <ItemListItem key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                    <FaCheck size={14} style={{ color: theme.colors.primary, marginTop: '0.2rem', flexShrink: 0 }} />
-                    <div style={{ flex: 1 }}>
-                      {item}
-                      {item.includes('Embrace') && (
-                        <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem', fontStyle: 'italic' }}>
-                          <span role="img" aria-label="trending up">📈</span> Reliability tracking: iOS 99.85%, Android 99.8%
-                        </div>
-                      )}
-                      {item.includes('80%') && (
-                        <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem', fontStyle: 'italic' }}>
-                          <span role="img" aria-label="check mark">✅</span> Standard established: JUnit (Android), XCTest (iOS)
-                        </div>
-                      )}
-                      {item.includes('Swift') && (
-                        <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem', fontStyle: 'italic' }}>
-                          <span role="img" aria-label="refresh">🔄</span> Migration progress: Swift 63%, SwiftUI 15%, Kotlin 59%, Jetpack Compose 7%
-                        </div>
-                      )}
-                    </div>
-                  </ItemListItem>
-                ))}
-              </ItemList>
             </ChartContainer>
           </DashboardContent>
         </>

@@ -431,10 +431,11 @@ export default function DevelopPage() {
   const [editingScore, setEditingScore] = useState(null);
 
   const [maintainabilityScores, setMaintainabilityScores] = React.useState({
-    releasePipelineAutomation: 'M',
-    sdkManagementComplexity: 'L',
+    releaseCycleEfficiency: 'M',
     configurationManagement: 'M',
+    sdkManagementComplexity: 'L',
     nativeWebviewDataSharing: 'M',
+    buildPipelineAutomation: 'M',
     legacyCodeRemoval: 'L'
   });
 
@@ -505,7 +506,7 @@ export default function DevelopPage() {
   };
 
   const expandAll = () => {
-    const allKeys = ['releasePipelineAutomation', 'sdkManagementComplexity', 'configurationManagement', 'nativeWebviewDataSharing', 'legacyCodeRemoval'];
+    const allKeys = ['releaseCycleEfficiency', 'configurationManagement', 'sdkManagementComplexity', 'nativeWebviewDataSharing', 'buildPipelineAutomation', 'legacyCodeRemoval'];
     setExpandedScores(
       allKeys.reduce((acc, key) => ({ ...acc, [key]: true }), {})
     );
@@ -682,112 +683,169 @@ export default function DevelopPage() {
               </SectionHeader>
             </StickySectionHeader>
             <SectionContent>
+              <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(0, 123, 255, 0.1)', borderLeft: '4px solid #007bff', borderRadius: '0.25rem' }}>
+                <strong>How might we make our app smaller, easier to maintain, with fewer SDKs, so that we can move faster without accruing tech debt?</strong>
+                <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', opacity: 0.8 }}>
+                  The Home Depot would like to understand how the proposed approach would provide a more maintainable implementation that speeds up delivery time, improves development experience, and makes it easier to find and address bugs.
+                </p>
+              </div>
+              
+              <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(220, 53, 69, 0.1)', borderLeft: '4px solid #dc3545', borderRadius: '0.25rem' }}>
+                <strong>Current State Challenges</strong>
+                <div style={{ marginTop: '0.75rem', display: 'grid', gridTemplateColumns: '1fr', gap: '0.5rem' }}>
+                  <div style={{ padding: '0.5rem', background: 'rgba(220, 53, 69, 0.1)', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+                    • Planned releases every 2 weeks (10 business days), 3 days devoted to release preparation
+                  </div>
+                  <div style={{ padding: '0.5rem', background: 'rgba(220, 53, 69, 0.1)', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+                    • Configuration values and feature switches prone to errors across environments
+                  </div>
+                  <div style={{ padding: '0.5rem', background: 'rgba(255, 193, 7, 0.1)', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+                    • SDK complexity: Android 103 SDKs, iOS 44 SDKs - risky updates that introduce bugs
+                  </div>
+                  <div style={{ padding: '0.5rem', background: 'rgba(220, 53, 69, 0.1)', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+                    • Native-WebView data sharing complexity - maintaining source of truth increasingly challenging
+                  </div>
+                  <div style={{ padding: '0.5rem', background: 'rgba(255, 193, 7, 0.1)', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+                    • Build pipelines lack automation (30-40 min builds, manual uploads, manual version input)
+                  </div>
+                  <div style={{ padding: '0.5rem', background: 'rgba(220, 53, 69, 0.1)', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+                    • Legacy code intertwined with new modular implementation - difficult to remove safely
+                  </div>
+                </div>
+              </div>
+
               {Object.entries({
-                releasePipelineAutomation: {
-                  label: 'Release Pipeline Automation',
+                releaseCycleEfficiency: {
+                  label: 'Release Cycle Efficiency',
                   trend: 'down',
+                  currentState: 'App has planned releases every 2 weeks (10 business days). 3 of those 10 days are devoted to preparing for the release including: creating final build, running regression tests, bug hunts, uploading to App/Play Stores and awaiting approval.',
                   risks: [
-                    'App has planned releases every 2 weeks (10 business days)',
-                    '3 of those 10 days are devoted to preparing for the release',
-                    'Build Release Pipelines lack automation unit test coverage',
-                    'Engineers must manually input the values for App and Build versions',
-                    'Builds typically run for 30-40 minutes before complete'
+                    '30% of release cycle (3/10 days) spent on manual release preparation',
+                    'Manual build creation process introduces human error risk',
+                    'Regression testing and bug hunts delay delivery timeline',
+                    'Manual App/Play Store uploads and approval waiting creates bottlenecks'
                   ],
                   actions: [
-                    'Implement automated CI/CD pipeline with unit test coverage',
-                    'Add automated uploads to App/Play Stores',
-                    'Reduce build time through parallel processing',
-                    'Implement automated version management'
+                    'Implement automated build and release pipeline',
+                    'Add automated regression testing and quality gates',
+                    'Create automated App/Play Store upload processes',
+                    'Establish continuous deployment with approval workflows'
                   ],
-                  correlations: ['sdkManagementComplexity', 'configurationManagement'],
+                  correlations: ['buildPipelineAutomation', 'configurationManagement'],
                   timeline: [
-                    { date: '2024-01-15', event: 'Identified manual release process bottleneck' },
-                    { date: '2024-03-20', event: 'Started CI/CD pipeline planning' },
-                    { date: '2024-05-01', event: 'Pilot automated testing implementation' }
-                  ]
-                },
-                sdkManagementComplexity: {
-                  label: 'SDK Management Complexity',
-                  trend: 'stable',
-                  risks: [
-                    'Android has 103 SDKs; iOS has 44',
-                    'Updating SDKs when required is risky',
-                    'SDK updates typically introduce bugs',
-                    'Complex dependency management across platforms'
-                  ],
-                  actions: [
-                    'Implement automated SDK update testing',
-                    'Create SDK compatibility matrix',
-                    'Establish SDK update review process',
-                    'Implement gradual rollout strategy'
-                  ],
-                  correlations: ['releasePipelineAutomation', 'configurationManagement'],
-                  timeline: [
-                    { date: '2024-02-10', event: 'Documented SDK inventory' },
-                    { date: '2024-04-05', event: 'Created update testing framework' }
+                    { date: '2024-01-15', event: 'Analyzed 2-week release cycle inefficiencies' },
+                    { date: '2024-03-20', event: 'Started release automation planning' },
+                    { date: '2024-05-01', event: 'Initiated automated pipeline proof of concept' }
                   ]
                 },
                 configurationManagement: {
                   label: 'Configuration Management',
                   trend: 'down',
+                  currentState: 'Configuration values and feature switches are prone to errors. It has been a challenge to maintain these across all environments.',
                   risks: [
-                    'Configuration values prone to errors',
-                    'Feature switches difficult to maintain',
-                    'Challenges maintaining configs across environments',
-                    'Manual configuration deployment process'
+                    'Configuration values prone to errors across environments',
+                    'Feature switches difficult to maintain consistently',
+                    'Environment-specific configuration drift creates issues',
+                    'Manual configuration deployment increases error likelihood'
                   ],
                   actions: [
-                    'Implement configuration as code',
-                    'Create centralized configuration management',
-                    'Add configuration validation and testing',
-                    'Implement environment-specific config validation'
+                    'Implement configuration as code with version control',
+                    'Create centralized configuration management system',
+                    'Add automated configuration validation and testing',
+                    'Establish environment parity monitoring and alerts'
                   ],
-                  correlations: ['releasePipelineAutomation', 'nativeWebviewDataSharing'],
+                  correlations: ['releaseCycleEfficiency', 'nativeWebviewDataSharing'],
                   timeline: [
-                    { date: '2024-01-20', event: 'Identified configuration drift issues' },
-                    { date: '2024-03-15', event: 'Started configuration audit' }
+                    { date: '2024-01-20', event: 'Identified configuration management as error source' },
+                    { date: '2024-03-15', event: 'Started configuration audit across environments' }
+                  ]
+                },
+                sdkManagementComplexity: {
+                  label: 'SDK Management Complexity',
+                  trend: 'stable',
+                  currentState: 'Android has 103 SDKs; iOS has 44. Updating them when required is risky and typically introduces bugs.',
+                  risks: [
+                    'Android: 103 SDKs create significant maintenance overhead',
+                    'iOS: 44 SDKs still substantial complexity to manage',
+                    'SDK updates are risky and typically introduce bugs',
+                    'Complex dependency management across platforms increases tech debt'
+                  ],
+                  actions: [
+                    'Audit and reduce unnecessary SDK dependencies',
+                    'Implement automated SDK update testing and validation',
+                    'Create SDK compatibility matrix and update guidelines',
+                    'Establish gradual SDK consolidation strategy'
+                  ],
+                  correlations: ['releaseCycleEfficiency', 'buildPipelineAutomation'],
+                  timeline: [
+                    { date: '2024-02-10', event: 'Documented complete SDK inventory (103 Android, 44 iOS)' },
+                    { date: '2024-04-05', event: 'Started SDK reduction feasibility analysis' }
                   ]
                 },
                 nativeWebviewDataSharing: {
                   label: 'Native-WebView Data Sharing',
                   trend: 'up',
+                  currentState: 'Increased complexity of data sharing and functionality between native and WebView. Maintaining a source of truth for the data has become an increasing challenge.',
                   risks: [
-                    'Increased complexity of data sharing between native and WebView',
-                    'Maintaining source of truth for data is challenging',
-                    'Synchronization issues between components',
-                    'Complex state management across platforms'
+                    'Data sharing complexity between native and WebView components',
+                    'Source of truth maintenance increasingly challenging',
+                    'Synchronization issues cause data inconsistencies',
+                    'Complex state management across hybrid architecture'
                   ],
                   actions: [
-                    'Implement unified data layer',
-                    'Create data synchronization protocols',
-                    'Add data validation and error handling',
-                    'Implement data versioning strategy'
+                    'Design unified data architecture with single source of truth',
+                    'Implement standardized data sharing protocols',
+                    'Add comprehensive data validation and error handling',
+                    'Create data flow documentation and governance'
                   ],
                   correlations: ['configurationManagement', 'legacyCodeRemoval'],
                   timeline: [
-                    { date: '2024-02-25', event: 'Identified data sharing complexity' },
-                    { date: '2024-04-10', event: 'Started unified data layer design' }
+                    { date: '2024-02-25', event: 'Identified data sharing as increasing complexity source' },
+                    { date: '2024-04-10', event: 'Started unified data architecture design' }
+                  ]
+                },
+                buildPipelineAutomation: {
+                  label: 'Build Pipeline Automation',
+                  trend: 'down',
+                  currentState: 'Build Release Pipelines lack automation unit test coverage, code warning thresholds and automated uploads to App/Play Stores. Engineers must manually input values for App and Build versions. Builds typically run for 30-40 minutes before complete.',
+                  risks: [
+                    'No automation unit test coverage in build pipelines',
+                    'Missing code warning thresholds and quality gates',
+                    'Manual App and Build version input creates error risk',
+                    '30-40 minute build times impact development velocity'
+                  ],
+                  actions: [
+                    'Implement automated unit test coverage in build pipeline',
+                    'Add code quality thresholds and automated warnings',
+                    'Automate version management and App/Play Store uploads',
+                    'Optimize build performance to reduce 30-40 minute runtime'
+                  ],
+                  correlations: ['releaseCycleEfficiency', 'sdkManagementComplexity'],
+                  timeline: [
+                    { date: '2024-01-30', event: 'Analyzed build pipeline automation gaps' },
+                    { date: '2024-03-25', event: 'Started build optimization and automation planning' }
                   ]
                 },
                 legacyCodeRemoval: {
                   label: 'Legacy Code Removal',
                   trend: 'stable',
+                  currentState: 'Legacy code is being replaced with a new modular implementation, however removing the legacy code is difficult as it is intertwined.',
                   risks: [
-                    'Legacy code is intertwined with new implementation',
-                    'Difficult to remove legacy code safely',
-                    'Risk of breaking existing functionality',
-                    'Complex dependency analysis required'
+                    'Legacy code intertwined with new modular implementation',
+                    'Difficult to remove legacy code safely without breaking functionality',
+                    'Risk of introducing regressions during removal process',
+                    'Complex dependency analysis required for safe removal'
                   ],
                   actions: [
-                    'Create comprehensive dependency mapping',
-                    'Implement gradual legacy code removal strategy',
-                    'Add extensive testing for each removal step',
-                    'Establish rollback procedures'
+                    'Create comprehensive dependency mapping for legacy components',
+                    'Implement gradual legacy code removal with extensive testing',
+                    'Establish clear boundaries between legacy and modular code',
+                    'Develop rollback procedures for legacy removal steps'
                   ],
-                  correlations: ['nativeWebviewDataSharing'],
+                  correlations: ['nativeWebviewDataSharing', 'buildPipelineAutomation'],
                   timeline: [
-                    { date: '2024-01-30', event: 'Started legacy code audit' },
-                    { date: '2024-03-25', event: 'Created removal roadmap' }
+                    { date: '2024-01-30', event: 'Started legacy code intertwining analysis' },
+                    { date: '2024-03-25', event: 'Created safe removal strategy framework' }
                   ]
                 }
               }).map(([key, item]) => (
@@ -848,9 +906,17 @@ export default function DevelopPage() {
                       <StickyHeader>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
                           <FaLightbulb style={{ color: '#ff851b' }} />
-                          <strong>Maturity Factors</strong>
+                          <strong>Current State</strong>
                         </div>
                       </StickyHeader>
+                      <div style={{ marginBottom: '1rem', padding: '0.75rem', background: 'rgba(0, 123, 255, 0.1)', borderLeft: '3px solid #007bff', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+                        {item.currentState}
+                      </div>
+                      
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                        <FaExclamationTriangle style={{ color: '#dc3545' }} />
+                        <strong>Maintainability Challenges</strong>
+                      </div>
                       <RiskBulletList>
                         {item.risks.map((risk, idx) => (
                           <RiskBulletItem key={idx}>{risk}</RiskBulletItem>
@@ -872,7 +938,7 @@ export default function DevelopPage() {
                       <div style={{ marginTop: '1rem' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
                           <FaLink style={{ color: '#0074d9' }} />
-                          <strong>Maturity Correlations</strong>
+                          <strong>Maintainability Correlations</strong>
                         </div>
                         <CorrelationMatrix>
                           {item.correlations.map((correlation, idx) => (
