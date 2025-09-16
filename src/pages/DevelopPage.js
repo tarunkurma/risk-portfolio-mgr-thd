@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { 
-  FaCodeBranch, FaArrowLeft, FaShieldAlt, FaCode, FaServer, FaCheckSquare,
-  FaExclamationTriangle, FaClipboardCheck, FaChevronDown, FaChevronRight,
+  FaCodeBranch, FaArrowLeft, FaShieldAlt, FaCode, FaCheckSquare,
+  FaExclamationTriangle, FaChevronDown, FaChevronRight,
   FaArrowUp, FaArrowDown, FaMinus, FaEdit, FaLightbulb, FaClock, FaLink,
   FaChevronUp
 } from 'react-icons/fa';
@@ -156,17 +156,6 @@ const SectionTitle = styled.h2`
   align-items: center;
 `;
 
-const SectionDescription = styled.p`
-  font-size: 0.95rem;
-  color: ${({ theme }) => theme.colors.text};
-  opacity: 0.8;
-  margin: 0.75rem 0 1rem 0;
-  line-height: 1.5;
-  text-align: center;
-  max-width: 280px;
-  margin-left: auto;
-  margin-right: auto;
-`;
 
 const SectionContent = styled.div`
   font-size: 1rem;
@@ -194,57 +183,6 @@ const AssessmentTitle = styled.h2`
   }
 `;
 
-const AssessmentDivider = styled.div`
-  height: 2px;
-  background: linear-gradient(90deg, 
-    ${({ theme }) => theme.colors.primary}20 0%, 
-    ${({ theme }) => theme.colors.primary} 50%, 
-    ${({ theme }) => theme.colors.primary}20 100%);
-  margin: 3rem 0;
-  border-radius: 1px;
-  position: relative;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: -4px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 8px;
-    height: 8px;
-    background: ${({ theme }) => theme.colors.primary};
-    border-radius: 50%;
-  }
-`;
-
-const CheckboxItem = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.75rem;
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  transition: all 0.2s ease;
-  border: 1px solid transparent;
-  
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.background};
-    border-color: ${({ theme }) => theme.colors.primary}30;
-    transform: translateX(4px);
-  }
-`;
-
-const Checkbox = styled.input`
-  margin-right: 1rem;
-  transform: scale(1.3);
-  accent-color: ${({ theme }) => theme.colors.primary};
-`;
-
-const CheckboxLabel = styled.span`
-  font-size: 1rem;
-  color: ${({ theme }) => theme.colors.text};
-  font-weight: ${({ theme }) => theme.fonts.weights.medium};
-  line-height: 1.4;
-`;
 
 const ScoreItem = styled.div`
   display: flex;
@@ -386,26 +324,6 @@ const TimelineItem = styled.div`
   font-size: 0.85rem;
 `;
 
-const EditableScore = styled.input`
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  font-weight: ${({ theme }) => theme.fonts.weights.bold};
-  color: ${({ score, theme }) => {
-    if (score >= 80) return '#2ecc40';
-    if (score >= 60) return '#ff851b';
-    return '#ff4136';
-  }};
-  width: 60px;
-  text-align: center;
-  
-  &:focus {
-    outline: none;
-    background: ${({ theme }) => theme.colors.background};
-    border-radius: 0.25rem;
-    padding: 0.25rem;
-  }
-`;
 
 const OverallScoreContainer = styled.div`
   background: linear-gradient(135deg, ${({ score, theme }) => {
@@ -455,52 +373,6 @@ const OverallScoreValue = styled.div`
   margin-bottom: 0.25rem;
 `;
 
-const OverallScoreLabel = styled.div`
-  font-size: 1rem;
-  color: ${({ theme }) => theme.colors.text};
-  opacity: 0.8;
-  margin-bottom: 1rem;
-`;
-
-const ScoreStatus = styled.div`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: ${({ score, theme }) => {
-    if (score >= 80) return '#2ecc40';
-    if (score >= 60) return '#ff851b';
-    return '#ff4136';
-  }};
-  color: white;
-  border-radius: 2rem;
-  font-size: 0.9rem;
-  font-weight: ${({ theme }) => theme.fonts.weights.medium};
-`;
-
-const ScoreBreakdown = styled.div`
-  display: flex;
-  justify-content: space-around;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid ${({ theme }) => theme.colors.background};
-`;
-
-const BreakdownItem = styled.div`
-  text-align: center;
-  font-size: 0.85rem;
-`;
-
-const BreakdownValue = styled.div`
-  font-weight: ${({ theme }) => theme.fonts.weights.bold};
-  color: ${({ theme }) => theme.colors.text};
-`;
-
-const BreakdownLabel = styled.div`
-  color: ${({ theme }) => theme.colors.text};
-  opacity: 0.7;
-  font-size: 0.75rem;
-`;
 
 const StickyHeader = styled.div`
   position: sticky;
@@ -557,61 +429,6 @@ const ScoreValue = styled.span`
 export default function DevelopPage() {
   const [expandedScores, setExpandedScores] = useState({});
   const [editingScore, setEditingScore] = useState(null);
-  const [assessmentCriteria, setAssessmentCriteria] = React.useState({
-    securityStandards: {
-      inputValidation: false,
-      authenticationProtocols: false,
-      dataEncryption: false,
-      owaspPrevention: false,
-      securityReviews: false
-    },
-    branchingStrategy: {
-      featureBranchWorkflow: false,
-      pullRequestProcesses: false,
-      branchProtectionRules: false,
-      mergeConflictResolution: false,
-      releaseBranchManagement: false
-    },
-    infrastructure: {
-      localDevelopmentEnvironments: false,
-      containerization: false,
-      environmentUniformity: false,
-      endUserTestingEnvironments: false,
-      environmentConfigurationManagement: false
-    },
-    testCoverage: {
-      unitTestingFrameworks: false,
-      integrationTesting: false,
-      codeCoverageMetrics: false,
-      testDrivenDevelopment: false,
-      automatedRegressionTesting: false
-    },
-    readability: {
-      linters: false,
-      patterns: false,
-      tasks: false,
-      docs: false
-    },
-    reviewProcess: {
-      architectureReview: false,
-      designReview: false,
-      codeReview: false,
-      technicalReview: false
-    },
-    testStrategy: {
-      unitTesting: false,
-      integrationTesting: false,
-      dataMockSynthetic: false
-    },
-    tools: {
-      observability: false,
-      featureFlagging: false,
-      codeAnalysis: false,
-      crashReporting: false,
-      userAnalytics: false,
-      alerting: false
-    }
-  });
 
   const [maintainabilityScores, setMaintainabilityScores] = React.useState({
     releasePipelineAutomation: 'M',
@@ -621,24 +438,49 @@ export default function DevelopPage() {
     legacyCodeRemoval: 'L'
   });
 
+  const [performanceScores, setPerformanceScores] = React.useState({
+    appStartupPerformance: 'L',
+    webViewLoadTime: 'M',
+    coreWebVitals: 'L',
+    cacheOptimization: 'M',
+    networkBandwidthOptimization: 'L'
+  });
+
+  const [reliabilityScores, setReliabilityScores] = React.useState({
+    iosCrashFreeRate: 'M',
+    androidCrashFreeRate: 'M',
+    crashReproducibility: 'L',
+    crashImpactAnalysis: 'M',
+    reliabilityTooling: 'M'
+  });
+
+  const [testingScores, setTestingScores] = React.useState({
+    unitTestCoverage: 'M',
+    endToEndTestFramework: 'M',
+    testInfrastructure: 'M',
+    crossTeamTestAccessibility: 'L',
+    testToolOptimization: 'M'
+  });
+
+  const [technologyScores, setTechnologyScores] = React.useState({
+    platformMigrationProgress: 'M',
+    multiDeviceStrategy: 'L',
+    modularArchitecture: 'L',
+    codeHealthMetrics: 'M',
+    technologyStackModernization: 'M'
+  });
+
+  const [developmentPracticesScores, setDevelopmentPracticesScores] = React.useState({
+    cicdPipelineAutomation: 'L',
+    codeQualityGates: 'L',
+    buildArtifactManagement: 'M',
+    manualProcessElimination: 'L',
+    aiAssistedDevelopment: 'L'
+  });
 
 
-  const handleCheckboxChange = (category, item) => {
-    setAssessmentCriteria(prev => ({
-      ...prev,
-      [category]: {
-        ...prev[category],
-        [item]: !prev[category][item]
-      }
-    }));
-  };
 
-  const handleScoreChange = (item, value) => {
-    setMaintainabilityScores(prev => ({
-      ...prev,
-      [item]: value
-    }));
-  };
+
 
   const toggleScoreExpansion = (key) => {
     setExpandedScores(prev => ({
@@ -671,6 +513,91 @@ export default function DevelopPage() {
 
   const collapseAll = () => {
     setExpandedScores({});
+  };
+
+  const expandAllPerformance = () => {
+    const allKeys = ['appStartupPerformance', 'webViewLoadTime', 'coreWebVitals', 'cacheOptimization', 'networkBandwidthOptimization'];
+    setExpandedScores(prev => ({
+      ...prev,
+      ...allKeys.reduce((acc, key) => ({ ...acc, [key]: true }), {})
+    }));
+  };
+
+  const collapseAllPerformance = () => {
+    const performanceKeys = ['appStartupPerformance', 'webViewLoadTime', 'coreWebVitals', 'cacheOptimization', 'networkBandwidthOptimization'];
+    setExpandedScores(prev => {
+      const newState = { ...prev };
+      performanceKeys.forEach(key => delete newState[key]);
+      return newState;
+    });
+  };
+
+  const expandAllReliability = () => {
+    const allKeys = ['iosCrashFreeRate', 'androidCrashFreeRate', 'crashReproducibility', 'crashImpactAnalysis', 'reliabilityTooling'];
+    setExpandedScores(prev => ({
+      ...prev,
+      ...allKeys.reduce((acc, key) => ({ ...acc, [key]: true }), {})
+    }));
+  };
+
+  const collapseAllReliability = () => {
+    const reliabilityKeys = ['iosCrashFreeRate', 'androidCrashFreeRate', 'crashReproducibility', 'crashImpactAnalysis', 'reliabilityTooling'];
+    setExpandedScores(prev => {
+      const newState = { ...prev };
+      reliabilityKeys.forEach(key => delete newState[key]);
+      return newState;
+    });
+  };
+
+  const expandAllTesting = () => {
+    const allKeys = ['unitTestCoverage', 'endToEndTestFramework', 'testInfrastructure', 'crossTeamTestAccessibility', 'testToolOptimization'];
+    setExpandedScores(prev => ({
+      ...prev,
+      ...allKeys.reduce((acc, key) => ({ ...acc, [key]: true }), {})
+    }));
+  };
+
+  const collapseAllTesting = () => {
+    const testingKeys = ['unitTestCoverage', 'endToEndTestFramework', 'testInfrastructure', 'crossTeamTestAccessibility', 'testToolOptimization'];
+    setExpandedScores(prev => {
+      const newState = { ...prev };
+      testingKeys.forEach(key => delete newState[key]);
+      return newState;
+    });
+  };
+
+  const expandAllTechnology = () => {
+    const allKeys = ['platformMigrationProgress', 'multiDeviceStrategy', 'modularArchitecture', 'codeHealthMetrics', 'technologyStackModernization'];
+    setExpandedScores(prev => ({
+      ...prev,
+      ...allKeys.reduce((acc, key) => ({ ...acc, [key]: true }), {})
+    }));
+  };
+
+  const collapseAllTechnology = () => {
+    const technologyKeys = ['platformMigrationProgress', 'multiDeviceStrategy', 'modularArchitecture', 'codeHealthMetrics', 'technologyStackModernization'];
+    setExpandedScores(prev => {
+      const newState = { ...prev };
+      technologyKeys.forEach(key => delete newState[key]);
+      return newState;
+    });
+  };
+
+  const expandAllDevelopmentPractices = () => {
+    const allKeys = ['cicdPipelineAutomation', 'codeQualityGates', 'buildArtifactManagement', 'manualProcessElimination', 'aiAssistedDevelopment'];
+    setExpandedScores(prev => ({
+      ...prev,
+      ...allKeys.reduce((acc, key) => ({ ...acc, [key]: true }), {})
+    }));
+  };
+
+  const collapseAllDevelopmentPractices = () => {
+    const developmentPracticesKeys = ['cicdPipelineAutomation', 'codeQualityGates', 'buildArtifactManagement', 'manualProcessElimination', 'aiAssistedDevelopment'];
+    setExpandedScores(prev => {
+      const newState = { ...prev };
+      developmentPracticesKeys.forEach(key => delete newState[key]);
+      return newState;
+    });
   };
 
   // Calculate overall average score
@@ -727,135 +654,6 @@ export default function DevelopPage() {
         </HeaderContent>
       </PageHeader>
       
-      {/* Assessment Criteria Section */}
-      <AssessmentSection>
-        <AssessmentTitle>
-          <FaClipboardCheck />
-          Assessment Criteria
-        </AssessmentTitle>
-        
-        <SectionGrid>
-          <Section>
-            <SectionHeader>
-              <SectionHeaderLeft>
-                <SectionIcon color="develop"><FaCode /></SectionIcon>
-                <SectionTitle>Dev Standards</SectionTitle>
-              </SectionHeaderLeft>
-            </SectionHeader>
-            <SectionDescription>
-              Core development practices and architectural standards for building robust, maintainable applications.
-            </SectionDescription>
-            <SectionContent>
-              {Object.entries({
-                architectureReview: 'Architecture review',
-                branchingStrategy: 'Branching Strategy',
-                codeAnalysis: 'Code Analysis',
-                featureFlagging: 'Feature Flagging',
-                observability: 'Observability'
-              }).map(([key, label]) => (
-                <CheckboxItem key={key}>
-                  <Checkbox
-                    type="checkbox"
-                    checked={assessmentCriteria.branchingStrategy[key]}
-                    onChange={() => handleCheckboxChange('branchingStrategy', key)}
-                  />
-                  <CheckboxLabel>{label}</CheckboxLabel>
-                </CheckboxItem>
-              ))}
-            </SectionContent>
-          </Section>
-          
-          <Section>
-            <SectionHeader>
-              <SectionHeaderLeft>
-                <SectionIcon color="develop"><FaServer /></SectionIcon>
-                <SectionTitle>Infra - Local | EUT</SectionTitle>
-              </SectionHeaderLeft>
-            </SectionHeader>
-            <SectionDescription>
-              IAC practices for local and provisioned environments for efficient workflows.
-            </SectionDescription>
-            <SectionContent>
-              {Object.entries({
-                localStack: 'Local Stack',
-                containerization: 'Containerization',
-                environmentUniformity: 'Environment uniformity',
-                endUserTestingSetup: 'End-user testing setup',
-                environmentConfigurationManagement: 'Configuration management'
-              }).map(([key, label]) => (
-                <CheckboxItem key={key}>
-                  <Checkbox
-                    type="checkbox"
-                    checked={assessmentCriteria.infrastructure[key]}
-                    onChange={() => handleCheckboxChange('infrastructure', key)}
-                  />
-                  <CheckboxLabel>{label}</CheckboxLabel>
-                </CheckboxItem>
-              ))}
-            </SectionContent>
-          </Section>
-          
-          <Section>
-            <SectionHeader>
-              <SectionIcon color="develop"><FaShieldAlt /></SectionIcon>
-              <SectionTitle>Security Standards</SectionTitle>
-            </SectionHeader>
-            <SectionDescription>
-              Security protocols and best practices to protect applications and data from vulnerabilities.
-            </SectionDescription>
-            <SectionContent>
-              {Object.entries({
-                inputValidation: 'Input validation and sanitization',
-                authenticationProtocols: 'Secure authentication protocols',
-                dataEncryption: 'Sensitive data encryption',
-                owaspPrevention: 'OWASP vulnerability prevention',
-                securityReviews: 'Security code reviews'
-              }).map(([key, label]) => (
-                <CheckboxItem key={key}>
-                  <Checkbox
-                    type="checkbox"
-                    checked={assessmentCriteria.securityStandards[key]}
-                    onChange={() => handleCheckboxChange('securityStandards', key)}
-                  />
-                  <CheckboxLabel>{label}</CheckboxLabel>
-                </CheckboxItem>
-              ))}
-            </SectionContent>
-          </Section>
-          
-          <Section>
-            <SectionHeader>
-              <SectionHeaderLeft>
-                <SectionIcon color="develop"><FaCheckSquare /></SectionIcon>
-                <SectionTitle>Code Quality</SectionTitle>
-              </SectionHeaderLeft>
-            </SectionHeader>
-            <SectionDescription>
-              Testing frameworks and quality assurance practices to ensure reliable, well-tested code.
-            </SectionDescription>
-            <SectionContent>
-              {Object.entries({
-                unitTestingFrameworks: 'Unit testing frameworks',
-                integrationTesting: 'Integration testing',
-                codeCoverageMetrics: 'Code coverage metrics',
-                testDrivenDevelopment: 'Test-driven development',
-                automatedRegressionTesting: 'Automated regression testing'
-              }).map(([key, label]) => (
-                <CheckboxItem key={key}>
-                  <Checkbox
-                    type="checkbox"
-                    checked={assessmentCriteria.testCoverage[key]}
-                    onChange={() => handleCheckboxChange('testCoverage', key)}
-                  />
-                  <CheckboxLabel>{label}</CheckboxLabel>
-                </CheckboxItem>
-              ))}
-                        </SectionContent>
-          </Section>
-        </SectionGrid>
-      </AssessmentSection>
-      
-      <AssessmentDivider />
       
       {/* Assessment Results Section */}
       <AssessmentSection>
@@ -865,40 +663,6 @@ export default function DevelopPage() {
         </AssessmentTitle>
         
         <SectionGrid>
-          {/* Dev Standards Container */}
-          <Section style={{ position: 'relative' }}>
-            <StickySectionHeader>
-              <SectionHeader>
-                <SectionHeaderLeft>
-                  <SectionIcon color="develop"><FaCode /></SectionIcon>
-                  <SectionTitle>Dev Standards</SectionTitle>
-                </SectionHeaderLeft>
-              </SectionHeader>
-            </StickySectionHeader>
-            <SectionContent>
-              <div style={{ padding: '1rem', textAlign: 'center', color: '#666' }}>
-                Dev Standards assessment container - coming soon
-              </div>
-            </SectionContent>
-          </Section>
-
-          {/* Infra - Local | EUT Container */}
-          <Section style={{ position: 'relative' }}>
-            <StickySectionHeader>
-              <SectionHeader>
-                <SectionHeaderLeft>
-                  <SectionIcon color="develop"><FaServer /></SectionIcon>
-                  <SectionTitle>Infra - Local | EUT</SectionTitle>
-                </SectionHeaderLeft>
-              </SectionHeader>
-            </StickySectionHeader>
-            <SectionContent>
-              <div style={{ padding: '1rem', textAlign: 'center', color: '#666' }}>
-                Infrastructure assessment container - coming soon
-              </div>
-            </SectionContent>
-          </Section>
-
           {/* Maintainability Container */}
           <Section style={{ position: 'relative' }}>
             <StickySectionHeader>
@@ -1153,39 +917,1563 @@ export default function DevelopPage() {
             </SectionContent>
           </Section>
 
-          {/* Security Standards Container */}
+          {/* Performance Container */}
           <Section style={{ position: 'relative' }}>
             <StickySectionHeader>
-                          <SectionHeader>
-              <SectionHeaderLeft>
-                <SectionIcon color="security"><FaShieldAlt /></SectionIcon>
-                <SectionTitle>Security Standards</SectionTitle>
-              </SectionHeaderLeft>
-            </SectionHeader>
+              <SectionHeader>
+                <SectionHeaderLeft>
+                  <SectionIcon color="primary"><FaClock /></SectionIcon>
+                  <SectionTitle>Performance</SectionTitle>
+                </SectionHeaderLeft>
+                <ExpandCollapseButtons>
+                  <ExpandCollapseButton onClick={expandAllPerformance} title="Expand All">
+                    <FaChevronDown />
+                  </ExpandCollapseButton>
+                  <ExpandCollapseButton onClick={collapseAllPerformance} title="Collapse All">
+                    <FaChevronUp />
+                  </ExpandCollapseButton>
+                </ExpandCollapseButtons>
+              </SectionHeader>
             </StickySectionHeader>
             <SectionContent>
-              <div style={{ padding: '1rem', textAlign: 'center', color: '#666' }}>
-                Security Standards assessment container - coming soon
+              <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(255, 193, 7, 0.1)', borderLeft: '4px solid #ffc107', borderRadius: '0.25rem' }}>
+                <strong>How might we measure and improve the true and perceived performance of the app for The Home Depot customers?</strong>
+                <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', opacity: 0.8 }}>
+                  Customer feedback data tells us customers increasingly have a perception that our app is "slow" or "clunky".
+                </p>
               </div>
+              {Object.entries({
+                appStartupPerformance: {
+                  label: 'App Startup Performance',
+                  trend: 'down',
+                  currentState: 'App startup performance is dependent on network bandwidth',
+                  risks: [
+                    'Currently using embrace tooling (moments) to measure startup performance',
+                    'Performance varies significantly based on network bandwidth',
+                    'Startup times impact first impression of app quality',
+                    'Need to optimize UX for low bandwidth usage'
+                  ],
+                  actions: [
+                    'Implement app startup performance optimization strategies',
+                    'Add progressive loading for critical first-screen content',
+                    'Optimize initial bundle size and lazy load non-critical components',
+                    'Implement offline-first startup experience'
+                  ],
+                  correlations: ['cacheOptimization', 'networkBandwidthOptimization'],
+                  timeline: [
+                    { date: '2024-01-15', event: 'Identified startup performance as customer pain point' },
+                    { date: '2024-03-20', event: 'Implemented embrace tooling for measurement' },
+                    { date: '2024-05-01', event: 'Started bandwidth optimization initiative' }
+                  ]
+                },
+                webViewLoadTime: {
+                  label: 'WebView Load Time',
+                  trend: 'stable',
+                  currentState: 'Load time for WebViews is WebView container load to WebView complete callback. Load time for Native screens is Native view container load to first interactable native element load time',
+                  risks: [
+                    'WebView container load to complete callback measurement may not reflect user experience',
+                    'Native-WebView bridge communication delays',
+                    'WebView initialization overhead impacts perceived performance',
+                    'Inconsistent performance between WebView and native screens'
+                  ],
+                  actions: [
+                    'Optimize WebView initialization and pre-loading',
+                    'Implement WebView pooling for faster screen transitions',
+                    'Enhance native-WebView bridge for faster data communication',
+                    'Add progressive loading indicators for better perceived performance'
+                  ],
+                  correlations: ['cacheOptimization', 'appStartupPerformance'],
+                  timeline: [
+                    { date: '2024-02-10', event: 'Established WebView performance measurement baseline' },
+                    { date: '2024-04-05', event: 'Started WebView bridge optimization' }
+                  ]
+                },
+                coreWebVitals: {
+                  label: 'Core Web Vitals (CWV)',
+                  trend: 'down',
+                  currentState: 'Core web vitals are measured against mobile web (on Android only)',
+                  risks: [
+                    'CWV measurements only on Android, no iOS coverage',
+                    'WebView performance may not match mobile web expectations',
+                    'Goal is to have WebViews with the same perceived performance as native',
+                    'Missing comprehensive performance monitoring across platforms'
+                  ],
+                  actions: [
+                    'Expand CWV measurement to iOS WebViews',
+                    'Implement comprehensive performance monitoring framework',
+                    'Optimize WebView rendering to meet native performance standards',
+                    'Create performance budgets and alerts for CWV metrics'
+                  ],
+                  correlations: ['webViewLoadTime', 'cacheOptimization'],
+                  timeline: [
+                    { date: '2024-01-20', event: 'Started CWV measurement on Android WebViews' },
+                    { date: '2024-03-15', event: 'Identified performance gap vs native' }
+                  ]
+                },
+                cacheOptimization: {
+                  label: 'Cache Optimization',
+                  trend: 'up',
+                  currentState: 'We cache select WebView static files and use native rendering UX to improve perceived performance. We manage a standard cache validation TTL (1-3 hours), but would like it to be smarter',
+                  risks: [
+                    'Standard cache TTL (1-3 hours) is not optimized for content types',
+                    'Limited WebView caching to select screens only',
+                    'Cache invalidation strategy needs improvement',
+                    'Want to expand cached WebViews to more screens'
+                  ],
+                  actions: [
+                    'Implement intelligent cache TTL based on content type and update frequency',
+                    'Expand WebView caching to additional screens',
+                    'Add cache preloading for frequently accessed content',
+                    'Implement cache versioning and smart invalidation'
+                  ],
+                  correlations: ['webViewLoadTime', 'appStartupPerformance'],
+                  timeline: [
+                    { date: '2024-02-25', event: 'Implemented selective WebView static file caching' },
+                    { date: '2024-04-10', event: 'Started smart cache TTL development' }
+                  ]
+                },
+                networkBandwidthOptimization: {
+                  label: 'Network Bandwidth Optimization',
+                  trend: 'stable',
+                  currentState: 'We want to optimize UX for low bandwidth usage. We have a native to JavaScript WebView bridge to communicate data that can be leveraged to improve performance',
+                  risks: [
+                    'Poor user experience on low bandwidth connections',
+                    'Native-WebView bridge underutilized for performance optimization',
+                    'Network requests not optimized for mobile conditions',
+                    'Missing adaptive content delivery based on connection quality'
+                  ],
+                  actions: [
+                    'Implement adaptive content delivery based on network conditions',
+                    'Leverage native-WebView bridge for efficient data sharing',
+                    'Add request batching and prioritization',
+                    'Implement progressive image loading and compression'
+                  ],
+                  correlations: ['appStartupPerformance', 'cacheOptimization'],
+                  timeline: [
+                    { date: '2024-01-30', event: 'Identified low bandwidth UX issues' },
+                    { date: '2024-03-25', event: 'Started native-WebView bridge optimization' }
+                  ]
+                }
+              }).map(([key, item]) => (
+                <ScoreItem key={key} score={performanceScores[key]}>
+                  <ScoreHeader onClick={() => toggleScoreExpansion(key)}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <ScoreLabel>{item.label}</ScoreLabel>
+                      <TrendIndicator trend={item.trend}>
+                        {item.trend === 'up' && <FaArrowUp />}
+                        {item.trend === 'down' && <FaArrowDown />}
+                        {item.trend === 'stable' && <FaMinus />}
+                      </TrendIndicator>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      {editingScore === key ? (
+                        <select
+                          value={performanceScores[key]}
+                          onChange={(e) => {
+                            setPerformanceScores(prev => ({
+                              ...prev,
+                              [key]: e.target.value
+                            }));
+                          }}
+                          onBlur={finishScoreEdit}
+                          style={{
+                            padding: '0.25rem 0.5rem',
+                            border: '1px solid #ddd',
+                            borderRadius: '4px',
+                            fontSize: '0.875rem',
+                            backgroundColor: 'white',
+                            color: getScoreColor(performanceScores[key])
+                          }}
+                          autoFocus
+                        >
+                          <option value="H">H</option>
+                          <option value="M">M</option>
+                          <option value="L">L</option>
+                        </select>
+                      ) : (
+                        <ScoreValue 
+                          score={performanceScores[key]}
+                          onClick={() => startScoreEdit(key)}
+                          style={{ cursor: 'pointer', color: getScoreColor(performanceScores[key]) }}
+                        >
+                          {performanceScores[key]}
+                        </ScoreValue>
+                      )}
+                      <FaEdit 
+                        size={12} 
+                        style={{ cursor: 'pointer', opacity: 0.7 }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          startScoreEdit(key);
+                        }}
+                      />
+                      <ExpandIcon expanded={expandedScores[key]}>
+                        {expandedScores[key] ? <FaChevronDown /> : <FaChevronRight />}
+                      </ExpandIcon>
+                    </div>
+                  </ScoreHeader>
+                  {expandedScores[key] && (
+                    <ScoreDetails expanded={expandedScores[key]}>
+                      <StickyHeader>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLightbulb style={{ color: '#ff851b' }} />
+                          <strong>Current State</strong>
+                        </div>
+                      </StickyHeader>
+                      <div style={{ marginBottom: '1rem', padding: '0.75rem', background: 'rgba(0, 123, 255, 0.1)', borderLeft: '3px solid #007bff', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+                        {item.currentState}
+                      </div>
+                      
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                        <FaExclamationTriangle style={{ color: '#dc3545' }} />
+                        <strong>Performance Challenges</strong>
+                      </div>
+                      <RiskBulletList>
+                        {item.risks.map((risk, idx) => (
+                          <RiskBulletItem key={idx}>{risk}</RiskBulletItem>
+                        ))}
+                      </RiskBulletList>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLightbulb style={{ color: '#2ecc40' }} />
+                          <strong>Recommended Actions</strong>
+                        </div>
+                        {item.actions.map((action, idx) => (
+                          <ActionItem key={idx}>
+                            {action}
+                          </ActionItem>
+                        ))}
+                      </div>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLink style={{ color: '#0074d9' }} />
+                          <strong>Performance Correlations</strong>
+                        </div>
+                        <CorrelationMatrix>
+                          {item.correlations.map((correlation, idx) => (
+                            <CorrelationItem key={idx}>
+                              <FaLink size={10} />
+                              {correlation.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
+                            </CorrelationItem>
+                          ))}
+                        </CorrelationMatrix>
+                      </div>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaClock style={{ color: '#85144b' }} />
+                          <strong>Timeline</strong>
+                        </div>
+                        <TimelineView>
+                          {item.timeline.map((event, idx) => (
+                            <TimelineItem key={idx}>
+                              <div style={{ fontSize: '0.75rem', opacity: 0.7 }}>
+                                {new Date(event.date).toLocaleDateString()}
+                              </div>
+                              <div>{event.event}</div>
+                            </TimelineItem>
+                          ))}
+                        </TimelineView>
+                      </div>
+                    </ScoreDetails>
+                  )}
+                </ScoreItem>
+              ))}
+              
+              <OverallScoreContainer score={Math.round(
+                Object.values(performanceScores).reduce((sum, score) => sum + getScoreValue(score), 0) / 
+                Object.values(performanceScores).length
+              )}>
+                <OverallScoreHeader>
+                  Overall Performance
+                </OverallScoreHeader>
+                
+                <OverallScoreValue score={Math.round(
+                  Object.values(performanceScores).reduce((sum, score) => sum + getScoreValue(score), 0) / 
+                  Object.values(performanceScores).length
+                )} style={{ color: getScoreColor(getAverageScoreLabel(
+                  Object.values(performanceScores).reduce((sum, score) => sum + getScoreValue(score), 0) / 
+                  Object.values(performanceScores).length
+                )) }}>
+                  {getAverageScoreLabel(
+                    Object.values(performanceScores).reduce((sum, score) => sum + getScoreValue(score), 0) / 
+                    Object.values(performanceScores).length
+                  )}
+                </OverallScoreValue>
+                
+                <div style={{ marginTop: '1rem', padding: '0.75rem', background: 'rgba(255, 193, 7, 0.1)', borderRadius: '0.25rem', fontSize: '0.85rem' }}>
+                  <strong>Assessment Framework Goal:</strong>
+                  <p style={{ margin: '0.25rem 0 0 0' }}>
+                    Seeking recommendations for a best-in-class app performance measurement framework and tooling for both WebView and native needs, considering organizational and operational complexity.
+                  </p>
+                </div>
+              </OverallScoreContainer>
             </SectionContent>
           </Section>
 
-          {/* Code Quality Container */}
+          {/* Reliability Container */}
+          <Section style={{ position: 'relative' }}>
+            <StickySectionHeader>
+              <SectionHeader>
+                <SectionHeaderLeft>
+                  <SectionIcon color="stabilize"><FaShieldAlt /></SectionIcon>
+                  <SectionTitle>Reliability</SectionTitle>
+                </SectionHeaderLeft>
+                <ExpandCollapseButtons>
+                  <ExpandCollapseButton onClick={expandAllReliability} title="Expand All">
+                    <FaChevronDown />
+                  </ExpandCollapseButton>
+                  <ExpandCollapseButton onClick={collapseAllReliability} title="Collapse All">
+                    <FaChevronUp />
+                  </ExpandCollapseButton>
+                </ExpandCollapseButtons>
+              </SectionHeader>
+            </StickySectionHeader>
+            <SectionContent>
+              <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(40, 167, 69, 0.1)', borderLeft: '4px solid #28a745', borderRadius: '0.25rem' }}>
+                <strong>Current Reliability Tracking</strong>
+                <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', opacity: 0.8 }}>
+                  We currently track this metric via Embrace tooling.
+                </p>
+                <div style={{ marginTop: '0.75rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.5rem' }}>
+                  <div style={{ padding: '0.5rem', background: 'rgba(0, 123, 255, 0.1)', borderRadius: '0.25rem' }}>
+                    <strong>iOS:</strong> 99.85% current (Goal: 99.9% for 2024)
+                  </div>
+                  <div style={{ padding: '0.5rem', background: 'rgba(40, 167, 69, 0.1)', borderRadius: '0.25rem' }}>
+                    <strong>Android:</strong> 99.8% current (Goal: 99.85% for 2024)
+                  </div>
+                </div>
+              </div>
+              {Object.entries({
+                iosCrashFreeRate: {
+                  label: 'iOS Crash-Free Rate',
+                  trend: 'up',
+                  currentState: 'Currently at 99.85% with a goal of 99.9% for 2024. Tracked via Embrace tooling.',
+                  risks: [
+                    'Currently at 99.85%, need to improve by 0.05% to meet 2024 goal',
+                    'Small margin for error - even minor crashes impact SLA significantly',
+                    'iOS-specific crashes may be harder to reproduce in development',
+                    'Device fragmentation and iOS version compatibility issues'
+                  ],
+                  actions: [
+                    'Implement proactive crash prevention strategies',
+                    'Enhanced iOS-specific testing across device variants',
+                    'Improve crash reproduction tools and processes',
+                    'Create automated crash trend analysis and alerting'
+                  ],
+                  correlations: ['androidCrashFreeRate', 'crashReproducibility'],
+                  timeline: [
+                    { date: '2024-01-15', event: 'Set 99.9% crash-free rate goal for iOS' },
+                    { date: '2024-03-20', event: 'Implemented enhanced iOS crash monitoring' },
+                    { date: '2024-05-01', event: 'Started proactive crash prevention initiatives' }
+                  ]
+                },
+                androidCrashFreeRate: {
+                  label: 'Android Crash-Free Rate',
+                  trend: 'stable',
+                  currentState: 'Currently at 99.8% with a goal of 99.85% for 2024. Tracked via Embrace tooling.',
+                  risks: [
+                    'Currently at 99.8%, need to improve by 0.05% to meet 2024 goal',
+                    'Android device fragmentation creates more crash scenarios',
+                    'OS version compatibility across wide range of devices',
+                    'Hardware variations impact app stability'
+                  ],
+                  actions: [
+                    'Enhance Android device testing coverage',
+                    'Implement crash clustering and root cause analysis',
+                    'Develop Android-specific stability improvements',
+                    'Create device-specific crash monitoring dashboards'
+                  ],
+                  correlations: ['iosCrashFreeRate', 'crashImpactAnalysis'],
+                  timeline: [
+                    { date: '2024-02-10', event: 'Set 99.85% crash-free rate goal for Android' },
+                    { date: '2024-04-05', event: 'Enhanced Android fragmentation testing' }
+                  ]
+                },
+                crashReproducibility: {
+                  label: 'Crash Reproducibility',
+                  trend: 'down',
+                  currentState: 'Many crashes are difficult to reproduce, making root cause analysis and fixes challenging.',
+                  risks: [
+                    'Difficult to reproduce crashes lead to longer resolution times',
+                    'Unable to validate fixes without reproduction',
+                    'Customer impact continues while investigating elusive crashes',
+                    'Engineering time wasted on unreproducible issues'
+                  ],
+                  actions: [
+                    'Implement enhanced crash context capture (device state, user journey)',
+                    'Create crash reproduction environment with varied device configurations',
+                    'Add user session replay for crash scenarios',
+                    'Develop crash simulation and testing frameworks'
+                  ],
+                  correlations: ['iosCrashFreeRate', 'androidCrashFreeRate'],
+                  timeline: [
+                    { date: '2024-01-20', event: 'Identified reproducibility as major challenge' },
+                    { date: '2024-03-15', event: 'Started enhanced crash context capture project' }
+                  ]
+                },
+                crashImpactAnalysis: {
+                  label: 'Crash Impact Analysis',
+                  trend: 'up',
+                  currentState: 'A typical crash rarely impacts more than 0.05% of customers, but collectively all crashes add up to a crash-free rate below SLAs.',
+                  risks: [
+                    'Individual crashes seem minor but collectively miss SLA targets',
+                    'Cumulative impact of small crashes creates significant reliability gap',
+                    'Difficult to prioritize which crashes to fix first',
+                    'Customer experience degradation from aggregate crash frequency'
+                  ],
+                  actions: [
+                    'Implement crash impact scoring and prioritization matrix',
+                    'Create cumulative impact dashboards and alerts',
+                    'Develop crash frequency vs impact analysis tools',
+                    'Establish crash remediation prioritization framework'
+                  ],
+                  correlations: ['androidCrashFreeRate', 'reliabilityTooling'],
+                  timeline: [
+                    { date: '2024-02-25', event: 'Analyzed cumulative crash impact on SLA' },
+                    { date: '2024-04-10', event: 'Started crash prioritization framework development' }
+                  ]
+                },
+                reliabilityTooling: {
+                  label: 'Reliability Tooling',
+                  trend: 'stable',
+                  currentState: 'Currently using Embrace for reliability tracking. Seeking recommendations for best-in-class toolset.',
+                  risks: [
+                    'Single tool dependency may not provide comprehensive coverage',
+                    'May be missing advanced reliability measurement capabilities',
+                    'Limited integration with development and deployment workflows',
+                    'Potential gaps in proactive reliability monitoring'
+                  ],
+                  actions: [
+                    'Evaluate comprehensive reliability tooling options',
+                    'Implement multi-layered reliability monitoring approach',
+                    'Integrate reliability metrics into CI/CD pipeline',
+                    'Create custom reliability dashboards and alerting'
+                  ],
+                  correlations: ['crashImpactAnalysis', 'crashReproducibility'],
+                  timeline: [
+                    { date: '2024-01-30', event: 'Started evaluation of reliability tooling options' },
+                    { date: '2024-03-25', event: 'Initiated best-in-class tooling research' }
+                  ]
+                }
+              }).map(([key, item]) => (
+                <ScoreItem key={key} score={reliabilityScores[key]}>
+                  <ScoreHeader onClick={() => toggleScoreExpansion(key)}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <ScoreLabel>{item.label}</ScoreLabel>
+                      <TrendIndicator trend={item.trend}>
+                        {item.trend === 'up' && <FaArrowUp />}
+                        {item.trend === 'down' && <FaArrowDown />}
+                        {item.trend === 'stable' && <FaMinus />}
+                      </TrendIndicator>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      {editingScore === key ? (
+                        <select
+                          value={reliabilityScores[key]}
+                          onChange={(e) => {
+                            setReliabilityScores(prev => ({
+                              ...prev,
+                              [key]: e.target.value
+                            }));
+                          }}
+                          onBlur={finishScoreEdit}
+                          style={{
+                            padding: '0.25rem 0.5rem',
+                            border: '1px solid #ddd',
+                            borderRadius: '4px',
+                            fontSize: '0.875rem',
+                            backgroundColor: 'white',
+                            color: getScoreColor(reliabilityScores[key])
+                          }}
+                          autoFocus
+                        >
+                          <option value="H">H</option>
+                          <option value="M">M</option>
+                          <option value="L">L</option>
+                        </select>
+                      ) : (
+                        <ScoreValue 
+                          score={reliabilityScores[key]}
+                          onClick={() => startScoreEdit(key)}
+                          style={{ cursor: 'pointer', color: getScoreColor(reliabilityScores[key]) }}
+                        >
+                          {reliabilityScores[key]}
+                        </ScoreValue>
+                      )}
+                      <FaEdit 
+                        size={12} 
+                        style={{ cursor: 'pointer', opacity: 0.7 }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          startScoreEdit(key);
+                        }}
+                      />
+                      <ExpandIcon expanded={expandedScores[key]}>
+                        {expandedScores[key] ? <FaChevronDown /> : <FaChevronRight />}
+                      </ExpandIcon>
+                    </div>
+                  </ScoreHeader>
+                  {expandedScores[key] && (
+                    <ScoreDetails expanded={expandedScores[key]}>
+                      <StickyHeader>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLightbulb style={{ color: '#ff851b' }} />
+                          <strong>Current State</strong>
+                        </div>
+                      </StickyHeader>
+                      <div style={{ marginBottom: '1rem', padding: '0.75rem', background: 'rgba(0, 123, 255, 0.1)', borderLeft: '3px solid #007bff', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+                        {item.currentState}
+                      </div>
+                      
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                        <FaExclamationTriangle style={{ color: '#dc3545' }} />
+                        <strong>Reliability Challenges</strong>
+                      </div>
+                      <RiskBulletList>
+                        {item.risks.map((risk, idx) => (
+                          <RiskBulletItem key={idx}>{risk}</RiskBulletItem>
+                        ))}
+                      </RiskBulletList>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLightbulb style={{ color: '#2ecc40' }} />
+                          <strong>Recommended Actions</strong>
+                        </div>
+                        {item.actions.map((action, idx) => (
+                          <ActionItem key={idx}>
+                            {action}
+                          </ActionItem>
+                        ))}
+                      </div>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLink style={{ color: '#0074d9' }} />
+                          <strong>Reliability Correlations</strong>
+                        </div>
+                        <CorrelationMatrix>
+                          {item.correlations.map((correlation, idx) => (
+                            <CorrelationItem key={idx}>
+                              <FaLink size={10} />
+                              {correlation.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
+                            </CorrelationItem>
+                          ))}
+                        </CorrelationMatrix>
+                      </div>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaClock style={{ color: '#85144b' }} />
+                          <strong>Timeline</strong>
+                        </div>
+                        <TimelineView>
+                          {item.timeline.map((event, idx) => (
+                            <TimelineItem key={idx}>
+                              <div style={{ fontSize: '0.75rem', opacity: 0.7 }}>
+                                {new Date(event.date).toLocaleDateString()}
+                              </div>
+                              <div>{event.event}</div>
+                            </TimelineItem>
+                          ))}
+                        </TimelineView>
+                      </div>
+                    </ScoreDetails>
+                  )}
+                </ScoreItem>
+              ))}
+              
+              <OverallScoreContainer score={Math.round(
+                Object.values(reliabilityScores).reduce((sum, score) => sum + getScoreValue(score), 0) / 
+                Object.values(reliabilityScores).length
+              )}>
+                <OverallScoreHeader>
+                  Overall Reliability
+                </OverallScoreHeader>
+                
+                <OverallScoreValue score={Math.round(
+                  Object.values(reliabilityScores).reduce((sum, score) => sum + getScoreValue(score), 0) / 
+                  Object.values(reliabilityScores).length
+                )} style={{ color: getScoreColor(getAverageScoreLabel(
+                  Object.values(reliabilityScores).reduce((sum, score) => sum + getScoreValue(score), 0) / 
+                  Object.values(reliabilityScores).length
+                )) }}>
+                  {getAverageScoreLabel(
+                    Object.values(reliabilityScores).reduce((sum, score) => sum + getScoreValue(score), 0) / 
+                    Object.values(reliabilityScores).length
+                  )}
+                </OverallScoreValue>
+                
+                <div style={{ marginTop: '1rem', padding: '0.75rem', background: 'rgba(40, 167, 69, 0.1)', borderRadius: '0.25rem', fontSize: '0.85rem' }}>
+                  <strong>Tooling Assessment Goal:</strong>
+                  <p style={{ margin: '0.25rem 0 0 0' }}>
+                    Seeking recommendations for what a best-in-class toolset for reliability measurement would look like, beyond current Embrace implementation.
+                  </p>
+                </div>
+              </OverallScoreContainer>
+            </SectionContent>
+          </Section>
+
+          {/* Testing Container */}
           <Section style={{ position: 'relative' }}>
             <StickySectionHeader>
               <SectionHeader>
                 <SectionHeaderLeft>
                   <SectionIcon color="develop"><FaCheckSquare /></SectionIcon>
-                  <SectionTitle>Code Quality</SectionTitle>
+                  <SectionTitle>Testing</SectionTitle>
                 </SectionHeaderLeft>
+                <ExpandCollapseButtons>
+                  <ExpandCollapseButton onClick={expandAllTesting} title="Expand All">
+                    <FaChevronDown />
+                  </ExpandCollapseButton>
+                  <ExpandCollapseButton onClick={collapseAllTesting} title="Collapse All">
+                    <FaChevronUp />
+                  </ExpandCollapseButton>
+                </ExpandCollapseButtons>
               </SectionHeader>
             </StickySectionHeader>
             <SectionContent>
-              <div style={{ padding: '1rem', textAlign: 'center', color: '#666' }}>
-                Code Quality assessment container - coming soon
+              <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(0, 123, 255, 0.1)', borderLeft: '4px solid #007bff', borderRadius: '0.25rem' }}>
+                <strong>What best practice methodologies and technologies should be put in place for ensuring quality in app?</strong>
+                <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', opacity: 0.8 }}>
+                  How can we make creating, managing, and running tests as easy as possible for both the app team and other product teams who deliver capabilities through app?
+                </p>
               </div>
+              
+              <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(40, 167, 69, 0.1)', borderLeft: '4px solid #28a745', borderRadius: '0.25rem' }}>
+                <strong>Current Testing Infrastructure</strong>
+                <div style={{ marginTop: '0.75rem', display: 'grid', gridTemplateColumns: '1fr', gap: '0.5rem' }}>
+                  <div style={{ padding: '0.5rem', background: 'rgba(0, 123, 255, 0.1)', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+                    <strong>Unit Tests:</strong> 80% branch coverage requirement - Android (JUnit), iOS (XCTest)
+                  </div>
+                  <div style={{ padding: '0.5rem', background: 'rgba(255, 193, 7, 0.1)', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+                    <strong>E2E Tests:</strong> Bugbear (WebDriverIO wrapper) for browser/app test reusability
+                  </div>
+                  <div style={{ padding: '0.5rem', background: 'rgba(40, 167, 69, 0.1)', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+                    <strong>Testbed:</strong> SauceLabs with virtual & physical devices
+                  </div>
+                </div>
+              </div>
+
+              {Object.entries({
+                unitTestCoverage: {
+                  label: 'Unit Test Coverage & Standards',
+                  trend: 'up',
+                  currentState: 'All new modules are expected to instrument a minimum of 80% branch unit test coverage. Android utilizes JUnit and iOS uses the XCTest framework.',
+                  risks: [
+                    '80% coverage requirement may not ensure quality if tests are not well-designed',
+                    'Different frameworks (JUnit vs XCTest) create maintenance overhead',
+                    'Branch coverage alone may miss edge cases and integration scenarios',
+                    'Enforcement and monitoring of coverage standards needs improvement'
+                  ],
+                  actions: [
+                    'Implement automated coverage reporting and enforcement in CI/CD',
+                    'Add mutation testing to validate test quality beyond coverage metrics',
+                    'Create shared testing standards and best practices across platforms',
+                    'Implement test quality gates with meaningful assertions validation'
+                  ],
+                  correlations: ['endToEndTestFramework', 'crossTeamTestAccessibility'],
+                  timeline: [
+                    { date: '2024-01-15', event: 'Established 80% branch coverage requirement' },
+                    { date: '2024-03-20', event: 'Implemented coverage monitoring tools' },
+                    { date: '2024-05-01', event: 'Started test quality improvement initiative' }
+                  ]
+                },
+                endToEndTestFramework: {
+                  label: 'End-to-End Test Framework (Bugbear)',
+                  trend: 'stable',
+                  currentState: 'Regression Tests are written in The Home Depot custom tool called Bugbear. Bugbear is a wrapper around WebDriverIO that simplifies test writing, improves traceability, provides standardized configs, and enables test reusability between browser and app.',
+                  risks: [
+                    'Custom tool dependency creates maintenance burden and learning curve',
+                    'Limited community support compared to mainstream testing frameworks',
+                    'Potential technical debt if WebDriverIO evolves faster than Bugbear wrapper',
+                    'May miss out on newer testing technologies and methodologies'
+                  ],
+                  actions: [
+                    'Evaluate modern testing frameworks against Bugbear reusability benefits',
+                    'Create comprehensive Bugbear documentation and training materials',
+                    'Implement Bugbear version management and upgrade planning',
+                    'Assess hybrid approach with multiple testing tools for different scenarios'
+                  ],
+                  correlations: ['testInfrastructure', 'testToolOptimization'],
+                  timeline: [
+                    { date: '2024-02-10', event: 'Completed Bugbear vs alternatives evaluation' },
+                    { date: '2024-04-05', event: 'Enhanced Bugbear documentation and training' }
+                  ]
+                },
+                testInfrastructure: {
+                  label: 'Test Infrastructure (SauceLabs)',
+                  trend: 'up',
+                  currentState: 'The Home Depot currently utilizes SauceLabs to run End-to-End tests with a combination of virtual devices, public & private physical devices hosted in SauceLabs cloud.',
+                  risks: [
+                    'Cloud testing dependency may impact test reliability and speed',
+                    'Cost scaling with increased test volume and device coverage',
+                    'Limited control over test environment configuration and debugging',
+                    'Potential vendor lock-in with SauceLabs platform'
+                  ],
+                  actions: [
+                    'Implement hybrid testing infrastructure with local device farms',
+                    'Optimize SauceLabs usage and cost management strategies',
+                    'Evaluate alternative device cloud providers and capabilities',
+                    'Create infrastructure monitoring and performance optimization'
+                  ],
+                  correlations: ['endToEndTestFramework', 'crossTeamTestAccessibility'],
+                  timeline: [
+                    { date: '2024-01-20', event: 'Expanded SauceLabs device coverage' },
+                    { date: '2024-03-15', event: 'Implemented test infrastructure monitoring' }
+                  ]
+                },
+                crossTeamTestAccessibility: {
+                  label: 'Cross-Team Test Accessibility',
+                  trend: 'down',
+                  currentState: 'Need to make creating, managing, and running tests as easy as possible for both the app team and other product teams who deliver capabilities through the app.',
+                  risks: [
+                    'Complex test setup barriers prevent other product teams from contributing',
+                    'Lack of self-service testing capabilities creates bottlenecks',
+                    'Inconsistent testing practices across different product teams',
+                    'Knowledge silos limit test maintenance and collaboration'
+                  ],
+                  actions: [
+                    'Create self-service testing platform with guided workflows',
+                    'Implement test-as-code with version control and collaboration features',
+                    'Develop testing training programs and documentation for product teams',
+                    'Build automated test generation tools and templates'
+                  ],
+                  correlations: ['unitTestCoverage', 'testToolOptimization'],
+                  timeline: [
+                    { date: '2024-02-25', event: 'Identified cross-team testing challenges' },
+                    { date: '2024-04-10', event: 'Started self-service testing platform development' }
+                  ]
+                },
+                testToolOptimization: {
+                  label: 'Test Tool Evaluation & Optimization',
+                  trend: 'stable',
+                  currentState: 'There may be scenarios where reusability of tests may not be necessary or desired, and having a combination of tools may be preferable. There may also be better tools available that we are not aware of and didnt review.',
+                  risks: [
+                    'Over-reliance on single testing approach may miss optimal solutions',
+                    'Lack of systematic evaluation of new testing technologies',
+                    'Missing specialized tools for specific testing scenarios',
+                    'Potential inefficiencies from suboptimal tool selection'
+                  ],
+                  actions: [
+                    'Conduct comprehensive testing tool landscape analysis',
+                    'Implement tool selection framework based on specific use cases',
+                    'Create proof-of-concept evaluations for promising new tools',
+                    'Develop hybrid testing strategy with multiple complementary tools'
+                  ],
+                  correlations: ['endToEndTestFramework', 'crossTeamTestAccessibility'],
+                  timeline: [
+                    { date: '2024-01-30', event: 'Started comprehensive testing tool research' },
+                    { date: '2024-03-25', event: 'Initiated tool evaluation framework development' }
+                  ]
+                }
+              }).map(([key, item]) => (
+                <ScoreItem key={key} score={testingScores[key]}>
+                  <ScoreHeader onClick={() => toggleScoreExpansion(key)}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <ScoreLabel>{item.label}</ScoreLabel>
+                      <TrendIndicator trend={item.trend}>
+                        {item.trend === 'up' && <FaArrowUp />}
+                        {item.trend === 'down' && <FaArrowDown />}
+                        {item.trend === 'stable' && <FaMinus />}
+                      </TrendIndicator>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      {editingScore === key ? (
+                        <select
+                          value={testingScores[key]}
+                          onChange={(e) => {
+                            setTestingScores(prev => ({
+                              ...prev,
+                              [key]: e.target.value
+                            }));
+                          }}
+                          onBlur={finishScoreEdit}
+                          style={{
+                            padding: '0.25rem 0.5rem',
+                            border: '1px solid #ddd',
+                            borderRadius: '4px',
+                            fontSize: '0.875rem',
+                            backgroundColor: 'white',
+                            color: getScoreColor(testingScores[key])
+                          }}
+                          autoFocus
+                        >
+                          <option value="H">H</option>
+                          <option value="M">M</option>
+                          <option value="L">L</option>
+                        </select>
+                      ) : (
+                        <ScoreValue 
+                          score={testingScores[key]}
+                          onClick={() => startScoreEdit(key)}
+                          style={{ cursor: 'pointer', color: getScoreColor(testingScores[key]) }}
+                        >
+                          {testingScores[key]}
+                        </ScoreValue>
+                      )}
+                      <FaEdit 
+                        size={12} 
+                        style={{ cursor: 'pointer', opacity: 0.7 }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          startScoreEdit(key);
+                        }}
+                      />
+                      <ExpandIcon expanded={expandedScores[key]}>
+                        {expandedScores[key] ? <FaChevronDown /> : <FaChevronRight />}
+                      </ExpandIcon>
+                    </div>
+                  </ScoreHeader>
+                  {expandedScores[key] && (
+                    <ScoreDetails expanded={expandedScores[key]}>
+                      <StickyHeader>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLightbulb style={{ color: '#ff851b' }} />
+                          <strong>Current State</strong>
+                        </div>
+                      </StickyHeader>
+                      <div style={{ marginBottom: '1rem', padding: '0.75rem', background: 'rgba(0, 123, 255, 0.1)', borderLeft: '3px solid #007bff', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+                        {item.currentState}
+                      </div>
+                      
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                        <FaExclamationTriangle style={{ color: '#dc3545' }} />
+                        <strong>Testing Challenges</strong>
+                      </div>
+                      <RiskBulletList>
+                        {item.risks.map((risk, idx) => (
+                          <RiskBulletItem key={idx}>{risk}</RiskBulletItem>
+                        ))}
+                      </RiskBulletList>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLightbulb style={{ color: '#2ecc40' }} />
+                          <strong>Recommended Actions</strong>
+                        </div>
+                        {item.actions.map((action, idx) => (
+                          <ActionItem key={idx}>
+                            {action}
+                          </ActionItem>
+                        ))}
+                      </div>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLink style={{ color: '#0074d9' }} />
+                          <strong>Testing Correlations</strong>
+                        </div>
+                        <CorrelationMatrix>
+                          {item.correlations.map((correlation, idx) => (
+                            <CorrelationItem key={idx}>
+                              <FaLink size={10} />
+                              {correlation.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
+                            </CorrelationItem>
+                          ))}
+                        </CorrelationMatrix>
+                      </div>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaClock style={{ color: '#85144b' }} />
+                          <strong>Timeline</strong>
+                        </div>
+                        <TimelineView>
+                          {item.timeline.map((event, idx) => (
+                            <TimelineItem key={idx}>
+                              <div style={{ fontSize: '0.75rem', opacity: 0.7 }}>
+                                {new Date(event.date).toLocaleDateString()}
+                              </div>
+                              <div>{event.event}</div>
+                            </TimelineItem>
+                          ))}
+                        </TimelineView>
+                      </div>
+                    </ScoreDetails>
+                  )}
+                </ScoreItem>
+              ))}
+              
+              <OverallScoreContainer score={Math.round(
+                Object.values(testingScores).reduce((sum, score) => sum + getScoreValue(score), 0) / 
+                Object.values(testingScores).length
+              )}>
+                <OverallScoreHeader>
+                  Overall Testing Maturity
+                </OverallScoreHeader>
+                
+                <OverallScoreValue score={Math.round(
+                  Object.values(testingScores).reduce((sum, score) => sum + getScoreValue(score), 0) / 
+                  Object.values(testingScores).length
+                )} style={{ color: getScoreColor(getAverageScoreLabel(
+                  Object.values(testingScores).reduce((sum, score) => sum + getScoreValue(score), 0) / 
+                  Object.values(testingScores).length
+                )) }}>
+                  {getAverageScoreLabel(
+                    Object.values(testingScores).reduce((sum, score) => sum + getScoreValue(score), 0) / 
+                    Object.values(testingScores).length
+                  )}
+                </OverallScoreValue>
+                
+                <div style={{ marginTop: '1rem', padding: '0.75rem', background: 'rgba(0, 123, 255, 0.1)', borderRadius: '0.25rem', fontSize: '0.85rem' }}>
+                  <strong>Testing Strategy Goals:</strong>
+                  <div style={{ margin: '0.5rem 0 0 0' }}>
+                    <div>• Ensure quality through best practice methodologies and technologies</div>
+                    <div>• Make testing easy for app team and other product teams</div>
+                    <div>• Evaluate combination of tools beyond current Bugbear/SauceLabs setup</div>
+                  </div>
+                </div>
+              </OverallScoreContainer>
             </SectionContent>
           </Section>
+
+          {/* Technology Container */}
+          <Section style={{ position: 'relative' }}>
+            <StickySectionHeader>
+              <SectionHeader>
+                <SectionHeaderLeft>
+                  <SectionIcon color="primary"><FaCode /></SectionIcon>
+                  <SectionTitle>Technology</SectionTitle>
+                </SectionHeaderLeft>
+                <ExpandCollapseButtons>
+                  <ExpandCollapseButton onClick={expandAllTechnology} title="Expand All">
+                    <FaChevronDown />
+                  </ExpandCollapseButton>
+                  <ExpandCollapseButton onClick={collapseAllTechnology} title="Collapse All">
+                    <FaChevronUp />
+                  </ExpandCollapseButton>
+                </ExpandCollapseButtons>
+              </SectionHeader>
+            </StickySectionHeader>
+            <SectionContent>
+              <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(0, 123, 255, 0.1)', borderLeft: '4px solid #007bff', borderRadius: '0.25rem' }}>
+                <strong>How should we evolve and/or rebuild our technology and architecture to achieve and maintain a modern approach?</strong>
+                <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', opacity: 0.8 }}>
+                  The Home Depot is interested in providing engaging experiences across all devices (phone, tablet, watch, auto, etc.) with flexibility and speed to market.
+                </p>
+              </div>
+              
+              <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(255, 193, 7, 0.1)', borderLeft: '4px solid #ffc107', borderRadius: '0.25rem' }}>
+                <strong>Current Technology Migration Status</strong>
+                <div style={{ marginTop: '0.75rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '0.75rem' }}>
+                  <div style={{ padding: '0.75rem', background: 'rgba(0, 123, 255, 0.1)', borderRadius: '0.25rem' }}>
+                    <strong>iOS Progress:</strong>
+                    <div style={{ fontSize: '0.85rem', marginTop: '0.5rem' }}>
+                      • Swift: 63%, Objective-C: 26%, Other: 11%
+                      <br />• SwiftUI: 15%, UIKit: 85%
+                      <br />• iPhone primary, iPad renders iPhone app
+                    </div>
+                  </div>
+                  <div style={{ padding: '0.75rem', background: 'rgba(40, 167, 69, 0.1)', borderRadius: '0.25rem' }}>
+                    <strong>Android Progress:</strong>
+                    <div style={{ fontSize: '0.85rem', marginTop: '0.5rem' }}>
+                      • Kotlin: 59%, Java: 29%, Other: 12%
+                      <br />• Jetpack Compose: 7%, XML Fragments: 93%
+                      <br />• Phone primary, no tablet/foldable support
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {Object.entries({
+                platformMigrationProgress: {
+                  label: 'Platform Migration Progress',
+                  trend: 'up',
+                  currentState: 'iOS migrating to Swift (63% complete) and SwiftUI (15% complete). Android migrating to Kotlin (59% complete) and Jetpack Compose (7% complete). Heavy utilization of WebViews with openness to technical direction changes.',
+                  risks: [
+                    'iOS: 37% still Objective-C, 85% still UIKit - significant legacy code remains',
+                    'Android: 41% still Java, 93% still XML Fragments - early in UI modernization',
+                    'Mixed technology stack creates maintenance complexity and knowledge silos',
+                    'WebView dependency may limit performance and native platform capabilities'
+                  ],
+                  actions: [
+                    'Accelerate Swift and Kotlin migration with automated conversion tools',
+                    'Create SwiftUI and Jetpack Compose adoption roadmap with training programs',
+                    'Implement mixed codebase management strategies and coding standards',
+                    'Evaluate WebView vs native implementation trade-offs for key user journeys'
+                  ],
+                  correlations: ['technologyStackModernization', 'modularArchitecture'],
+                  timeline: [
+                    { date: '2024-01-15', event: 'Established migration baselines and targets' },
+                    { date: '2024-03-20', event: 'Launched Swift/Kotlin training programs' },
+                    { date: '2024-05-01', event: 'Started SwiftUI/Jetpack Compose pilot projects' }
+                  ]
+                },
+                multiDeviceStrategy: {
+                  label: 'Multi-Device Strategy & Support',
+                  trend: 'down',
+                  currentState: 'iPhone support primarily; iPad renders iPhone app with unfriendly UI; no Apple Watch app. Android phone support primarily; no explicit support for foldables; removed tablet download capability.',
+                  risks: [
+                    'Limited device support misses growing tablet, watch, and auto markets',
+                    'iPad experience renders iPhone app creating poor user experience',
+                    'No support for emerging form factors (foldables, automotive) limits future growth',
+                    'Device-specific optimization opportunities are being missed'
+                  ],
+                  actions: [
+                    'Develop comprehensive multi-device strategy and roadmap',
+                    'Create responsive design system for tablets and large screens',
+                    'Evaluate Apple Watch, Android Watch, and automotive platform opportunities',
+                    'Implement adaptive UI frameworks for emerging form factors'
+                  ],
+                  correlations: ['modularArchitecture', 'technologyStackModernization'],
+                  timeline: [
+                    { date: '2024-02-10', event: 'Identified multi-device strategy gap' },
+                    { date: '2024-04-05', event: 'Started device market opportunity analysis' }
+                  ]
+                },
+                modularArchitecture: {
+                  label: 'Modular Architecture Implementation',
+                  trend: 'stable',
+                  currentState: 'Future implementation should be modular to support reusability, collaboration, maintenance, readability, testing, faster fixes, easier updates, and refactoring. Isolated features as importable products adhering to cybersecurity requirements.',
+                  risks: [
+                    'Current monolithic architecture limits reusability and collaboration',
+                    'Lack of clear module boundaries creates tight coupling and maintenance issues',
+                    'No standardized approach for creating and sharing isolated feature modules',
+                    'Cybersecurity requirements compliance across modular components needs framework'
+                  ],
+                  actions: [
+                    'Design and implement modular architecture framework with clear boundaries',
+                    'Create module development standards and reusability guidelines',
+                    'Implement feature-as-a-product methodology with import/export capabilities',
+                    'Establish cybersecurity compliance framework for modular components'
+                  ],
+                  correlations: ['codeHealthMetrics', 'platformMigrationProgress'],
+                  timeline: [
+                    { date: '2024-01-20', event: 'Defined modular architecture requirements and benefits' },
+                    { date: '2024-03-15', event: 'Started modular framework design phase' }
+                  ]
+                },
+                codeHealthMetrics: {
+                  label: 'Code Health & Maintainability Metrics',
+                  trend: 'up',
+                  currentState: 'Need to establish measures to understand code health. Focus on making app smaller and more modular with clear separation of responsibilities for enhanced readability and maintainability.',
+                  risks: [
+                    'Lack of standardized code health metrics prevents quality assessment',
+                    'App size and complexity growth without measurement and control',
+                    'No visibility into technical debt accumulation and impact',
+                    'Mixed technology stack makes health assessment challenging'
+                  ],
+                  actions: [
+                    'Implement comprehensive code health monitoring and metrics dashboard',
+                    'Establish app size budgets and modular complexity measurements',
+                    'Create technical debt tracking and remediation prioritization system',
+                    'Add automated code quality gates and continuous health monitoring'
+                  ],
+                  correlations: ['modularArchitecture', 'platformMigrationProgress'],
+                  timeline: [
+                    { date: '2024-02-25', event: 'Identified need for code health measurement framework' },
+                    { date: '2024-04-10', event: 'Started code metrics and monitoring tool evaluation' }
+                  ]
+                },
+                technologyStackModernization: {
+                  label: 'Technology Stack Modernization',
+                  trend: 'up',
+                  currentState: 'Open to considering changes in technical direction to achieve goals. Heavy WebView utilization with migration to Swift/SwiftUI and Kotlin/Jetpack Compose in progress.',
+                  risks: [
+                    'WebView dependency may limit performance and platform-specific capabilities',
+                    'Technology choices may not align with multi-device strategy requirements',
+                    'Legacy stack components create maintenance burden and slow development',
+                    'Rapid technology evolution requires continuous evaluation and adaptation'
+                  ],
+                  actions: [
+                    'Conduct comprehensive technology stack evaluation against multi-device goals',
+                    'Create technology roadmap balancing WebView benefits with native capabilities',
+                    'Implement technology decision framework for future stack choices',
+                    'Establish continuous technology monitoring and adoption processes'
+                  ],
+                  correlations: ['multiDeviceStrategy', 'platformMigrationProgress'],
+                  timeline: [
+                    { date: '2024-01-30', event: 'Started comprehensive technology stack assessment' },
+                    { date: '2024-03-25', event: 'Initiated technology roadmap development' }
+                  ]
+                }
+              }).map(([key, item]) => (
+                <ScoreItem key={key} score={technologyScores[key]}>
+                  <ScoreHeader onClick={() => toggleScoreExpansion(key)}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <ScoreLabel>{item.label}</ScoreLabel>
+                      <TrendIndicator trend={item.trend}>
+                        {item.trend === 'up' && <FaArrowUp />}
+                        {item.trend === 'down' && <FaArrowDown />}
+                        {item.trend === 'stable' && <FaMinus />}
+                      </TrendIndicator>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      {editingScore === key ? (
+                        <select
+                          value={technologyScores[key]}
+                          onChange={(e) => {
+                            setTechnologyScores(prev => ({
+                              ...prev,
+                              [key]: e.target.value
+                            }));
+                          }}
+                          onBlur={finishScoreEdit}
+                          style={{
+                            padding: '0.25rem 0.5rem',
+                            border: '1px solid #ddd',
+                            borderRadius: '4px',
+                            fontSize: '0.875rem',
+                            backgroundColor: 'white',
+                            color: getScoreColor(technologyScores[key])
+                          }}
+                          autoFocus
+                        >
+                          <option value="H">H</option>
+                          <option value="M">M</option>
+                          <option value="L">L</option>
+                        </select>
+                      ) : (
+                        <ScoreValue 
+                          score={technologyScores[key]}
+                          onClick={() => startScoreEdit(key)}
+                          style={{ cursor: 'pointer', color: getScoreColor(technologyScores[key]) }}
+                        >
+                          {technologyScores[key]}
+                        </ScoreValue>
+                      )}
+                      <FaEdit 
+                        size={12} 
+                        style={{ cursor: 'pointer', opacity: 0.7 }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          startScoreEdit(key);
+                        }}
+                      />
+                      <ExpandIcon expanded={expandedScores[key]}>
+                        {expandedScores[key] ? <FaChevronDown /> : <FaChevronRight />}
+                      </ExpandIcon>
+                    </div>
+                  </ScoreHeader>
+                  {expandedScores[key] && (
+                    <ScoreDetails expanded={expandedScores[key]}>
+                      <StickyHeader>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLightbulb style={{ color: '#ff851b' }} />
+                          <strong>Current State</strong>
+                        </div>
+                      </StickyHeader>
+                      <div style={{ marginBottom: '1rem', padding: '0.75rem', background: 'rgba(0, 123, 255, 0.1)', borderLeft: '3px solid #007bff', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+                        {item.currentState}
+                      </div>
+                      
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                        <FaExclamationTriangle style={{ color: '#dc3545' }} />
+                        <strong>Technology Challenges</strong>
+                      </div>
+                      <RiskBulletList>
+                        {item.risks.map((risk, idx) => (
+                          <RiskBulletItem key={idx}>{risk}</RiskBulletItem>
+                        ))}
+                      </RiskBulletList>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLightbulb style={{ color: '#2ecc40' }} />
+                          <strong>Recommended Actions</strong>
+                        </div>
+                        {item.actions.map((action, idx) => (
+                          <ActionItem key={idx}>
+                            {action}
+                          </ActionItem>
+                        ))}
+                      </div>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLink style={{ color: '#0074d9' }} />
+                          <strong>Technology Correlations</strong>
+                        </div>
+                        <CorrelationMatrix>
+                          {item.correlations.map((correlation, idx) => (
+                            <CorrelationItem key={idx}>
+                              <FaLink size={10} />
+                              {correlation.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
+                            </CorrelationItem>
+                          ))}
+                        </CorrelationMatrix>
+                      </div>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaClock style={{ color: '#85144b' }} />
+                          <strong>Timeline</strong>
+                        </div>
+                        <TimelineView>
+                          {item.timeline.map((event, idx) => (
+                            <TimelineItem key={idx}>
+                              <div style={{ fontSize: '0.75rem', opacity: 0.7 }}>
+                                {new Date(event.date).toLocaleDateString()}
+                              </div>
+                              <div>{event.event}</div>
+                            </TimelineItem>
+                          ))}
+                        </TimelineView>
+                      </div>
+                    </ScoreDetails>
+                  )}
+                </ScoreItem>
+              ))}
+              
+              <OverallScoreContainer score={Math.round(
+                Object.values(technologyScores).reduce((sum, score) => sum + getScoreValue(score), 0) / 
+                Object.values(technologyScores).length
+              )}>
+                <OverallScoreHeader>
+                  Overall Technology Maturity
+                </OverallScoreHeader>
+                
+                <OverallScoreValue score={Math.round(
+                  Object.values(technologyScores).reduce((sum, score) => sum + getScoreValue(score), 0) / 
+                  Object.values(technologyScores).length
+                )} style={{ color: getScoreColor(getAverageScoreLabel(
+                  Object.values(technologyScores).reduce((sum, score) => sum + getScoreValue(score), 0) / 
+                  Object.values(technologyScores).length
+                )) }}>
+                  {getAverageScoreLabel(
+                    Object.values(technologyScores).reduce((sum, score) => sum + getScoreValue(score), 0) / 
+                    Object.values(technologyScores).length
+                  )}
+                </OverallScoreValue>
+                
+                <div style={{ marginTop: '1rem', padding: '0.75rem', background: 'rgba(0, 123, 255, 0.1)', borderRadius: '0.25rem', fontSize: '0.85rem' }}>
+                  <strong>Technology Evolution Goals:</strong>
+                  <div style={{ margin: '0.5rem 0 0 0' }}>
+                    <div>• Enable flexibility and speed to market across all devices</div>
+                    <div>• Achieve modular architecture with reusable, isolated features</div>
+                    <div>• Establish code health measures and app size optimization</div>
+                    <div>• Complete platform migrations (Swift, Kotlin, SwiftUI, Jetpack Compose)</div>
+                  </div>
+                </div>
+              </OverallScoreContainer>
+            </SectionContent>
+          </Section>
+
+          {/* Development Practices Container */}
+          <Section style={{ position: 'relative' }}>
+            <StickySectionHeader>
+              <SectionHeader>
+                <SectionHeaderLeft>
+                  <SectionIcon color="develop"><FaCodeBranch /></SectionIcon>
+                  <SectionTitle>Development Practices</SectionTitle>
+                </SectionHeaderLeft>
+                <ExpandCollapseButtons>
+                  <ExpandCollapseButton onClick={expandAllDevelopmentPractices} title="Expand All">
+                    <FaChevronDown />
+                  </ExpandCollapseButton>
+                  <ExpandCollapseButton onClick={collapseAllDevelopmentPractices} title="Collapse All">
+                    <FaChevronUp />
+                  </ExpandCollapseButton>
+                </ExpandCollapseButtons>
+              </SectionHeader>
+            </StickySectionHeader>
+            <SectionContent>
+              <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(0, 123, 255, 0.1)', borderLeft: '4px solid #007bff', borderRadius: '0.25rem' }}>
+                <strong>Goal: Automated CI/CD state with comprehensive quality gates and AI assistance</strong>
+                <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', opacity: 0.8 }}>
+                  Tests, code complexity scanning, duplication detection run automatically per PR. No code modification between dev and production builds.
+                </p>
+              </div>
+              
+              <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(220, 53, 69, 0.1)', borderLeft: '4px solid #dc3545', borderRadius: '0.25rem' }}>
+                <strong>Current State: Fully Manual Process</strong>
+                <div style={{ marginTop: '0.75rem', display: 'grid', gridTemplateColumns: '1fr', gap: '0.5rem' }}>
+                  <div style={{ padding: '0.5rem', background: 'rgba(220, 53, 69, 0.1)', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+                    • Unit tests manually run locally by developers
+                  </div>
+                  <div style={{ padding: '0.5rem', background: 'rgba(220, 53, 69, 0.1)', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+                    • Quality engineering team manually performs application regressions
+                  </div>
+                  <div style={{ padding: '0.5rem', background: 'rgba(220, 53, 69, 0.1)', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+                    • Manual UI end-to-end test triggering with Bugbear
+                  </div>
+                  <div style={{ padding: '0.5rem', background: 'rgba(220, 53, 69, 0.1)', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+                    • GitHub release branches manually created by engineers
+                  </div>
+                  <div style={{ padding: '0.5rem', background: 'rgba(255, 193, 7, 0.1)', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+                    • GitHub actions manually triggered (iOS: auto TestFlight, Android: manual Google Play)
+                  </div>
+                </div>
+              </div>
+
+              {Object.entries({
+                cicdPipelineAutomation: {
+                  label: 'CI/CD Pipeline Automation',
+                  trend: 'down',
+                  currentState: 'Currently manual process at every step: manual unit test runs, manual regression testing, manual GitHub release branch creation, manual GitHub actions triggering for builds.',
+                  risks: [
+                    'Fully manual process creates bottlenecks and delays in delivery',
+                    'Human error risk at every manual step impacts reliability',
+                    'Inconsistent process execution across different engineers and releases',
+                    'Lack of automated gates allows quality issues to reach production'
+                  ],
+                  actions: [
+                    'Implement fully automated CI/CD pipeline with trigger-based automation',
+                    'Create automated PR validation with test execution and quality checks',
+                    'Add automated release branch creation and build artifact generation',
+                    'Implement progressive deployment automation with rollback capabilities'
+                  ],
+                  correlations: ['codeQualityGates', 'buildArtifactManagement'],
+                  timeline: [
+                    { date: '2024-01-15', event: 'Identified fully manual CI/CD process as major bottleneck' },
+                    { date: '2024-03-20', event: 'Started CI/CD automation planning and tool evaluation' },
+                    { date: '2024-05-01', event: 'Initiated automated pipeline proof of concept' }
+                  ]
+                },
+                codeQualityGates: {
+                  label: 'Automated Code Quality Gates',
+                  trend: 'down',
+                  currentState: 'No automated quality gates exist. Need automatic fail if code coverage change diff is less than (x)%. Tests, code complexity scanning, and duplication detection should run automatically for each PR.',
+                  risks: [
+                    'No automated coverage threshold enforcement allows quality regression',
+                    'Missing code complexity and duplication scanning in PR process',
+                    'Quality issues discovered late in process increase fix costs',
+                    'Inconsistent code quality standards across development team'
+                  ],
+                  actions: [
+                    'Implement automated code coverage diff analysis with configurable thresholds',
+                    'Add code complexity and duplication scanning to PR pipeline',
+                    'Create quality gates that automatically fail PRs below standards',
+                    'Establish comprehensive code quality metrics dashboard and reporting'
+                  ],
+                  correlations: ['cicdPipelineAutomation', 'manualProcessElimination'],
+                  timeline: [
+                    { date: '2024-02-10', event: 'Defined code quality gate requirements and thresholds' },
+                    { date: '2024-04-05', event: 'Started automated quality scanning tool integration' }
+                  ]
+                },
+                buildArtifactManagement: {
+                  label: 'Build Artifact Management',
+                  trend: 'up',
+                  currentState: 'iOS artifacts automatically published to TestFlight, but Android requires manual Google Play process. Goal is same binary tested should be published with no code modification between development and production builds.',
+                  risks: [
+                    'Manual Android publishing process creates deployment delays and errors',
+                    'Different artifacts between testing and production environments',
+                    'Code modifications between environments introduce untested changes',
+                    'Inconsistent deployment processes between iOS and Android platforms'
+                  ],
+                  actions: [
+                    'Automate Android Google Play publishing to match iOS TestFlight process',
+                    'Implement single binary promotion from dev through production environments',
+                    'Create artifact validation and signing automation',
+                    'Establish consistent deployment processes across both platforms'
+                  ],
+                  correlations: ['cicdPipelineAutomation', 'manualProcessElimination'],
+                  timeline: [
+                    { date: '2024-01-20', event: 'Analyzed artifact management inconsistencies between platforms' },
+                    { date: '2024-03-15', event: 'Started Android publishing automation development' }
+                  ]
+                },
+                manualProcessElimination: {
+                  label: 'Manual Process Elimination',
+                  trend: 'down',
+                  currentState: 'Comprehensive manual process elimination needed across entire development lifecycle. Should be automated as much as possible with pass/fail gates requiring human intervention only when necessary.',
+                  risks: [
+                    'Manual processes throughout development lifecycle create inefficiency',
+                    'Human intervention required for routine tasks slows development velocity',
+                    'Inconsistent process execution leads to quality variations',
+                    'Manual bottlenecks limit team scaling and delivery capacity'
+                  ],
+                  actions: [
+                    'Identify and prioritize all manual processes for automation',
+                    'Implement smart pass/fail gates with human intervention only for exceptions',
+                    'Create self-service development workflows and tooling',
+                    'Establish process automation metrics and continuous improvement'
+                  ],
+                  correlations: ['cicdPipelineAutomation', 'aiAssistedDevelopment'],
+                  timeline: [
+                    { date: '2024-02-25', event: 'Conducted comprehensive manual process audit' },
+                    { date: '2024-04-10', event: 'Started prioritized automation roadmap development' }
+                  ]
+                },
+                aiAssistedDevelopment: {
+                  label: 'AI-Assisted Development Integration',
+                  trend: 'stable',
+                  currentState: 'Interest in AI assisted development practices. No current implementation of AI tools in development workflow.',
+                  risks: [
+                    'Missing AI productivity opportunities in code generation and review',
+                    'Competitive disadvantage without AI-assisted development capabilities',
+                    'Manual code review and testing processes could benefit from AI augmentation',
+                    'Lack of AI integration strategy for development workflow optimization'
+                  ],
+                  actions: [
+                    'Evaluate and implement AI-powered code generation and completion tools',
+                    'Integrate AI-assisted code review and quality analysis',
+                    'Add AI-powered test case generation and bug detection capabilities',
+                    'Create AI development assistant integration strategy and training'
+                  ],
+                  correlations: ['codeQualityGates', 'manualProcessElimination'],
+                  timeline: [
+                    { date: '2024-01-30', event: 'Identified AI-assisted development as strategic interest' },
+                    { date: '2024-03-25', event: 'Started AI development tools evaluation and pilot planning' }
+                  ]
+                }
+              }).map(([key, item]) => (
+                <ScoreItem key={key} score={developmentPracticesScores[key]}>
+                  <ScoreHeader onClick={() => toggleScoreExpansion(key)}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <ScoreLabel>{item.label}</ScoreLabel>
+                      <TrendIndicator trend={item.trend}>
+                        {item.trend === 'up' && <FaArrowUp />}
+                        {item.trend === 'down' && <FaArrowDown />}
+                        {item.trend === 'stable' && <FaMinus />}
+                      </TrendIndicator>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      {editingScore === key ? (
+                        <select
+                          value={developmentPracticesScores[key]}
+                          onChange={(e) => {
+                            setDevelopmentPracticesScores(prev => ({
+                              ...prev,
+                              [key]: e.target.value
+                            }));
+                          }}
+                          onBlur={finishScoreEdit}
+                          style={{
+                            padding: '0.25rem 0.5rem',
+                            border: '1px solid #ddd',
+                            borderRadius: '4px',
+                            fontSize: '0.875rem',
+                            backgroundColor: 'white',
+                            color: getScoreColor(developmentPracticesScores[key])
+                          }}
+                          autoFocus
+                        >
+                          <option value="H">H</option>
+                          <option value="M">M</option>
+                          <option value="L">L</option>
+                        </select>
+                      ) : (
+                        <ScoreValue 
+                          score={developmentPracticesScores[key]}
+                          onClick={() => startScoreEdit(key)}
+                          style={{ cursor: 'pointer', color: getScoreColor(developmentPracticesScores[key]) }}
+                        >
+                          {developmentPracticesScores[key]}
+                        </ScoreValue>
+                      )}
+                      <FaEdit 
+                        size={12} 
+                        style={{ cursor: 'pointer', opacity: 0.7 }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          startScoreEdit(key);
+                        }}
+                      />
+                      <ExpandIcon expanded={expandedScores[key]}>
+                        {expandedScores[key] ? <FaChevronDown /> : <FaChevronRight />}
+                      </ExpandIcon>
+                    </div>
+                  </ScoreHeader>
+                  {expandedScores[key] && (
+                    <ScoreDetails expanded={expandedScores[key]}>
+                      <StickyHeader>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLightbulb style={{ color: '#ff851b' }} />
+                          <strong>Current State</strong>
+                        </div>
+                      </StickyHeader>
+                      <div style={{ marginBottom: '1rem', padding: '0.75rem', background: 'rgba(0, 123, 255, 0.1)', borderLeft: '3px solid #007bff', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
+                        {item.currentState}
+                      </div>
+                      
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                        <FaExclamationTriangle style={{ color: '#dc3545' }} />
+                        <strong>Development Practice Challenges</strong>
+                      </div>
+                      <RiskBulletList>
+                        {item.risks.map((risk, idx) => (
+                          <RiskBulletItem key={idx}>{risk}</RiskBulletItem>
+                        ))}
+                      </RiskBulletList>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLightbulb style={{ color: '#2ecc40' }} />
+                          <strong>Recommended Actions</strong>
+                        </div>
+                        {item.actions.map((action, idx) => (
+                          <ActionItem key={idx}>
+                            {action}
+                          </ActionItem>
+                        ))}
+                      </div>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaLink style={{ color: '#0074d9' }} />
+                          <strong>Practice Correlations</strong>
+                        </div>
+                        <CorrelationMatrix>
+                          {item.correlations.map((correlation, idx) => (
+                            <CorrelationItem key={idx}>
+                              <FaLink size={10} />
+                              {correlation.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
+                            </CorrelationItem>
+                          ))}
+                        </CorrelationMatrix>
+                      </div>
+                      
+                      <div style={{ marginTop: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <FaClock style={{ color: '#85144b' }} />
+                          <strong>Timeline</strong>
+                        </div>
+                        <TimelineView>
+                          {item.timeline.map((event, idx) => (
+                            <TimelineItem key={idx}>
+                              <div style={{ fontSize: '0.75rem', opacity: 0.7 }}>
+                                {new Date(event.date).toLocaleDateString()}
+                              </div>
+                              <div>{event.event}</div>
+                            </TimelineItem>
+                          ))}
+                        </TimelineView>
+                      </div>
+                    </ScoreDetails>
+                  )}
+                </ScoreItem>
+              ))}
+              
+              <OverallScoreContainer score={Math.round(
+                Object.values(developmentPracticesScores).reduce((sum, score) => sum + getScoreValue(score), 0) / 
+                Object.values(developmentPracticesScores).length
+              )}>
+                <OverallScoreHeader>
+                  Overall Development Practices Maturity
+                </OverallScoreHeader>
+                
+                <OverallScoreValue score={Math.round(
+                  Object.values(developmentPracticesScores).reduce((sum, score) => sum + getScoreValue(score), 0) / 
+                  Object.values(developmentPracticesScores).length
+                )} style={{ color: getScoreColor(getAverageScoreLabel(
+                  Object.values(developmentPracticesScores).reduce((sum, score) => sum + getScoreValue(score), 0) / 
+                  Object.values(developmentPracticesScores).length
+                )) }}>
+                  {getAverageScoreLabel(
+                    Object.values(developmentPracticesScores).reduce((sum, score) => sum + getScoreValue(score), 0) / 
+                    Object.values(developmentPracticesScores).length
+                  )}
+                </OverallScoreValue>
+                
+                <div style={{ marginTop: '1rem', padding: '0.75rem', background: 'rgba(0, 123, 255, 0.1)', borderRadius: '0.25rem', fontSize: '0.85rem' }}>
+                  <strong>Development Practice Goals:</strong>
+                  <div style={{ margin: '0.5rem 0 0 0' }}>
+                    <div>• Achieve fully automated CI/CD with quality gates and coverage thresholds</div>
+                    <div>• Eliminate manual processes with smart pass/fail automation</div>
+                    <div>• Ensure same binary tested is published across environments</div>
+                    <div>• Integrate AI-assisted development practices and tools</div>
+                  </div>
+                </div>
+              </OverallScoreContainer>
+            </SectionContent>
+          </Section>
+
         </SectionGrid>
       </AssessmentSection>
     </PageContainer>
