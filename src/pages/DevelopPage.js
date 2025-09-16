@@ -582,12 +582,6 @@ export default function DevelopPage() {
             </StickySectionHeader>
             {expandedContainers.maintainability && (
             <SectionContent>
-              <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(0, 123, 255, 0.1)', borderLeft: '4px solid #007bff', borderRadius: '0.25rem' }}>
-                <strong>How might we make our app smaller, easier to maintain, with fewer SDKs, so that we can move faster without accruing tech debt?</strong>
-                <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', opacity: 0.8 }}>
-                  The Home Depot would like to understand how the proposed approach would provide a more maintainable implementation that speeds up delivery time, improves development experience, and makes it easier to find and address bugs.
-                </p>
-              </div>
               
               <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(220, 53, 69, 0.1)', borderLeft: '4px solid #dc3545', borderRadius: '0.25rem' }}>
                 <strong>Current State Challenges</strong>
@@ -908,12 +902,6 @@ export default function DevelopPage() {
             </StickySectionHeader>
             {expandedContainers.performance && (
             <SectionContent>
-              <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(255, 193, 7, 0.1)', borderLeft: '4px solid #ffc107', borderRadius: '0.25rem' }}>
-                <strong>How might we measure and improve the true and perceived performance of the app for The Home Depot customers?</strong>
-                <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', opacity: 0.8 }}>
-                  Customer feedback data tells us customers increasingly have a perception that our app is "slow" or "clunky".
-                </p>
-              </div>
               {Object.entries({
                 appStartupPerformance: {
                   label: 'App Startup Performance',
@@ -1843,12 +1831,6 @@ export default function DevelopPage() {
             </StickySectionHeader>
             {expandedContainers.technology && (
             <SectionContent>
-              <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(0, 123, 255, 0.1)', borderLeft: '4px solid #007bff', borderRadius: '0.25rem' }}>
-                <strong>How should we evolve and/or rebuild our technology and architecture to achieve and maintain a modern approach?</strong>
-                <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', opacity: 0.8 }}>
-                  The Home Depot is interested in providing engaging experiences across all devices (phone, tablet, watch, auto, etc.) with flexibility and speed to market.
-                </p>
-              </div>
               
               <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(255, 193, 7, 0.1)', borderLeft: '4px solid #ffc107', borderRadius: '0.25rem' }}>
                 <strong>Current Technology Migration Status</strong>

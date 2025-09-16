@@ -46,20 +46,20 @@ describe('DevelopPage', () => {
     render(<DevelopPage />);
     
     // Initially expanded, should show content
-    expect(screen.getByText(/How might we make our app smaller/i)).toBeInTheDocument();
+    expect(screen.getByText(/Current State Challenges/i)).toBeInTheDocument();
     
     // Click the maintainability header to collapse
     const maintainabilityHeader = screen.getByText('Maintainability').closest('div');
     fireEvent.click(maintainabilityHeader);
     
     // Content should be hidden after collapse
-    expect(screen.queryByText(/How might we make our app smaller/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Current State Challenges/i)).not.toBeInTheDocument();
     
     // Click again to expand
     fireEvent.click(maintainabilityHeader);
     
     // Content should be visible again
-    expect(screen.getByText(/How might we make our app smaller/i)).toBeInTheDocument();
+    expect(screen.getByText(/Current State Challenges/i)).toBeInTheDocument();
   });
 
   it('allows all assessment containers to be collapsed and expanded', () => {
@@ -67,9 +67,9 @@ describe('DevelopPage', () => {
     
     // Test Performance container
     const performanceHeader = screen.getByText('Performance').closest('div');
-    expect(screen.getByText(/Customer feedback data tells us customers/i)).toBeInTheDocument();
+    expect(screen.getByText(/App Startup Performance/i)).toBeInTheDocument();
     fireEvent.click(performanceHeader);
-    expect(screen.queryByText(/Customer feedback data tells us customers/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/App Startup Performance/i)).not.toBeInTheDocument();
     
     // Test Reliability container
     const reliabilityHeader = screen.getByText('Reliability').closest('div');
@@ -85,9 +85,9 @@ describe('DevelopPage', () => {
     
     // Test Technology container
     const technologyHeader = screen.getByText('Technology').closest('div');
-    expect(screen.getByText(/How should we evolve and\/or rebuild/i)).toBeInTheDocument();
+    expect(screen.getByText(/Current Technology Migration Status/i)).toBeInTheDocument();
     fireEvent.click(technologyHeader);
-    expect(screen.queryByText(/How should we evolve and\/or rebuild/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Current Technology Migration Status/i)).not.toBeInTheDocument();
     
     // Test Development Practices container
     const devPracticesHeader = screen.getByText('Development Practices').closest('div');
