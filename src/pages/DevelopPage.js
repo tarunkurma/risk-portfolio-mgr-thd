@@ -4,7 +4,7 @@ import {
   FaCodeBranch, FaArrowLeft, FaShieldAlt, FaCode, FaCheckSquare,
   FaExclamationTriangle, FaChevronDown, FaChevronRight,
   FaArrowUp, FaArrowDown, FaMinus, FaEdit, FaLightbulb, FaClock, FaLink,
-  FaChevronUp, FaCogs
+  FaCogs
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
@@ -384,33 +384,6 @@ const StickyHeader = styled.div`
   margin: 0 -1rem 1rem -1rem;
 `;
 
-const ExpandCollapseButtons = styled.div`
-  display: flex;
-  gap: 0.5rem;
-`;
-
-const ExpandCollapseButton = styled.button`
-  background: ${({ theme }) => theme.colors.primary};
-  color: white;
-  border: none;
-  padding: 0.5rem;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  
-  &:hover {
-    background: ${({ theme }) => theme.colors.primary}dd;
-  }
-  
-  &:focus {
-    outline: none;
-  }
-`;
 
 const ScoreLabel = styled.span`
   font-size: 1rem;
@@ -505,101 +478,6 @@ export default function DevelopPage() {
     setEditingScore(null);
   };
 
-  const expandAll = () => {
-    const allKeys = ['releaseCycleEfficiency', 'configurationManagement', 'sdkManagementComplexity', 'nativeWebviewDataSharing', 'buildPipelineAutomation', 'legacyCodeRemoval'];
-    setExpandedScores(
-      allKeys.reduce((acc, key) => ({ ...acc, [key]: true }), {})
-    );
-  };
-
-  const collapseAll = () => {
-    setExpandedScores({});
-  };
-
-  const expandAllPerformance = () => {
-    const allKeys = ['appStartupPerformance', 'webViewLoadTime', 'coreWebVitals', 'cacheOptimization', 'networkBandwidthOptimization'];
-    setExpandedScores(prev => ({
-      ...prev,
-      ...allKeys.reduce((acc, key) => ({ ...acc, [key]: true }), {})
-    }));
-  };
-
-  const collapseAllPerformance = () => {
-    const performanceKeys = ['appStartupPerformance', 'webViewLoadTime', 'coreWebVitals', 'cacheOptimization', 'networkBandwidthOptimization'];
-    setExpandedScores(prev => {
-      const newState = { ...prev };
-      performanceKeys.forEach(key => delete newState[key]);
-      return newState;
-    });
-  };
-
-  const expandAllReliability = () => {
-    const allKeys = ['iosCrashFreeRate', 'androidCrashFreeRate', 'crashReproducibility', 'crashImpactAnalysis', 'reliabilityTooling'];
-    setExpandedScores(prev => ({
-      ...prev,
-      ...allKeys.reduce((acc, key) => ({ ...acc, [key]: true }), {})
-    }));
-  };
-
-  const collapseAllReliability = () => {
-    const reliabilityKeys = ['iosCrashFreeRate', 'androidCrashFreeRate', 'crashReproducibility', 'crashImpactAnalysis', 'reliabilityTooling'];
-    setExpandedScores(prev => {
-      const newState = { ...prev };
-      reliabilityKeys.forEach(key => delete newState[key]);
-      return newState;
-    });
-  };
-
-  const expandAllTesting = () => {
-    const allKeys = ['unitTestCoverage', 'endToEndTestFramework', 'testInfrastructure', 'crossTeamTestAccessibility', 'testToolOptimization'];
-    setExpandedScores(prev => ({
-      ...prev,
-      ...allKeys.reduce((acc, key) => ({ ...acc, [key]: true }), {})
-    }));
-  };
-
-  const collapseAllTesting = () => {
-    const testingKeys = ['unitTestCoverage', 'endToEndTestFramework', 'testInfrastructure', 'crossTeamTestAccessibility', 'testToolOptimization'];
-    setExpandedScores(prev => {
-      const newState = { ...prev };
-      testingKeys.forEach(key => delete newState[key]);
-      return newState;
-    });
-  };
-
-  const expandAllTechnology = () => {
-    const allKeys = ['platformMigrationProgress', 'multiDeviceStrategy', 'modularArchitecture', 'codeHealthMetrics', 'technologyStackModernization'];
-    setExpandedScores(prev => ({
-      ...prev,
-      ...allKeys.reduce((acc, key) => ({ ...acc, [key]: true }), {})
-    }));
-  };
-
-  const collapseAllTechnology = () => {
-    const technologyKeys = ['platformMigrationProgress', 'multiDeviceStrategy', 'modularArchitecture', 'codeHealthMetrics', 'technologyStackModernization'];
-    setExpandedScores(prev => {
-      const newState = { ...prev };
-      technologyKeys.forEach(key => delete newState[key]);
-      return newState;
-    });
-  };
-
-  const expandAllDevelopmentPractices = () => {
-    const allKeys = ['cicdPipelineAutomation', 'codeQualityGates', 'buildArtifactManagement', 'manualProcessElimination', 'aiAssistedDevelopment'];
-    setExpandedScores(prev => ({
-      ...prev,
-      ...allKeys.reduce((acc, key) => ({ ...acc, [key]: true }), {})
-    }));
-  };
-
-  const collapseAllDevelopmentPractices = () => {
-    const developmentPracticesKeys = ['cicdPipelineAutomation', 'codeQualityGates', 'buildArtifactManagement', 'manualProcessElimination', 'aiAssistedDevelopment'];
-    setExpandedScores(prev => {
-      const newState = { ...prev };
-      developmentPracticesKeys.forEach(key => delete newState[key]);
-      return newState;
-    });
-  };
 
   // Calculate overall average score
   const getScoreValue = (score) => {
@@ -672,14 +550,6 @@ export default function DevelopPage() {
                   <SectionIcon color="develop"><FaCogs /></SectionIcon>
                   <SectionTitle>Maintainability</SectionTitle>
                 </SectionHeaderLeft>
-                <ExpandCollapseButtons>
-                  <ExpandCollapseButton onClick={expandAll} title="Expand All">
-                    <FaChevronDown />
-                  </ExpandCollapseButton>
-                  <ExpandCollapseButton onClick={collapseAll} title="Collapse All">
-                    <FaChevronUp />
-                  </ExpandCollapseButton>
-                </ExpandCollapseButtons>
               </SectionHeader>
             </StickySectionHeader>
             <SectionContent>
@@ -991,14 +861,6 @@ export default function DevelopPage() {
                   <SectionIcon color="develop"><FaClock /></SectionIcon>
                   <SectionTitle>Performance</SectionTitle>
                 </SectionHeaderLeft>
-                <ExpandCollapseButtons>
-                  <ExpandCollapseButton onClick={expandAllPerformance} title="Expand All">
-                    <FaChevronDown />
-                  </ExpandCollapseButton>
-                  <ExpandCollapseButton onClick={collapseAllPerformance} title="Collapse All">
-                    <FaChevronUp />
-                  </ExpandCollapseButton>
-                </ExpandCollapseButtons>
               </SectionHeader>
             </StickySectionHeader>
             <SectionContent>
@@ -1287,14 +1149,6 @@ export default function DevelopPage() {
                   <SectionIcon color="develop"><FaShieldAlt /></SectionIcon>
                   <SectionTitle>Reliability</SectionTitle>
                 </SectionHeaderLeft>
-                <ExpandCollapseButtons>
-                  <ExpandCollapseButton onClick={expandAllReliability} title="Expand All">
-                    <FaChevronDown />
-                  </ExpandCollapseButton>
-                  <ExpandCollapseButton onClick={collapseAllReliability} title="Collapse All">
-                    <FaChevronUp />
-                  </ExpandCollapseButton>
-                </ExpandCollapseButtons>
               </SectionHeader>
             </StickySectionHeader>
             <SectionContent>
@@ -1591,14 +1445,6 @@ export default function DevelopPage() {
                   <SectionIcon color="develop"><FaCheckSquare /></SectionIcon>
                   <SectionTitle>Testing</SectionTitle>
                 </SectionHeaderLeft>
-                <ExpandCollapseButtons>
-                  <ExpandCollapseButton onClick={expandAllTesting} title="Expand All">
-                    <FaChevronDown />
-                  </ExpandCollapseButton>
-                  <ExpandCollapseButton onClick={collapseAllTesting} title="Collapse All">
-                    <FaChevronUp />
-                  </ExpandCollapseButton>
-                </ExpandCollapseButtons>
               </SectionHeader>
             </StickySectionHeader>
             <SectionContent>
@@ -1905,14 +1751,6 @@ export default function DevelopPage() {
                   <SectionIcon color="develop"><FaCode /></SectionIcon>
                   <SectionTitle>Technology</SectionTitle>
                 </SectionHeaderLeft>
-                <ExpandCollapseButtons>
-                  <ExpandCollapseButton onClick={expandAllTechnology} title="Expand All">
-                    <FaChevronDown />
-                  </ExpandCollapseButton>
-                  <ExpandCollapseButton onClick={collapseAllTechnology} title="Collapse All">
-                    <FaChevronUp />
-                  </ExpandCollapseButton>
-                </ExpandCollapseButtons>
               </SectionHeader>
             </StickySectionHeader>
             <SectionContent>
@@ -2227,14 +2065,6 @@ export default function DevelopPage() {
                   <SectionIcon color="develop"><FaCodeBranch /></SectionIcon>
                   <SectionTitle>Development Practices</SectionTitle>
                 </SectionHeaderLeft>
-                <ExpandCollapseButtons>
-                  <ExpandCollapseButton onClick={expandAllDevelopmentPractices} title="Expand All">
-                    <FaChevronDown />
-                  </ExpandCollapseButton>
-                  <ExpandCollapseButton onClick={collapseAllDevelopmentPractices} title="Collapse All">
-                    <FaChevronUp />
-                  </ExpandCollapseButton>
-                </ExpandCollapseButtons>
               </SectionHeader>
             </StickySectionHeader>
             <SectionContent>
