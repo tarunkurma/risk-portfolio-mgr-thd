@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '../../test/test-utils';
+import { render, screen, fireEvent } from '../../test/test-utils';
 import DevelopPage from './DevelopPage';
 
 describe('DevelopPage', () => {
@@ -40,5 +40,25 @@ describe('DevelopPage', () => {
     const backLink = screen.getByText('Back to Home Page');
     expect(backLink).toBeInTheDocument();
     expect(backLink.closest('a')).toHaveAttribute('href', '/');
+  });
+
+  it('allows maintainability container to be collapsed and expanded', () => {
+    render(<DevelopPage />);
+    
+    // Initially expanded, should show content
+    expect(screen.getByText(/How might we make our app smaller/i)).toBeInTheDocument();
+    
+    // Click the maintainability header to collapse
+    const maintainabilityHeader = screen.getByText('Maintainability').closest('div');
+    fireEvent.click(maintainabilityHeader);
+    
+    // Content should be hidden after collapse
+    expect(screen.queryByText(/How might we make our app smaller/i)).not.toBeInTheDocument();
+    
+    // Click again to expand
+    fireEvent.click(maintainabilityHeader);
+    
+    // Content should be visible again
+    expect(screen.getByText(/How might we make our app smaller/i)).toBeInTheDocument();
   });
 });

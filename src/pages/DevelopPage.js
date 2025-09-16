@@ -402,6 +402,14 @@ const ScoreValue = styled.span`
 export default function DevelopPage() {
   const [expandedScores, setExpandedScores] = useState({});
   const [editingScore, setEditingScore] = useState(null);
+  const [expandedContainers, setExpandedContainers] = useState({
+    maintainability: true,
+    performance: true,
+    reliability: true,
+    testing: true,
+    technology: true,
+    developmentPractices: true
+  });
 
   const [maintainabilityScores, setMaintainabilityScores] = React.useState({
     releaseCycleEfficiency: 'M',
@@ -478,6 +486,13 @@ export default function DevelopPage() {
     setEditingScore(null);
   };
 
+  const toggleContainerExpansion = (containerKey) => {
+    setExpandedContainers(prev => ({
+      ...prev,
+      [containerKey]: !prev[containerKey]
+    }));
+  };
+
 
   // Calculate overall average score
   const getScoreValue = (score) => {
@@ -545,13 +560,20 @@ export default function DevelopPage() {
           {/* Maintainability Container */}
           <Section style={{ position: 'relative' }}>
             <StickySectionHeader>
-              <SectionHeader>
+              <SectionHeader 
+                onClick={() => toggleContainerExpansion('maintainability')}
+                style={{ cursor: 'pointer', userSelect: 'none' }}
+              >
                 <SectionHeaderLeft>
                   <SectionIcon color="develop"><FaCogs /></SectionIcon>
                   <SectionTitle>Maintainability</SectionTitle>
                 </SectionHeaderLeft>
+                <div style={{ display: 'flex', alignItems: 'center', fontSize: '1.2rem', color: '#A3A3FF' }}>
+                  {expandedContainers.maintainability ? <FaChevronDown /> : <FaChevronRight />}
+                </div>
               </SectionHeader>
             </StickySectionHeader>
+            {expandedContainers.maintainability && (
             <SectionContent>
               <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(0, 123, 255, 0.1)', borderLeft: '4px solid #007bff', borderRadius: '0.25rem' }}>
                 <strong>How might we make our app smaller, easier to maintain, with fewer SDKs, so that we can move faster without accruing tech debt?</strong>
@@ -851,6 +873,7 @@ export default function DevelopPage() {
                 </OverallScoreValue>
               </OverallScoreContainer>
             </SectionContent>
+            )}
           </Section>
 
           {/* Performance Container */}
