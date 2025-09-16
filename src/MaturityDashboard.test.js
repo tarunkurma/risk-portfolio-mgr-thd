@@ -36,7 +36,8 @@ describe('MaturityDashboard', () => {
   it('displays THD capability assessment categories', () => {
     render(<MaturityDashboard />);
     expect(screen.getByText(/THD Capability Assessment Categories/i)).toBeInTheDocument();
-    expect(screen.getByText(/Assessment Areas:/i)).toBeInTheDocument(); // Context description
+    // Should show category percentages in concise format
+    expect(screen.getByText(/Needs Attention|In Progress|Strong/i)).toBeInTheDocument();
   });
 
   it('switches to detailed analysis view when tab is clicked', () => {

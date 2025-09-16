@@ -264,53 +264,43 @@ export default function MaturityDashboard() {
                 <FaShieldAlt style={{ color: theme.colors.primary }} />
                 THD Capability Assessment Categories
               </ChartTitle>
-              <div style={{ marginBottom: '1rem', padding: '0.75rem', background: 'rgba(0, 123, 255, 0.1)', borderLeft: '4px solid #007bff', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
-                <strong>Assessment Areas:</strong> Six key capability domains covering The Home Depot's mobile app development maturity.
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
-                {Object.entries(categoryInsights).map(([category, insight]) => {
-                  const categoryData = maturityCategories.find(cat => cat.name.toLowerCase().includes(category));
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.75rem' }}>
+                {maturityCategories.map((category) => {
+                  const insight = categoryInsights[category.name.toLowerCase().replace(' ', '').replace('dev practices', 'developmentPractices')];
+                  const priorityColor = category.value < 50 ? '#dc3545' : category.value < 70 ? '#ffc107' : '#28a745';
                   return (
-                    <div key={category} style={{ 
-                      padding: '0.75rem', 
+                    <div key={category.name} style={{ 
+                      padding: '1rem', 
                       background: 'rgba(255, 255, 255, 0.05)', 
-                      border: `2px solid ${insight.color}20`,
-                      borderLeft: `4px solid ${insight.color}`,
-                      borderRadius: '0.5rem' 
+                      borderLeft: `4px solid ${priorityColor}`,
+                      borderRadius: '0.5rem',
+                      textAlign: 'center'
                     }}>
                       <div style={{ 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        justifyContent: 'space-between',
-                        marginBottom: '0.5rem' 
+                        fontSize: '1.1rem', 
+                        fontWeight: 'bold', 
+                        color: priorityColor,
+                        marginBottom: '0.5rem'
                       }}>
-                        <strong style={{ color: insight.color, textTransform: 'capitalize' }}>
-                          {category === 'developmentPractices' ? 'Dev Practices' : category}
-                        </strong>
-                        <span style={{ 
-                          fontSize: '1.2rem', 
-                          fontWeight: 'bold', 
-                          color: insight.color 
-                        }}>
-                          {categoryData?.value || 'N/A'}%
-                        </span>
-                      </div>
-                      <div style={{ fontSize: '0.85rem', marginBottom: '0.25rem' }}>
-                        <strong>Challenge:</strong> {insight.highlight}
-                      </div>
-                      <div style={{ fontSize: '0.8rem', color: '#666', fontStyle: 'italic' }}>
-                        {insight.trend}
+                        {category.name}
                       </div>
                       <div style={{ 
-                        marginTop: '0.5rem', 
-                        padding: '0.25rem 0.5rem', 
-                        background: insight.urgency === 'High' ? 'rgba(220, 53, 69, 0.1)' : 'rgba(255, 193, 7, 0.1)',
-                        borderRadius: '0.25rem',
-                        fontSize: '0.75rem',
-                        fontWeight: 'bold',
-                        color: insight.urgency === 'High' ? '#dc3545' : '#ffc107'
+                        fontSize: '2rem', 
+                        fontWeight: 'bold', 
+                        color: priorityColor,
+                        marginBottom: '0.5rem'
                       }}>
-                        Priority: {insight.urgency}
+                        {category.value}%
+                      </div>
+                      <div style={{ 
+                        fontSize: '0.8rem', 
+                        color: '#666',
+                        backgroundColor: category.value < 50 ? 'rgba(220, 53, 69, 0.1)' : category.value < 70 ? 'rgba(255, 193, 7, 0.1)' : 'rgba(40, 167, 69, 0.1)',
+                        padding: '0.25rem 0.5rem',
+                        borderRadius: '0.25rem',
+                        fontWeight: 'bold'
+                      }}>
+                        {category.value < 50 ? 'Needs Attention' : category.value < 70 ? 'In Progress' : 'Strong'}
                       </div>
                     </div>
                   );
@@ -334,22 +324,22 @@ export default function MaturityDashboard() {
                       {item}
                       {item.includes('manual') && (
                         <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem', fontStyle: 'italic' }}>
-                          🤖 High priority: Automation opportunity
+                          <span role="img" aria-label="robot">🤖</span> High priority: Automation opportunity
                         </div>
                       )}
                       {item.includes('crash') && (
                         <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem', fontStyle: 'italic' }}>
-                          📊 SLA impact: Affects customer experience
+                          <span role="img" aria-label="chart">📊</span> SLA impact: Affects customer experience
                         </div>
                       )}
                       {item.includes('accessibility') && (
                         <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem', fontStyle: 'italic' }}>
-                          👥 Cross-team blocker: Limits collaboration
+                          <span role="img" aria-label="people">👥</span> Cross-team blocker: Limits collaboration
                         </div>
                       )}
                       {item.includes('device') && (
                         <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem', fontStyle: 'italic' }}>
-                          📱 Market opportunity: Tablet, watch, auto support missing
+                          <span role="img" aria-label="mobile device">📱</span> Market opportunity: Tablet, watch, auto support missing
                         </div>
                       )}
                     </div>
@@ -372,17 +362,17 @@ export default function MaturityDashboard() {
                       {item}
                       {item.includes('Embrace') && (
                         <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem', fontStyle: 'italic' }}>
-                          📈 Reliability tracking: iOS 99.85%, Android 99.8%
+                          <span role="img" aria-label="trending up">📈</span> Reliability tracking: iOS 99.85%, Android 99.8%
                         </div>
                       )}
                       {item.includes('80%') && (
                         <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem', fontStyle: 'italic' }}>
-                          ✅ Standard established: JUnit (Android), XCTest (iOS)
+                          <span role="img" aria-label="check mark">✅</span> Standard established: JUnit (Android), XCTest (iOS)
                         </div>
                       )}
                       {item.includes('Swift') && (
                         <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem', fontStyle: 'italic' }}>
-                          🔄 Migration progress: Swift 63%, SwiftUI 15%, Kotlin 59%, Jetpack Compose 7%
+                          <span role="img" aria-label="refresh">🔄</span> Migration progress: Swift 63%, SwiftUI 15%, Kotlin 59%, Jetpack Compose 7%
                         </div>
                       )}
                     </div>
