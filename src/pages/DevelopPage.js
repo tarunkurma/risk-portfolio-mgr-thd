@@ -4,7 +4,7 @@ import {
   FaCodeBranch, FaArrowLeft, FaShieldAlt, FaCode, FaCheckSquare,
   FaExclamationTriangle, FaChevronDown, FaChevronRight,
   FaArrowUp, FaArrowDown, FaMinus, FaEdit, FaLightbulb, FaClock, FaLink,
-  FaChevronUp
+  FaChevronUp, FaCogs
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
@@ -669,7 +669,7 @@ export default function DevelopPage() {
             <StickySectionHeader>
               <SectionHeader>
                 <SectionHeaderLeft>
-                  <SectionIcon color="security"><FaExclamationTriangle /></SectionIcon>
+                  <SectionIcon color="develop"><FaCogs /></SectionIcon>
                   <SectionTitle>Maintainability</SectionTitle>
                 </SectionHeaderLeft>
                 <ExpandCollapseButtons>
@@ -988,7 +988,7 @@ export default function DevelopPage() {
             <StickySectionHeader>
               <SectionHeader>
                 <SectionHeaderLeft>
-                  <SectionIcon color="primary"><FaClock /></SectionIcon>
+                  <SectionIcon color="develop"><FaClock /></SectionIcon>
                   <SectionTitle>Performance</SectionTitle>
                 </SectionHeaderLeft>
                 <ExpandCollapseButtons>
@@ -1284,7 +1284,7 @@ export default function DevelopPage() {
             <StickySectionHeader>
               <SectionHeader>
                 <SectionHeaderLeft>
-                  <SectionIcon color="stabilize"><FaShieldAlt /></SectionIcon>
+                  <SectionIcon color="develop"><FaShieldAlt /></SectionIcon>
                   <SectionTitle>Reliability</SectionTitle>
                 </SectionHeaderLeft>
                 <ExpandCollapseButtons>
@@ -1902,7 +1902,7 @@ export default function DevelopPage() {
             <StickySectionHeader>
               <SectionHeader>
                 <SectionHeaderLeft>
-                  <SectionIcon color="primary"><FaCode /></SectionIcon>
+                  <SectionIcon color="develop"><FaCode /></SectionIcon>
                   <SectionTitle>Technology</SectionTitle>
                 </SectionHeaderLeft>
                 <ExpandCollapseButtons>
