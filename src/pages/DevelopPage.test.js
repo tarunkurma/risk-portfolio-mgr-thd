@@ -73,26 +73,26 @@ describe('DevelopPage', () => {
     
     // Test Reliability container
     const reliabilityHeader = screen.getByText('Reliability').closest('div');
-    expect(screen.getByText(/Current Reliability Tracking/i)).toBeInTheDocument();
+    expect(screen.getByText(/iOS Crash-Free Rate/i)).toBeInTheDocument();
     fireEvent.click(reliabilityHeader);
-    expect(screen.queryByText(/Current Reliability Tracking/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/iOS Crash-Free Rate/i)).not.toBeInTheDocument();
     
     // Test Testing container
     const testingHeader = screen.getByText('Testing').closest('div');
-    expect(screen.getByText(/What best practice methodologies/i)).toBeInTheDocument();
+    expect(screen.getByText(/Unit Test Coverage & Standards/i)).toBeInTheDocument();
     fireEvent.click(testingHeader);
-    expect(screen.queryByText(/What best practice methodologies/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Unit Test Coverage & Standards/i)).not.toBeInTheDocument();
     
     // Test Technology container
     const technologyHeader = screen.getByText('Technology').closest('div');
-    expect(screen.getByText(/Current Technology Migration Status/i)).toBeInTheDocument();
+    expect(screen.getByText(/Platform Migration Progress/i)).toBeInTheDocument();
     fireEvent.click(technologyHeader);
-    expect(screen.queryByText(/Current Technology Migration Status/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Platform Migration Progress/i)).not.toBeInTheDocument();
     
     // Test Development Practices container
     const devPracticesHeader = screen.getByText('Development Practices').closest('div');
-    expect(screen.getByText(/Goal: Automated CI\/CD state/i)).toBeInTheDocument();
+    expect(screen.getByText(/CI\/CD Pipeline Automation/i)).toBeInTheDocument();
     fireEvent.click(devPracticesHeader);
-    expect(screen.queryByText(/Goal: Automated CI\/CD state/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/CI\/CD Pipeline Automation/i)).not.toBeInTheDocument();
   });
 });

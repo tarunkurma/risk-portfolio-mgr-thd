@@ -1199,20 +1199,6 @@ export default function DevelopPage() {
             </StickySectionHeader>
             {expandedContainers.reliability && (
             <SectionContent>
-              <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(40, 167, 69, 0.1)', borderLeft: '4px solid #28a745', borderRadius: '0.25rem' }}>
-                <strong>Current Reliability Tracking</strong>
-                <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', opacity: 0.8 }}>
-                  We currently track this metric via Embrace tooling.
-                </p>
-                <div style={{ marginTop: '0.75rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.5rem' }}>
-                  <div style={{ padding: '0.5rem', background: 'rgba(0, 123, 255, 0.1)', borderRadius: '0.25rem' }}>
-                    <strong>iOS:</strong> 99.85% current (Goal: 99.9% for 2024)
-                  </div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(40, 167, 69, 0.1)', borderRadius: '0.25rem' }}>
-                    <strong>Android:</strong> 99.8% current (Goal: 99.85% for 2024)
-                  </div>
-                </div>
-              </div>
               {Object.entries({
                 iosCrashFreeRate: {
                   label: 'iOS Crash-Free Rate',
@@ -1510,28 +1496,6 @@ export default function DevelopPage() {
             </StickySectionHeader>
             {expandedContainers.testing && (
             <SectionContent>
-              <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(0, 123, 255, 0.1)', borderLeft: '4px solid #007bff', borderRadius: '0.25rem' }}>
-                <strong>What best practice methodologies and technologies should be put in place for ensuring quality in app?</strong>
-                <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', opacity: 0.8 }}>
-                  How can we make creating, managing, and running tests as easy as possible for both the app team and other product teams who deliver capabilities through app?
-                </p>
-              </div>
-              
-              <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(40, 167, 69, 0.1)', borderLeft: '4px solid #28a745', borderRadius: '0.25rem' }}>
-                <strong>Current Testing Infrastructure</strong>
-                <div style={{ marginTop: '0.75rem', display: 'grid', gridTemplateColumns: '1fr', gap: '0.5rem' }}>
-                  <div style={{ padding: '0.5rem', background: 'rgba(0, 123, 255, 0.1)', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
-                    <strong>Unit Tests:</strong> 80% branch coverage requirement - Android (JUnit), iOS (XCTest)
-                  </div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(255, 193, 7, 0.1)', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
-                    <strong>E2E Tests:</strong> Bugbear (WebDriverIO wrapper) for browser/app test reusability
-                  </div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(40, 167, 69, 0.1)', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
-                    <strong>Testbed:</strong> SauceLabs with virtual & physical devices
-                  </div>
-                </div>
-              </div>
-
               {Object.entries({
                 unitTestCoverage: {
                   label: 'Unit Test Coverage & Standards',
@@ -1831,29 +1795,6 @@ export default function DevelopPage() {
             </StickySectionHeader>
             {expandedContainers.technology && (
             <SectionContent>
-              
-              <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(255, 193, 7, 0.1)', borderLeft: '4px solid #ffc107', borderRadius: '0.25rem' }}>
-                <strong>Current Technology Migration Status</strong>
-                <div style={{ marginTop: '0.75rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '0.75rem' }}>
-                  <div style={{ padding: '0.75rem', background: 'rgba(0, 123, 255, 0.1)', borderRadius: '0.25rem' }}>
-                    <strong>iOS Progress:</strong>
-                    <div style={{ fontSize: '0.85rem', marginTop: '0.5rem' }}>
-                      • Swift: 63%, Objective-C: 26%, Other: 11%
-                      <br />• SwiftUI: 15%, UIKit: 85%
-                      <br />• iPhone primary, iPad renders iPhone app
-                    </div>
-                  </div>
-                  <div style={{ padding: '0.75rem', background: 'rgba(40, 167, 69, 0.1)', borderRadius: '0.25rem' }}>
-                    <strong>Android Progress:</strong>
-                    <div style={{ fontSize: '0.85rem', marginTop: '0.5rem' }}>
-                      • Kotlin: 59%, Java: 29%, Other: 12%
-                      <br />• Jetpack Compose: 7%, XML Fragments: 93%
-                      <br />• Phone primary, no tablet/foldable support
-                    </div>
-                  </div>
-                </div>
-              </div>
-
               {Object.entries({
                 platformMigrationProgress: {
                   label: 'Platform Migration Progress',
@@ -2154,34 +2095,6 @@ export default function DevelopPage() {
             </StickySectionHeader>
             {expandedContainers.developmentPractices && (
             <SectionContent>
-              <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(0, 123, 255, 0.1)', borderLeft: '4px solid #007bff', borderRadius: '0.25rem' }}>
-                <strong>Goal: Automated CI/CD state with comprehensive quality gates and AI assistance</strong>
-                <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', opacity: 0.8 }}>
-                  Tests, code complexity scanning, duplication detection run automatically per PR. No code modification between dev and production builds.
-                </p>
-              </div>
-              
-              <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(220, 53, 69, 0.1)', borderLeft: '4px solid #dc3545', borderRadius: '0.25rem' }}>
-                <strong>Current State: Fully Manual Process</strong>
-                <div style={{ marginTop: '0.75rem', display: 'grid', gridTemplateColumns: '1fr', gap: '0.5rem' }}>
-                  <div style={{ padding: '0.5rem', background: 'rgba(220, 53, 69, 0.1)', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
-                    • Unit tests manually run locally by developers
-                  </div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(220, 53, 69, 0.1)', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
-                    • Quality engineering team manually performs application regressions
-                  </div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(220, 53, 69, 0.1)', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
-                    • Manual UI end-to-end test triggering with Bugbear
-                  </div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(220, 53, 69, 0.1)', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
-                    • GitHub release branches manually created by engineers
-                  </div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(255, 193, 7, 0.1)', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
-                    • GitHub actions manually triggered (iOS: auto TestFlight, Android: manual Google Play)
-                  </div>
-                </div>
-              </div>
-
               {Object.entries({
                 cicdPipelineAutomation: {
                   label: 'CI/CD Pipeline Automation',
